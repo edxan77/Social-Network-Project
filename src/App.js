@@ -1,8 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-import './App.css';
+import React from 'react';
+import { Layout } from './components/Layout';
 
 function App() {
-  return <div className="App" />;
+  return (
+    <Layout>
+      
+    </Layout>
+  );
 }
-
+  
 export default App;
