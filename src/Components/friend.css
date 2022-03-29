@@ -1,5 +1,5 @@
 .ok{
-    width:200px;
+    width:250px;
     margin-top: 250px;
     margin-left: 50px;
     overflow: hidden;
@@ -10,7 +10,7 @@
 
 }
 .ok2{
-    width: 200px;
+    width: 250px;
     margin-top: 250px;
     margin-left: 50px;
     overflow:scroll;
@@ -21,7 +21,7 @@
 }
 
 .more{
-    margin-left: 70px;
+    margin-left: 90px;
     height:5px;
    
 }
@@ -63,4 +63,9 @@
     
     
     
+}
+
+.btn{
+    
+    margin-top: 8px;
 }

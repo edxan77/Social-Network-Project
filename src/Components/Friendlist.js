@@ -20,41 +20,143 @@ function Friendlist() {
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Edgar</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Khanamiryan</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Edgar
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Khanamiryan
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
 
         <ListItem alignItems="flex-start" className="item">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Dianna</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Paronyan</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Dianna
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Paronyan
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
         <ListItem className="item" alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Taron</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Hovhannisyan</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Taron
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Hovhannisyan
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
-        <span className={switching === true ? 'more2' : 'more'} role="button" tabIndex={0} onClick={toggle} onKeyDown={toggle}><Button size="small" sx={{ color: 'white', marginLeft: '0px', marginTop: '20px' }} variant="contained">more</Button></span>
+        <span
+          className={switching === true ? 'more2' : 'more'}
+          role="button"
+          tabIndex={0}
+          onClick={toggle}
+          onKeyDown={toggle}
+        >
+          <Button
+            size="small"
+            sx={{ color: 'white', marginLeft: '0px', marginTop: '20px' }}
+            variant="contained"
+            color="warning"
+          >
+            more
+          </Button>
+        </span>
         <ListItem className="item" alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Bagrat</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Grigoryan</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Bagrat
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Grigoryan
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
         <ListItem className="item" alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Name</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Surname</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Name
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Surname
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
         <ListItem className="item" alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
-          <ListItemText primary={<Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>Sargis</Typography>} secondary={<Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>Abovyan</Typography>} />
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Sargis
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Abovyan
+              </Typography>
+            )}
+          />
+          <span className="btn"><Button variant="contained" size="small">send</Button></span>
         </ListItem>
-        <span className="more" role="button" tabIndex={0} onClick={toggle} onKeyDown={toggle}><Button size="small" sx={{ color: 'white', marginLeft: '-5px', marginTop: '20px' }} variant="contained">X</Button></span>
+        <span
+          className="more"
+          role="button"
+          tabIndex={0}
+          onClick={toggle}
+          onKeyDown={toggle}
+        >
+          <Button
+            size="small"
+            sx={{ color: 'white', marginLeft: '-5px', marginTop: '20px' }}
+            variant="contained"
+            color="error"
+          >
+            X
+          </Button>
+        </span>
       </List>
     </div>
   );
