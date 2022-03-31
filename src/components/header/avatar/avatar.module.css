@@ -1,0 +1,33 @@
+.avatar{
+    display: flex;
+}
+.first {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid cornflowerblue;
+    margin: 5px 20px;
+
+}
+.first img {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+}
+.photo{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    color: gray;
+    margin: 40px;
+    opacity: .4;
+}
+.photo:hover {
+    opacity: 1;
+    color: cornflowerblue;
+}
+.namespase{
+    margin: 45px 10px 10px 0;
+    font-style: italic;
+    color: white;
+}
