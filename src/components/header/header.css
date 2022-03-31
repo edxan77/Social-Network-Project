@@ -7,20 +7,24 @@
     position: sticky;
     top: 0;
 }
-.logo{
+
+.logo {
     font-size: 24px;
     margin-left: 20px;
     font-weight: bold;
     color: white;
     cursor: pointer;
 }
-.headerLeft{
+
+.headerLeft {
     flex: 3;
 }
-.headerCenter{
-    flex: 6;
+
+.headerCenter {
+    flex: 5;
 }
-.search{
+
+.search {
     width: 100%;
     height: 30px;
     background-color: white;
@@ -28,40 +32,49 @@
     display: flex;
     align-items: center;
 }
-.searchIcon{
+
+.searchIcon {
     font-size: 20px;
     margin-left: 12px;
     color: blueviolet;
 }
-.searchInput{
+
+.searchInput {
     border: none;
     width: 65%;
 }
-.searchInput:focus{
+
+.searchInput:focus {
     outline: none;
 }
-.headerRight{
-    flex: 3;
+
+.headerRight {
+    flex: 4;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     color: white;
+    margin-left: 10px;
 }
-.headerLink{
-    margin-right: 7px;
+
+.headerLink {
+    margin-right: 2px;
     font-size: 17px;
     cursor: pointer;
     font-style: italic;
 }
-.headerIcons{
+
+.headerIcons {
     display: flex;
 }
-.headerIconItem{
+
+.headerIconItem {
     margin-right: 15px;
     cursor: pointer;
     position: relative;
 }
-.headerIconCount{
+
+.headerIconCount {
     width: 15px;
     height: 15px;
     background-color: red;
@@ -76,10 +89,33 @@
     font-size: 12px;
 
 }
-.headerImg{
-    width: 32px;
-    height: 32px;
+
+.headerImg {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
+    position: absolute;
+}
+
+.avatar {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.addAvatar {
+    margin-left: 20px;
+    margin-top: 20px;
+    position: absolute;
+    opacity: .4;
+}
+
+.addAvatar:hover {
+    opacity: 1;
+    color: cadetblue;
 }
