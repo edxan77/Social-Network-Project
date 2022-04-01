@@ -29,6 +29,7 @@ function UserPage() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
+            {/* <UserPosts /> */}
         </Container>
       </Container>
     );
