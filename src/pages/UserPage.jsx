@@ -1,5 +1,6 @@
 import { CardMedia, Container } from "@mui/material";
 import AccountMenu from "../components/AccountMenu/AccountMenu";
+import UserPosts from "../components/Posts/UserPosts";
 import Image from '../static/maxresdefault.jpg';
 
 function UserPage() {
@@ -29,7 +30,7 @@ function UserPage() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-            {/* <UserPosts /> */}
+            <UserPosts />
         </Container>
       </Container>
     );

@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, TextField } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../store/features/posts.feature";
+import { addItem } from "../../../store/features/posts.feature";
 
 function AddNewPostForm() {
 
