@@ -1,14 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './App.css';
+import UserPage from './pages/UserPage';
 
 function App() {
-  return (
-  
-  <div>
-
-
-  </div>
-  );
+  return <UserPage />;
 }
 
 export default App;

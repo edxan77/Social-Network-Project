@@ -1,4 +1,3 @@
-import React from "react";
 import { CardMedia, Container } from "@mui/material";
 import Image from '../static/maxresdefault.jpg';
 
