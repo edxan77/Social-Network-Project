@@ -1,10 +1,14 @@
 /* eslint-disable react/react-in-jsx-scope */
-import './App.css';
 import UserPage from './pages/UserPage';
+import { Provider } from 'react-redux';
+import store from './store';
+import './App.css';
 
 function App() {
   return (
-    <Provider store={store}><UserPage /></Provider>
+    <Provider store={store}>
+      <UserPage />
+    </Provider>
   );
 }
 
