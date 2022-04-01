@@ -3,7 +3,9 @@ import './App.css';
 import UserPage from './pages/UserPage';
 
 function App() {
-  return <UserPage />;
+  return (
+    <Provider store={store}><UserPage /></Provider>
+  );
 }
 
 export default App;
