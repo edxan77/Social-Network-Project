@@ -1,1 +1,1 @@
-# Sosial Network Project
+# Social Network Project
