@@ -14,8 +14,7 @@ function Register() {
     const [fireEmailError, setFireEmailError] = useState('');
     const [firePasswordError, setFirePasswordError] = useState('');
   
-  
-  
+    
     const validate = values => {
       const errors = {}
       if (!values.firstName) {
@@ -140,7 +139,7 @@ function Register() {
                   onBlur={formik.handleBlur} 
                   value={formik.values.firstName} 
                 />
-                <div className={styles.err}>{formik.errors.firstName &&  
+                <div className={styles.err}>{formik.touched.firstName && formik.errors.firstName &&  
                   <div className={styles.error}>{formik.errors.firstName}</div> }
                 </div>
   
@@ -149,7 +148,7 @@ function Register() {
                   onBlur={formik.handleBlur} 
                   value={formik.values.lastName}  
                 />
-                <div className={styles.err}>{formik.errors.lastName &&
+                <div className={styles.err}>{formik.touched.lastName &&  formik.errors.lastName &&
                   <div className={styles.error}>{formik.errors.lastName}</div> }
                 </div>
   
@@ -157,7 +156,7 @@ function Register() {
                   onChange={formik.handleChange}  onBlur={formik.handleBlur}
                   value={formik.values.email}  
                 />
-                <div className={styles.err}>{formik.errors.email ?  <div className={styles.error}>{formik.errors.email}</div> :
+                <div className={styles.err}>{formik.touched.email && formik.errors.email ?  <div className={styles.error}>{formik.errors.email}</div> :
                   <div className={styles.error}>{fireEmailError}</div> }
                 </div>
              
@@ -166,7 +165,7 @@ function Register() {
                 onBlur={formik.handleBlur}
                 value={formik.values.password} 
               />
-              <div className={styles.err}>{ formik.errors.password ? <div className={styles.error}>{formik.errors.password}</div> : 
+              <div className={styles.err}>{formik.touched.password && formik.errors.password ? <div className={styles.error}>{formik.errors.password}</div> : 
                 <div className={styles.error}>{firePasswordError}</div> }
               </div>
    

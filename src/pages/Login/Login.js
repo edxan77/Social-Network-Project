@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import styles from  './Login.module.css';
 
 
-function Login({ setIsUser}) {
+function Login() {
 
   const [fireNotFoundError, setFireNotFoundError] = useState('');
   const [fireEmailError, setFireEmailError] = useState('');
@@ -22,7 +22,6 @@ function Login({ setIsUser}) {
     if (!values.password) {
       errors.password = 'required'
     } 
-
 
     return errors
   }
@@ -47,8 +46,7 @@ function Login({ setIsUser}) {
     .then((userCredential) => {
 
     const user = userCredential.user;
-    console.log(user);
-    setIsUser(true);
+    console.log(user);    
    
     })
     .catch((error) => {
