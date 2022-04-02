@@ -1,23 +1,26 @@
 .ok{
     width:250px;
     margin-top: 250px;
-    margin-left: 50px;
+    margin-left: 20px;
     overflow: hidden;
-    height: 270px;
+    height: 300px;
     transition: 0.8s;
     background-color: white;
+ position: absolute;
     
 
 }
 .ok2{
     width: 250px;
     margin-top: 250px;
-    margin-left: 50px;
+    margin-left: 20px;
     overflow:scroll;
     height: 350px;
     transition: 0.3s;
     background-color:white;
     scrollbar-width: 1px;
+    position: absolute;
+ 
 }
 
 .more{
@@ -36,7 +39,7 @@
     color: white;
     background-color: rgb(139, 168, 241);
     border-radius: 20px;
-    
+  
     
     
 }

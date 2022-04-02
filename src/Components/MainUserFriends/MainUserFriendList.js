@@ -1,25 +1,25 @@
+import './mainUserFriendList.css';
 import React, { useState, useRef } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import { ListItemText, Typography, Button } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { Button, ListItemText, Typography } from '@mui/material';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import SmsIcon from '@mui/icons-material/Sms';
 import Divider from '@mui/material/Divider';
-import './friend.css';
 
-function Friendlist() {
-  const [switching, setswitching] = useState(false);
+function MainUserFriendList() {
+  const [clicked, setclicked] = useState(false);
   const ref = useRef();
-  const toggle = function () {
-    setswitching(!switching);
+
+  const clicking = function () {
+    setclicked(!clicked);
     ref.current.scrollTop = 0;
   };
   return (
-    <div ref={ref} className={switching === true ? 'ok2' : 'ok'}>
-      <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
+    <div className="blok">
+      <List ref={ref} className={clicked === false ? 'mainlist' : 'mainlist2'} sx={{ marginTop: '10px' }}>
         <Typography
           sx={{
             marginLeft: '80px',
@@ -27,11 +27,11 @@ function Friendlist() {
             color: 'rgb(0, 94, 244);',
           }}
         >
-          Friend Book
+          <span role="button" onClick={clicking} onKeyDown={clicking} tabIndex={0}> My Friends </span>
         </Typography>
-        <PeopleOutlineIcon sx={{ marginLeft: '30px', marginTop: '0px' }} />
+        <PeopleOutlineIcon sx={{ marginLeft: '30px', marginTop: '0px', color: 'white' }} />
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
-        <ListItem alignItems="flex-start" className="item">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -48,13 +48,11 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
 
-        <ListItem alignItems="flex-start" className="item">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -71,12 +69,10 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
-        <ListItem className="item" alignItems="flex-start">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -93,28 +89,10 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
-        <span
-          className={switching === true ? 'more2' : 'more'}
-          role="button"
-          tabIndex={0}
-          onClick={toggle}
-          onKeyDown={toggle}
-        >
-          <Button
-            size="small"
-            sx={{ color: 'white', marginLeft: '0px', marginTop: '20px' }}
-            variant="contained"
-            color="warning"
-          >
-            <ExpandMoreIcon />
-          </Button>
-        </span>
-        <ListItem className="item" alignItems="flex-start">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -131,12 +109,10 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
-        <ListItem className="item" alignItems="flex-start">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -153,12 +129,10 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
-        <ListItem className="item" alignItems="flex-start">
+        <ListItem alignItems="flex-start" className="people">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>
@@ -175,30 +149,32 @@ function Friendlist() {
             )}
           />
           <span className="btn">
-            <Button variant="contained" size="small">
-              <PersonAddIcon />
-            </Button>
+            <SmsIcon />
           </span>
         </ListItem>
-        <span
-          className="more"
-          role="button"
-          tabIndex={0}
-          onClick={toggle}
-          onKeyDown={toggle}
-        >
-          <Button
-            size="small"
-            sx={{ color: 'white', marginLeft: '-5px', marginTop: '20px' }}
-            variant="contained"
-            color="error"
-          >
-            X
-          </Button>
-        </span>
+        <ListItem alignItems="flex-start" className="people">
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary={(
+              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                Sargis
+              </Typography>
+            )}
+            secondary={(
+              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                Abovyan
+              </Typography>
+            )}
+          />
+          <span className="btn">
+            <SmsIcon />
+          </span>
+        </ListItem>
+        <span className="close" role="button" onClick={clicking} onKeyDown={clicking} tabIndex={0}><Button variant="contained" color="error" size="small">X</Button></span>
       </List>
     </div>
   );
 }
-
-export default Friendlist;
+export default MainUserFriendList;
