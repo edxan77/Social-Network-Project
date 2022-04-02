@@ -119,3 +119,7 @@
     opacity: 1;
     color: cadetblue;
 }
+.logoutBtn {
+    color: white;
+    cursor: pointer;
+}
