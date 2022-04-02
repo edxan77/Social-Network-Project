@@ -43,7 +43,9 @@ function Header(props) {
                 </div>
                 <div className={"avatar"}>
                     <img src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"} alt={""} className={"headerImg"}/>
-                    <AddAPhoto className={"addAvatar"} />
+                    <div>
+                        <AddAPhoto className={"addAvatar"} />
+                    </div>
                 </div>
             </div>
             <Link to={"/logout"} className={"logout"} onClick={()=>{
