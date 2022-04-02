@@ -5,7 +5,7 @@ import { Layout } from './components/Layout';
 function App() {
   return (
     <Layout>
-      
+      <h1>barev</h1>
     </Layout>
   );
 }

@@ -2,12 +2,12 @@
 import Footer from '../Footer';
 import Header from '../Header';
 
-export const Layout = ({ children }) => {
+export const Layout = () => {
 
    return (
       <>
          <Header />
-            {children}
+            
          <Footer />
       </>
    )
@@ -15,6 +15,3 @@ export const Layout = ({ children }) => {
 
 }
 
-Layout.propTypes = {
-   children: null
-}
