@@ -10,7 +10,7 @@
     background-color: white;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: coral;
+    background-color: lightgrey;
     border-radius: 5px;
 }
 

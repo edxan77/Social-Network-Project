@@ -5,7 +5,7 @@ function Header(props) {
     return (
         <header className={"headerContainer"}>
             <div className="headerLeft">
-                <span className={"logo"}>LiteBook</span>
+                <span className={"logo"}>LifeBook</span>
             </div>
             <div className="headerCenter">
                 <div className={"search"}>
