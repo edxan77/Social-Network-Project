@@ -4,14 +4,14 @@
     overflow-y: scroll;
 }
 ::-webkit-scrollbar{
-    width: 5px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track{
     background-color: white;
 }
 ::-webkit-scrollbar-thumb{
     background-color: lightgrey;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 .sidebarWrapper {
@@ -27,9 +27,9 @@
 .sidebarListItem {
     display: flex;
     align-items: center;
+    text-decoration: none;
     margin-bottom: 20px;
 }
-
 .sidebarIcon {
     margin-right: 15px;
 }
@@ -49,6 +49,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    text-decoration: none;
 }
 .friendImage{
     width: 40px;

@@ -18,4 +18,5 @@ const videoData =[
 async function getVideoData() {
     return videoData;
 }
+
 export default getVideoData;

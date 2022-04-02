@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { Link } from "react-router-dom"
 import "./sidebar.css"
 import {RssFeed, Group, Settings, YouTube, Photo} from "@mui/icons-material"
 import Navigation from "../navigation/Navigation";
+import getFriendsData from "../../helper/friendRequest";
+
 function SideBar(props) {
+    const [friend, setFriend] = useState("");
+    useEffect(() => {
+        getFriendsData().then(res => setFriend(res));
+    }, []);
+    console.log(friend);
     return (
         <nav className={"sidebar"}>
             <form className="sidebarWrapper">
@@ -42,30 +50,14 @@ function SideBar(props) {
                         <Group className={"sidebarIcon"}/>
                         <span className={"sidebarListText"}>Friends</span>
                     </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                         <span>Name Surname</span>
-                    </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                        <span>Name Surname</span>
-                    </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                        <span>Name Surname</span>
-                    </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                        <span>Name Surname</span>
-                    </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                        <span>Name Surname</span>
-                    </li>
-                    <li className={"friend"}>
-                        <img className={"friendImage"} src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}/>
-                        <span>Name Surname</span>
-                    </li>
+                    {friend === "" ? "Loading..." : friend.map(item =>
+                        <div key={item.id}>
+                            <Link to={"/friend/"+ item.id} className={"friend"}>
+                                <img className={"friendImage"} src={item.url}/>
+                                <span>{item.name}</span>
+                            </Link>
+                        </div>
+                    )}
                 </ul>
             </form>
         </nav>
