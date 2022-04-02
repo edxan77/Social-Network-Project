@@ -13,17 +13,17 @@ function Login() {
   const [firePasswordError, setFirePasswordError] = useState('');
 
   const validate = values => {
-    const errors = {}
+    const errors = {};
 
     if (!values.email) {
-      errors.email = 'required'
+      errors.email = 'required';
     } 
 
     if (!values.password) {
-      errors.password = 'required'
+      errors.password = 'required';
     } 
 
-    return errors
+    return errors;
   }
 
   const formik = useFormik({
@@ -33,7 +33,9 @@ function Login() {
       password: '',
     },
     validate,
-
+    onSubmit: ()=>{
+      login();
+    }
   })
 
 
@@ -47,6 +49,7 @@ function Login() {
 
     const user = userCredential.user;
     console.log(user);    
+    alert('logged');
    
     })
     .catch((error) => {
@@ -80,10 +83,7 @@ function Login() {
       <div className={styles.boxWrapper}>
         <h1>Lightbook</h1>
         <div className={styles.box}>
-          <form onSubmit={(e)=>{
-            e.preventDefault();
-            login(); 
-          }}>
+          <form onSubmit={formik.handleSubmit}>
             <input type='email' className={styles.input} placeholder='Email' id="email"  name="email"
               onChange={formik.handleChange}  
               onBlur={formik.handleBlur}
@@ -108,7 +108,7 @@ function Login() {
               <div className={styles.notFound}>{fireNotFoundError}</div> }
             </div>
 
-             <button className={styles.btn1} >Login</button>
+             <button type='submit' className={styles.btn1} >Login</button>
           </form>
           <a href='#' className={styles.link}>Forgot password?</a>
           <div className={styles.line}></div>

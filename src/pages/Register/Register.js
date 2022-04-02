@@ -55,6 +55,9 @@ function Register() {
         password: '',
       },
       validate,
+      onSubmit:()=>{
+        createAccount();
+      }
   
     })
     
@@ -98,11 +101,11 @@ function Register() {
   
         switch(errorCode){
           case 'auth/email-already-in-use':
-            return setFireEmailError('email-already-in-use')
+            return setFireEmailError('This email is already used')
           case 'auth/invalid-email':
-            return  setFireEmailError('invalid-email');
+            return  setFireEmailError(`This email is't valid`);
           case 'auth/weak-password':
-            return setFirePasswordError('weak-password');
+            return setFirePasswordError('Weak-password');
         }
       });
      
@@ -130,10 +133,7 @@ function Register() {
                 <h2>Create a new account</h2>
                 <h4>It is quick and easy</h4>
               </div>
-              <form onSubmit={(e)=>{
-                e.preventDefault();
-                createAccount();
-              }}>
+              <form onSubmit={formik.handleSubmit}>
                 <input type="text" className={styles.input}  placeholder='FirstName' id='firstName' name='firstName' 
                   onChange={formik.handleChange} 
                   onBlur={formik.handleBlur} 
@@ -170,7 +170,7 @@ function Register() {
               </div>
    
                <div className={styles.line}></div>
-               <button className={styles.btn}>Sign up</button>
+               <button type='submit' className={styles.btn}>Sign up</button>
              </form>
              <Link to='/login' className={styles.link} >Already have an account?</Link>
             </div>
