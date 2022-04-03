@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux";
 import {
   Avatar,
@@ -13,15 +14,31 @@ import { blue, lightGreen } from "@mui/material/colors";
 import ShareIcon from "@mui/icons-material/Share";
 import ReadMoreOutlinedIcon from "@mui/icons-material/ReadMoreOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import { useEffect, useState } from "react";
+import { getAllPostsById } from "../../../Service/firestore";
 
 export default function Posts() {
+  
   const posts = useSelector(function (state) {
-    return state.post.items;
+    return state.post.posts;
   });
+
+console.log(posts)
+
+  const [newPosts, setNewPosts] = useState(null);
+
+  console.log(newPosts)
+
+  useEffect(() => {
+   
+      getAllPostsById().then((data) => {
+        setNewPosts(data);
+      });
+  }, [posts]);
 
   return (
     <>
-      {posts?.map((post) => (
+      {newPosts?.map((post) => (
         <Box
           key={post.id}
           sx={{

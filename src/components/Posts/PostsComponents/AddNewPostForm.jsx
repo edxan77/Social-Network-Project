@@ -1,26 +1,68 @@
+/* eslint-disable no-unused-vars */
 import { Box, Button, FormControl, TextField } from "@mui/material";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPost, setPost } from "../../../Service/firestore";
 import { addItem } from "../../../store/features/posts.feature";
+import { useFormik } from 'formik';
+
 
 function AddNewPostForm() {
 
     const dispatch = useDispatch();
+    const posts = useSelector(function (state) {
+      return state.post.posts;
+    });
+
+    // console.log(posts)
 
     const [text, setText] = useState("");
+
+    // useEffect(async () => {
+    //   // try {
+    //   //   await (setPost({...posts}));
+    //   // } catch (error) {
+    //   //   // eslint-disable-next-line no-console
+    //   //   console.log(error);
+    //   // }
+
+    //   try {
+    //           await posts.map((post) => addPost(post.id, post.text));
+    //         } catch (error) {
+    //           // eslint-disable-next-line no-console
+    //           console.log(error);
+    //         } 
+    // }, [posts])
   
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
       setText(e.target.value);
     };
   
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
       e.preventDefault();
       if (!text.trim()) {
         return;
       }
       dispatch(addItem({ text: text }));
-      setText("");
+        setText("");
+
+      try {
+              await  addPost({ text});
+            } catch (error) {
+              // eslint-disable-next-line no-console
+              console.log(error);
+            } 
+
+      //  try {
+      //         await (setPost({...posts}));
+      //       } catch (error) {
+      //         // eslint-disable-next-line no-console
+      //         console.log(error);
+      //       } 
+
+    
     };
+  
   
     return (
         <Box
@@ -31,6 +73,7 @@ function AddNewPostForm() {
         }}
       >
         <form
+        onSubmit={onSubmit}
         >
           <FormControl
             sx={{
@@ -45,12 +88,14 @@ function AddNewPostForm() {
               id="fullWidth"
               value={text}
               onChange={handleChange}
+              // value={formik.values.name}
+              // onChange={formik.handleChange}
             />
 
             <Button
               type="submit"
               variant="contained"
-              onClick={onSubmit}
+              // onClick={onSubmit}
             >
               Post
             </Button>

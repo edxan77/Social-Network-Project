@@ -1,7 +1,8 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+/* eslint-disable no-unused-vars */
+import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
-  items: [],
+  posts: [],
 };
 
 const { actions, reducer } = createSlice({
@@ -9,7 +10,7 @@ const { actions, reducer } = createSlice({
   initialState,
   reducers: {
     addItem: (state, { payload }) => {
-      state.items.push({
+      state.posts.push({
         ...payload,
         id: nanoid(),
       });
