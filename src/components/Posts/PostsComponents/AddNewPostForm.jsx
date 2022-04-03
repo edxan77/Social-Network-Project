@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost, setPost } from "../../../Service/firestore";
 import { addItem } from "../../../store/features/posts.feature";
 import { useFormik } from 'formik';
+import { serverTimestamp } from "firebase/firestore";
 
 
 function AddNewPostForm() {
@@ -47,7 +48,7 @@ function AddNewPostForm() {
         setText("");
 
       try {
-              await  addPost({ text});
+              await  addPost({ text: text, createdAt: serverTimestamp(),});
             } catch (error) {
               // eslint-disable-next-line no-console
               console.log(error);

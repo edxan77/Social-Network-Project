@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Avatar,
   Box,
@@ -15,26 +15,46 @@ import ShareIcon from "@mui/icons-material/Share";
 import ReadMoreOutlinedIcon from "@mui/icons-material/ReadMoreOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { useEffect, useState } from "react";
-import { getAllPostsById } from "../../../Service/firestore";
+import { getAllPostsById, getAllUsersById } from "../../../Service/firestore";
+import {AuthProvider} from '../../../AuthProvider/AuthProvider'
+import { addItem } from "../../../store/features/posts.feature";
 
 export default function Posts() {
   
+  const dispatch = useDispatch();
+
   const posts = useSelector(function (state) {
     return state.post.posts;
   });
 
-console.log(posts)
+  // const { user } = AuthProvider();
+  // console.log(user)
+
+// console.log(posts)
 
   const [newPosts, setNewPosts] = useState(null);
 
-  console.log(newPosts)
+  // console.log(newPosts)
 
   useEffect(() => {
    
       getAllPostsById().then((data) => {
         setNewPosts(data);
+        // dispatch(addItem({ text: data.text }))
       });
   }, [posts]);
+
+const [users, setUser] = useState(null);
+console.log(users)
+
+useEffect(() => {
+   
+  getAllUsersById().then((data) => {
+    setUser(data);
+    // dispatch(addItem({ id: data.id }));
+  });
+}, []);
+
 
   return (
     <>
@@ -81,7 +101,7 @@ console.log(posts)
               </Avatar>
 
               <Typography gutterBottom variant="h5" sx={{ width: "50%" }}>
-                Name Surname
+             {users?.map(user => `${user.firstName} ${user.lastName}`)}
               </Typography>
             </CardActions>
 

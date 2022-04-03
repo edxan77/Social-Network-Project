@@ -1,15 +1,9 @@
 /* eslint-disable react/react-in-jsx-scope */
-import UserPage from './pages/UserPage';
-import { Provider } from 'react-redux';
-import store from './store';
+import Layout from "./Layouts/Layout"
 import './App.css';
 
 function App() {
-  return (
-    <Provider store={store}>
-      <UserPage />
-    </Provider>
-  );
+  return <Layout />
 }
 
 export default App;
