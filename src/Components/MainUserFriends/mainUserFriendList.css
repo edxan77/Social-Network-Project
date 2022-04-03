@@ -1,0 +1,66 @@
+.mainlist{
+    width: 100%;
+    max-width: 360;
+    background-color: rgb(139, 168, 241);
+    color:white;
+    height:23px;
+    overflow: hidden;
+    border-radius: 18px;
+    margin-left: 400px;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+.mainlist2{
+    width: 100%;
+    max-width: 360;
+    background-color: rgb(139, 168, 241);
+    color:white;
+    height:450px;
+    overflow: auto;
+    border-radius: 18px;
+    margin-left: 400px;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+    .blok{
+
+        width: 200px;
+        margin-left: 82%;
+        position: absolute;
+        position: fixed;
+        transition: 1s;
+    }
+
+    .close{
+        margin-left: 70px;
+    }
+
+
+    .people{
+   
+        color:rgb(227, 222, 222);
+        width:200px;
+        margin-top: 5px;
+        font-weight: bold;
+        border-radius: 10px;
+       
+        transition: 0.4s;
+        
+        
+    }
+
+
+    .people:hover{
+   
+        color:rgb(0, 94, 244);
+
+        font-weight: bold;
+       
+        transition: 0.4s;
+        
+        
+    }
