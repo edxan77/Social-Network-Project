@@ -28,7 +28,7 @@ export default function Posts() {
 // const auth = getAuth();
 const user = auth.currentUser;
 
-console.log(user)
+// console.log(user)
   
   // const dispatch = useDispatch();
 
@@ -50,13 +50,19 @@ console.log(user)
 
   useEffect(() => {
    if(user){
-      getAllUsersById(user.uid).then((postData) => (setUser(postData)))
+      // getAllUsersById(user.uid).then((postData) => (setUser(postData)))
       getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
      
     }
   }, [newPosts]);
 
-
+  useEffect(() => {
+    if(user){
+       getAllUsersById(user.uid).then((postData) => (setUser(postData)))
+      //  getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
+      
+     }
+   }, [user]);
 
 // useEffect(() => {
 //   if(user){ 
