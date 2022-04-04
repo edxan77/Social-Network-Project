@@ -1,6 +1,6 @@
 import { CardMedia, Container } from "@mui/material";
-import AccountMenu from "../components/AccountMenu/AccountMenu";
-import UserPosts from "../components/Posts/UserPosts";
+import AccountMenu from "../Components/AccountMenu/AccountMenu";
+import UserPosts from "../Components/Posts/UserPosts";
 import Image from '../static/maxresdefault.jpg';
 
 function UserPage() {

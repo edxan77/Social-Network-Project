@@ -16,16 +16,25 @@ import ReadMoreOutlinedIcon from "@mui/icons-material/ReadMoreOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { useEffect, useState } from "react";
 import { getAllPostsById, getAllUsersById } from "../../../Service/firestore";
-import {AuthProvider} from '../../../AuthProvider/AuthProvider'
-import { addItem } from "../../../store/features/posts.feature";
+import { auth } from "../../../lib/firebase";
+import { firebase } from '../../../lib/firebase';
+// import { getAuth } from "firebase/auth";
+// import { userUid } from "../../../Service/firestore";
+
+
 
 export default function Posts() {
-  
-  const dispatch = useDispatch();
 
-  const posts = useSelector(function (state) {
-    return state.post.posts;
-  });
+// const auth = getAuth();
+const user = auth.currentUser;
+
+console.log(user)
+  
+  // const dispatch = useDispatch();
+
+  // const posts = useSelector(function (state) {
+  //   return state.post.posts;
+  // });
 
   // const { user } = AuthProvider();
   // console.log(user)
@@ -35,25 +44,26 @@ export default function Posts() {
   const [newPosts, setNewPosts] = useState(null);
 
   // console.log(newPosts)
+  const [users, setUser] = useState(null);
+
+  // console.log(users)
 
   useEffect(() => {
-   
-      getAllPostsById().then((data) => {
-        setNewPosts(data);
-        // dispatch(addItem({ text: data.text }))
-      });
-  }, [posts]);
+   if(user){
+      getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
+      getAllUsersById(user.uid).then((data) => (setUser(data)))
+    }
+  }, [user]);
 
-const [users, setUser] = useState(null);
-console.log(users)
 
-useEffect(() => {
-   
-  getAllUsersById().then((data) => {
-    setUser(data);
-    // dispatch(addItem({ id: data.id }));
-  });
-}, []);
+
+// useEffect(() => {
+//   if(user){ 
+//   getAllUsersById(user.uid).then((data) => {
+//     setUser(data);
+//   })
+// }
+// }, [user]);
 
 
   return (

@@ -1,25 +1,21 @@
 /* eslint-disable no-unused-vars */
-import { collection, addDoc, getDocs, query, setDoc, doc, where, serverTimestamp, orderBy } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, setDoc, doc, where, orderBy } from 'firebase/firestore';
 import { firebase } from '../lib/firebase';
+import { auth } from "../lib/firebase";
 
 export const addPost = async (post) => {
   await addDoc(collection(firebase, 'posts'), post);
 };
 
-export const addUser = async (post) => {
-  await addDoc(collection(firebase, 'users'), {
-   post
-  });
-};
+// export const setPost = async (post) => {
+//     const docsRef = doc(firebase, 'posts', 'user1');
+// setDoc(docsRef, {post}, { merge: true });
+// }
 
-export const setPost = async (post) => {
-    const docsRef = doc(firebase, 'posts', 'user1');
-setDoc(docsRef, {post}, { merge: true });
-}
-
-export const getAllPostsById = async () => {
+export const getAllPostsById = async (uid) => {
   const postsRef = query(
     collection(firebase, 'posts'),
+    where('uid', '==', uid),
     orderBy('createdAt', 'desc')
   );
 
@@ -37,20 +33,24 @@ export const getAllPostsById = async () => {
   return data;
 };
 
-export const getAllUsersById = async () => {
-  const postsRef = query(
+export const addUser = async (meta) => {
+  await addDoc(collection(firebase, 'users'), meta);
+};
+
+export const getAllUsersById = async (id) => {
+  const usersRef = query(
     collection(firebase, 'users'),
-    where('id', '==', '53y9FvYZuTSQjnAb6t4BS7hwh4K3')
+    where('id', '==', id)
   );
 
-  const querySnapshot = await getDocs(postsRef);
+  const querySnapshot = await getDocs(usersRef);
 
   const data = [];
 
   querySnapshot.forEach((doc) => {
-    const post = { ...doc.data(), id: doc.id };
+    const firebaseUser = { ...doc.data(), id: doc.id };
 
-    data.push(post);
+    data.push(firebaseUser);
     // console.log(data)
   });
 
