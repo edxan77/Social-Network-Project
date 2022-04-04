@@ -56,12 +56,12 @@ function Login() {
       const errorCode = error.code;
     //   const errorMessage = error.message;
       switch(errorCode){
-        case 'auth/invalid-email':
-          return setFireEmailError('The email you entered is not connected to an account.');
+        // case 'auth/invalid-email':
+        //   return setFireEmailError('The email you entered is not connected to an account.');
         case 'auth/user-not-found':
-          return setFireNotFoundError('user-not-found');
+          return setFireNotFoundError('User not found');
         case 'auth/wrong-password':
-          return setFirePasswordError('wrong-password');
+          return setFirePasswordError('Wrong password');
       }
    
       // console.log(errorMessage);
@@ -84,7 +84,8 @@ function Login() {
         <h1>Lightbook</h1>
         <div className={styles.box}>
           <form onSubmit={formik.handleSubmit}>
-            <input type='email' className={styles.input} placeholder='Email' id="email"  name="email"
+            <input type='email' className={fireNotFoundError || formik.touched.email && formik.errors.email ? styles.inputError : styles.input} 
+              placeholder='Email' id="email"  name="email"
               onChange={formik.handleChange}  
               onBlur={formik.handleBlur}
               value={formik.values.email}
@@ -94,7 +95,9 @@ function Login() {
               <div className={styles.error}>{fireEmailError}</div> }
             </div>
            
-            <input type="password"  className={styles.input} placeholder='Password' id="password" name="password"
+            <input type="password"  className={fireNotFoundError || firePasswordError || formik.touched.password &&  formik.errors.password ? 
+              styles.inputError : styles.input} 
+              placeholder='Password' id="password" name="password"
               onChange={formik.handleChange} 
               onBlur={formik.handleBlur}
               value={formik.values.password}

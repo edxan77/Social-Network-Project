@@ -74,6 +74,17 @@ form{
 
 }
 
+.inputError{
+    border-radius: 6px;
+    width: 330px;
+    border: 1px solid red;
+    font-size: 17px;
+    padding: 11px;
+    font-size: 15px;
+    line-height: 20px;
+    outline: none;
+}
+
 
 .line{
     width: 300px;
