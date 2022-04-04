@@ -49,11 +49,12 @@ console.log(user)
   // console.log(users)
 
   useEffect(() => {
-  //  if(user){
+   if(user){
+      getAllUsersById(user.uid).then((postData) => (setUser(postData)))
       getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
-      getAllUsersById().then((data) => (setUser(data)))
-    // }
-  }, []);
+     
+    }
+  }, [newPosts]);
 
 
 
