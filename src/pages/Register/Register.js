@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { auth, db } from '../../lib/firebase';
+import { auth } from '../../lib/firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+// import { ref, set } from "firebase/database";
+import {adUser} from '';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import styles from './Register.module.css';
@@ -82,12 +83,20 @@ function Register() {
       .then((userCredential) => {
        
         const user = userCredential.user;
-        set(ref(db, 'users/' + user.uid),{
+        // set(ref(db, 'users/' + user.uid),{
+        //   firstName: firstName,
+        //   lastName:lastName,
+        //   email:email,
+        //   password:password
+        // })
+        addUser({
+          id: user.uid,
           firstName: firstName,
           lastName:lastName,
           email:email,
           password:password
-        }).then(()=>{
+      })
+        .then(()=>{
           setIsSubmeted(true);
           console.log('created')
         
