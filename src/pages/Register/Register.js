@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../lib/firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { ref, set } from "firebase/database";
-import {adUser} from '';
+import { addUser } from '../../Service/firestore';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import styles from './Register.module.css';
