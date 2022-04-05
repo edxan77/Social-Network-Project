@@ -94,6 +94,7 @@ function Register() {
             id: user.uid,
             firstName: firstName,
             lastName:lastName,
+            displayName: user.displayName,
             email:email,
             password:password
         })

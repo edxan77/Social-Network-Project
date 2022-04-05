@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { getAllPostsById, getAllUsersById } from "../../../Service/firestore";
 import { auth } from "../../../lib/firebase";
 import { firebase } from '../../../lib/firebase';
+import { updateProfile } from "firebase/auth";
 // import { getAuth } from "firebase/auth";
 // import { userUid } from "../../../Service/firestore";
 
@@ -25,10 +26,45 @@ import { firebase } from '../../../lib/firebase';
 
 export default function Posts() {
 
+  const user = auth.currentUser;
+
+ 
+
 // const auth = getAuth();
-const user = auth.currentUser;
+
+// const [name, setName] = useState(null)
+
+// if (user !== null) {
+//   user.providerData.forEach((profile) => {
+//     console.log("Sign-in provider: " + profile.providerId);
+//     console.log("  Provider-specific UID: " + profile.uid);
+//     console.log("  Name: " + profile.displayName);
+//     console.log("  Email: " + profile.email);
+//     console.log("  Photo URL: " + profile.photoURL);
+//   });
+// }
+
+
+// if (user !== null) {
+//   // The user object has basic properties such as display name, email, etc.
+//   const displayName = user.displayName;
+//   // console.log("  user UID: " + user.uid);
+//   const email = user.email;
+//   const photoURL = user.photoURL;
+//   const emailVerified = user.emailVerified;
+
+//   // The user's ID, unique to the Firebase project. Do NOT use
+//   // this value to authenticate with your backend server, if
+//   // you have one. Use User.getToken() instead.
+//   const uid = user.uid;
+
+// // console.log(user)
+// }
+
 
 // console.log(user)
+
+
   
   // const dispatch = useDispatch();
 
@@ -48,21 +84,50 @@ const user = auth.currentUser;
 
   // console.log(users)
 
-  useEffect(() => {
-   if(user){
-      // getAllUsersById(user.uid).then((postData) => (setUser(postData)))
-      getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
-     
-    }
-  }, [newPosts]);
+  const[loading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if(user){
-       getAllUsersById(user.uid).then((postData) => (setUser(postData)))
-      //  getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
+    // let isApiSubscribed = true;
+    setIsLoading(false)
+   if(user){
+      getAllUsersById(user.uid).then((postData) => (setUser(postData)))
+      getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
       
-     }
-   }, [user]);
+      setIsLoading(true)
+     
+    }
+  //   return () => {
+  //     // cancel the subscription
+  //     // isApiSubscribed = false;
+  //     setIsLoading(false)
+  // };
+  }, [newPosts]);
+
+  // // useEffect(() => {
+  // //   // let isApiSubscribed = true;
+  // //   if(user){
+  // //     setIsLoading(true)
+  // //      getAllUsersById(user.uid).then((postData) => (setUser(postData)))
+  // //      setIsLoading(false)
+  // //     //  getAllPostsById(user.uid).then((data) => (setNewPosts(data)));
+      
+  // //    }
+  // // //    return () => {
+  // // //     // cancel the subscription
+  // // //     // isApiSubscribed = false;
+  // // //     setIsLoading(false)
+  // // // };
+  // //  }, [user]);
+
+
+
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     user.providerData.forEach((profile) => {
+  //      setName(profile.displayName)
+  //     });
+  //   }
+  //   }, []);
 
 // useEffect(() => {
 //   if(user){ 
@@ -72,10 +137,22 @@ const user = auth.currentUser;
 // }
 // }, [user]);
 
+// updateProfile(auth.currentUser, {
+//   displayName: users?.map(user => user.firstName), 
+//   photoURL: "https://example.com/jane-q-user/profile.jpg"
+// }).then(() => {
+//   // Profile updated!
+//   // ...
+// }).catch((error) => {
+//   // An error occurred
+//   // ...
+// });
 
   return (
     <>
-      {newPosts?.map((post) => (
+      { loading ? 
+      
+      newPosts?.map((post) => (
         <Box
           key={post.id}
           sx={{
@@ -119,6 +196,8 @@ const user = auth.currentUser;
 
               <Typography gutterBottom variant="h5" sx={{ width: "50%" }}>
              {users?.map(user => `${user.firstName} ${user.lastName}`)}
+
+         {/* {name} */}
               </Typography>
             </CardActions>
 
@@ -150,7 +229,7 @@ const user = auth.currentUser;
             </CardActions>
           </Card>
         </Box>
-      ))}
+      )) : <h1>Loading....</h1>}
     </>
   );
 }
