@@ -94,7 +94,9 @@ function Register() {
           firstName: firstName,
           lastName:lastName,
           email:email,
-          password:password
+          password:password,
+          follows:[],
+          followers:[]
       })
         .then(()=>{
           setIsSubmeted(true);
