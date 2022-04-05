@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { auth } from '../../lib/firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {addUser} from '../../Service/firestore'
 // import { ref, set } from "firebase/database";
+import { addUser } from '../../Service/firestore';
 import { useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import styles from './Register.module.css';
@@ -88,15 +88,15 @@ function Register() {
         //   lastName:lastName,
         //   email:email,
         //   password:password
-        // }).
+        // })
         addUser({
           id: user.uid,
           firstName: firstName,
           lastName:lastName,
           email:email,
           password:password
-      }).
-        then(()=>{
+      })
+        .then(()=>{
           setIsSubmeted(true);
           console.log('created')
         
