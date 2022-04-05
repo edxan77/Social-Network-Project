@@ -1,7 +1,10 @@
+import Typography from '@mui/material/Typography';
 
 function EmptyScreen(){
     return(
-        <div></div>
+        <Typography component="h2" variant="h4">
+            404 Not Found
+        </Typography>
     )
 }
 
