@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const NameSide =(props)=> {
     return (
             <Link to={props.path} className={props.className}>
-                <span className={props.spanClass}>{props.name+" ,"+ props.age }</span>
+                <span className={props.spanClass}>{props.name }</span>
             </Link>
     );
 };

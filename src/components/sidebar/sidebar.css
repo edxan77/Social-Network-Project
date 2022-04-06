@@ -10,10 +10,8 @@
     background-color: white;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: lightgrey;
-    border-radius: 8px;
+    background-color: blueviolet;
 }
-
 .sidebarWrapper {
     padding: 20px;
 }

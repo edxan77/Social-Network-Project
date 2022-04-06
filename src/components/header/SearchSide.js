@@ -2,7 +2,6 @@ import React from 'react';
 import {Search} from "@mui/icons-material";
 
 const SearchSide = (props) => {
-    console.log(props);
     return (
         <>
             <div className={props.className}>

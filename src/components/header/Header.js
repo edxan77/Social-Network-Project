@@ -1,21 +1,20 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import "./header.css"
-import {Group, Search, Chat, Notifications, AddAPhoto, Logout} from "@mui/icons-material"
+import {Group, Chat, Notifications, AddAPhoto} from "@mui/icons-material"
 import NotificationList from "../navigation/NotificationList";
-import LogoutPage from "../../pages/logout/LogoutPage";
 import LogoSide from "./LogoSide";
 import SearchSide from "./SearchSide";
 import NameSide from "./NameSide";
+import MenuListComposition from "./MenuListComposition";
 
-function Header(props) {
+function Header() {
     return (
         <header className={"headerContainer"}>
             <LogoSide
                 className="headerLeft"
                 path="/"
                 logoClass="logo"
-                name="LifeBook"
+                name="Lightbook"
             />
             <SearchSide
                 className="headerCenter"
@@ -24,7 +23,26 @@ function Header(props) {
                 searchInput="searchInput"
             />
             <div className="headerRight">
+                <NameSide
+                    path={"/user-page"}
+                    className="headerLinks"
+                    spanClass="headerLink"
+                    name="Bagrat"
+
+                />
+                <div className={"avatar"}>
+                    <img
+                        src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}
+                        alt={""} className={"headerImg"}/>
+                    <div>
+                        <label><AddAPhoto className={"addAvatar"}/>
+                            <input type={"file"} name="file" accept="image/*"/>
+                        </label>
+                    </div>
+                </div>
+
                 <div className={"headerIcons"}>
+
                     <NotificationList
                         className={"headerIconItem"}
                         icon={<Group/>}
@@ -43,31 +61,17 @@ function Header(props) {
                         spanClass={"headerIconCount"}
                         count={"9+"}
                     />
-                </div>
-                <NameSide
-                    path={"/user-page"}
-                    className="headerLinks"
-                    spanClass="headerLink"
-                    name="Bagrat Grigoryan"
-                    age="29"
-                />
-                <div className={"avatar"}>
-                    <img
-                        src={"https://st3.depositphotos.com/1767687/16607/v/600/depositphotos_166074422-stock-illustration-default-avatar-profile-icon-grey.jpg"}
-                        alt={""} className={"headerImg"}/>
-                    <div>
-                        <label><AddAPhoto className={"addAvatar"}/>
-                            <input type={"file"} name="file" accept="image/*"/>
-                        </label>
-                    </div>
+                    <NotificationList
+                        className={"headerMenuIcon"}
+                        icon={  <MenuListComposition/>}
+
+                    />
+
+
                 </div>
             </div>
-            <Link to={"/logout"} className={"logout"} onClick={() => {
-                <LogoutPage/>
-            }}>
-                <Logout className={"logoutBtn"}/>
-            </Link>
         </header>
     );
 }
+
 export default Header;

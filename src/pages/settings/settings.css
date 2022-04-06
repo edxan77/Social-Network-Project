@@ -1,0 +1,42 @@
+.settingsContent{
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: white;
+}
+.settings{
+    width: 70%;
+    height: 30px;
+    background-color: lightblue;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    margin: 15px auto;
+}
+.inputClass{
+    border: none;
+    width: 90%;
+    background-color: lightblue;
+    margin-left: 10px;
+}
+.inputClass:focus{
+    outline: none;
+}
+.btn{
+    margin-left: 74.5%;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    border: 1px solid darkgreen;
+    background-color: cadetblue;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.image{
+    width: 200px;
+    height: 200px;
+    border: 1px solid cadetblue;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    margin: 5px auto;
+}
