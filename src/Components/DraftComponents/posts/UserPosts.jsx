@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
-import AddNewPostForm from "./PostsComponents/AddNewPostForm";
-import Posts from "./PostsComponents/PostsContent";
+import AddNewPostForm from "./postsComponents/AddNewPostForm";
+import Posts from "./postsComponents/PostsContent";
 
 function UserPosts() {
   return (
