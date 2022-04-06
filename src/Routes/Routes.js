@@ -22,11 +22,10 @@ function MainRoutes(){
                 }/>
                 <Route path='user-profile' element={<UserProfile/>}/>
                 <Route path='user-profile:id' />
-             
+                <Route path='notFound' element={<NotFound/>}/>
               </Route>
                 <Route path='login' index element={<Login/>} />
                 <Route path='register' element={<Register />}/>
-              <Route path='*' element={<NotFound/>}/>
             </Routes>
         </AuthProvider>
       )

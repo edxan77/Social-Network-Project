@@ -36,7 +36,6 @@ function Login() {
     validate,
     onSubmit: ()=>{
       login();
-      navigate('/')
     }
   })
 
@@ -51,6 +50,7 @@ function Login() {
 
     const user = userCredential.user;
     console.log(user); 
+    navigate('/');
  
     })
     .catch((error) => {

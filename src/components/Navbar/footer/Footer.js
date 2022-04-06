@@ -1,15 +1,27 @@
 import { AppBar, Container, Toolbar, Typography } from "@material-ui/core";
+// import { createTheme } from '@mui/material/styles';
+// import { ThemeProvider } from "@mui/material/styles";
+
+// const theme = createTheme({
+//   palette: {
+//     blue: {
+//       main: '#64b5f6',
+//     },
+//   },
+// });
 
 export default function Footer() {
     return (
-        <AppBar position="static" component="footer" color="primary" style={{ position: "fixed", bottom: "0" }}>
-          <Container maxWidth="md">
-            <Toolbar>
-              <Typography variant="caption" color="inherit">
-                &copy; 2022 all right reserved 
-              </Typography>
-            </Toolbar>
-          </Container>
-        </AppBar>
+        // <ThemeProvider theme={theme}>
+            <AppBar position="static" component="footer"   style={{ position: "fixed", bottom: "0" }}>
+                <Container maxWidth="md">
+                    <Toolbar>
+                        <Typography variant="caption" color="inherit">
+                            &copy; Lightbook {new Date().getFullYear()}
+                        </Typography>
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        // </ThemeProvider>
     )
 }
