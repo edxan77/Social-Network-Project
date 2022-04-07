@@ -43,9 +43,9 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  if (newPosts === null) {
-    return <CircularIndeterminate/>;
-  }
+  // if (newPosts === null) {
+  //   return <CircularIndeterminate/>;
+  // }
 
   if (newPosts && newPosts.length === 0) {
     return <h1>Write your first post</h1>;
