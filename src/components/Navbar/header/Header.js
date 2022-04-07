@@ -1,4 +1,4 @@
-mport Box from '@mui/material/Box';
+import { Box } from '@mui/system';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
