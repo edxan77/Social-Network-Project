@@ -19,8 +19,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
 
 export default function PostsContent() {
-  const authContext = useContext(AuthContext);
-  const user = authContext.currentUser;
+  const { currentUser } = useContext(AuthContext);
 
 
   const [newPosts, setNewPosts] = useState(null);
@@ -28,21 +27,21 @@ export default function PostsContent() {
   const [users, setUser] = useState(null);
 
   useEffect(() => {
-    if (user) {
-      getAllPostsById(user.uid).then((postData) => {
+    if (currentUser) {
+      getAllPostsById(currentUser.uid).then((postData) => {
         setNewPosts(postData);
       });
     }
-  }, [user, newPosts]);
+  }, [currentUser, newPosts]);
 
   useEffect(() => {
-    if (user) {
-      getAllUsersById(user.uid).then((userData) => {
+    if (currentUser) {
+      getAllUsersById(currentUser.uid).then((userData) => {
         setUser(userData);
         console.log(userData);
       });
     }
-  }, [user]);
+  }, [currentUser]);
 
   if (newPosts === null) {
     return <CircularIndeterminate/>;
