@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { collection, addDoc, getDocs, query, setDoc, doc, where, orderBy } from 'firebase/firestore';
-import { firebase } from '../lib/firebase';
-import { auth } from "../lib/firebase";
+import { firebase } from '../libPers/firebase';
+import { auth } from "../libPers/firebase";
 
 export const addPost = async (post) => {
   await addDoc(collection(firebase, 'posts'), post);

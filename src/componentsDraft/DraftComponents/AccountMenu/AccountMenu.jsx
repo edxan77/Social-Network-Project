@@ -14,7 +14,7 @@ import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
-function AccountMenu() {
+export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -129,4 +129,4 @@ function AccountMenu() {
   );
 }
 
-export default AccountMenu;
+// export default AccountMenu;

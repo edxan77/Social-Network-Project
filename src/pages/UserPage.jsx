@@ -1,6 +1,7 @@
 import { CardMedia, Container } from "@mui/material";
-import AccountMenu from "../Components/DraftComponents/AccountMenu/AccountMenu";
-import UserPosts from "../Components/DraftComponents/posts/UserPosts";
+import UserPosts from "../components/DraftComponents/posts/UserPosts";
+import AccountMenu from "../componentsDraft/DraftComponents/AccountMenu/AccountMenu";
+
 import Image from '../static/maxresdefault.jpg';
 
 function UserPage() {
@@ -19,7 +20,7 @@ function UserPage() {
       >
         <Container fixed>
           <CardMedia component="img" height="140" src={Image} />
-          <AccountMenu/>
+          <AccountMenu />
         </Container>
   
         <Container sx={{

@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, FormControl, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPost, setPost } from '../../../../Service/firestore';
-import { addItem } from '../../../../store/features/posts.feature';
-import { useFormik } from 'formik';
+import { useState } from 'react';
+import { addPost} from 'Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
-import { auth } from '../../../../lib/firebase';
+import { auth } from 'libPers/firebase';
 
 function AddNewPostForm() {
   

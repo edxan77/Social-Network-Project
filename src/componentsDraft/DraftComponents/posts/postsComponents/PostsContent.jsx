@@ -14,9 +14,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import ReadMoreOutlinedIcon from '@mui/icons-material/ReadMoreOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
-import { getAllPostsById, getAllUsersById } from '../../../../Service/firestore';
-import { AuthContext } from '../../../../AuthProvider/AuthProvider';
-import CircularIndeterminate from '../../../Loading';
+import { getAllPostsById, getAllUsersById } from 'Service/firestore';
+import { AuthContext } from 'AuthProvider/AuthProvider';
+import CircularIndeterminate from 'Loading';
 
 export default function Posts() {
   const authContext = useContext(AuthContext);
