@@ -10,7 +10,7 @@ function SidebarOption({src,title}){
             alignItems:'center',
             padding:'2px 20px',
         }}>
-            {src && <Avatar src={src}/>}
+            {src ?  <Avatar src={src} /> : <Avatar/>}
             <Typography paragraph={true} id={styles.paragraph}>
                 {title}
             </Typography> 

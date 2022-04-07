@@ -1,9 +1,10 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 
+
 function Navbar(){
     return(
-        <div>
+        <div >
             <Header/>
             <Footer/>
         </div>
