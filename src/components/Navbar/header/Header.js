@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+mport Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
@@ -11,43 +11,60 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { IconButton, Typography } from '@mui/material';
 import { Avatar } from '@mui/material';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { getAllUsersById } from '../../../Service/firestore';
+// import { doc, getDoc } from "firebase/firestore";
+// import { ref } from 'firebase/database';
+// import { onValue } from 'firebase/database';
+// import {db, firebase} from '../../../lib/firebase';
 import styles from './Header.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import LogoutIcon from '@mui/icons-material/Logout';
-import {useState} from 'react';
 
-import {auth} from '../../../lib/firebase'
 
 function Header(){
-    const navigate = useNavigate();
+    
+    const [userName, setUserName] = useState("");
+    const { currentUser } = useContext(AuthContext);
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+    useEffect(() => {
+        if (currentUser) {
+          getAllUsersById(currentUser.uid).then((userData) => {
+            setUserName(userData.map(data => data.firstName));
+            // console.log(userData);
+          });
+        }
+      }, [currentUser]);
+
+
+    // const [userName, setUserName] = useState("");
+    // const { currentUser } = useContext(AuthContext);
+    // useEffect(() => {
+    //   if (currentUser) {
+    //     const currentUserRef = ref(db, "users/" + currentUser.uid);
+    //     onValue(currentUserRef, (snapshot) => {
+    //       if (snapshot.exists()) {
+    //         let data = snapshot.val();
+    //         setUserName(data.firstName);
+    //       }
+    //     });
+    //   }
+    // }, [currentUser]);
 
     return (
-        <Box sx={{ flexGrow: 1, position:'fixed', top:0, width:'100%'}}>
+        <Box sx={{ flexGrow: 1 }}>
             <Toolbar className={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
                     <div className={styles.headerSearch}>
-                        <SearchIcon className={styles.searchIcon} />
+                        <SearchIcon className={styles.searchIcon}/>
                         <input className={styles.search}  type='text' placeholder='Search Lightbook' />
                     </div>
                 </div>
                 <div className={styles.headerMiddle}>
                     <div className={styles.headerOption} id={styles.active}>
-                        <HomeIcon fontSize='large' onClick={()=>{
-                            navigate('/');
-                        }}/>
+                        <HomeIcon fontSize='large'/>
                     </div>
                     <div className={styles.headerOption}>
                         <OndemandVideoIcon fontSize='large'/>
@@ -62,47 +79,19 @@ function Header(){
 
                 <div className={styles.headerRight}>
                     <div className={styles.headerInfo}>
-                        <Avatar className={styles.avatar}/>
-                        <Typography variant='h6' component='h6' className={styles.name}>
-                            Dianna
+                       <Link to="user-profile"> <Avatar className={styles.avatar}/></Link>
+                        <Typography variant='h6' className={styles.name}>
+                            {userName}
                         </Typography>
                     </div>
-                    <IconButton  id={styles.rightBtns}>
+                    <IconButton className={styles.rightBtn}>
                         <AppsIcon/>
                     </IconButton>
-                    <IconButton id={styles.rightBtns}>
+                    <IconButton className={styles.rightBtn}>
                         <QuestionAnswerIcon/>
                     </IconButton>
-                    <IconButton  id={styles.rightBtns}>
-                        <ArrowDropDownIcon 
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                        />
-                         <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                            }}
-                            sx={{
-                                marginTop:'20px'
-                            }}
-                        >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
-                            <MenuItem onClick={()=>{
-                                auth.signOut();
-                                navigate('/login');
-                            }}>
-                                <LogoutIcon/>
-                                Logout
-                            </MenuItem>
-                        </Menu>
+                    <IconButton className={styles.rightBtn}>
+                        <ArrowDropDownIcon/>
                     </IconButton>
                 </div>
     

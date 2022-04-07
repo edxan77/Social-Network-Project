@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { auth } from '../../lib/firebase';
+// import { auth } from '../../lib/firebase';
+import { auth } from '../../lib/firebase'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { ref, set } from "firebase/database";
 import { addUser } from '../../Service/firestore';

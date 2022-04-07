@@ -11,7 +11,7 @@ function SidebarOption({src,title}){
             padding:'2px 20px',
         }}>
             {src && <Avatar src={src}/>}
-            <Typography paragraph='true' id={styles.paragraph}>
+            <Typography paragraph={true} id={styles.paragraph}>
                 {title}
             </Typography> 
         </Box>
