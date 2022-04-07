@@ -34,7 +34,7 @@ function Header(){
     };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, position:'fixed', top:0, width:'100%'}}>
             <Toolbar className={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>

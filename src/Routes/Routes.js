@@ -7,6 +7,7 @@ import Home from '../pages/Home/Home';
 import UserProfile from '../pages/UserProfile/UserProfile';
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
+import Events from '../pages/Events/Events';
 
 
 function MainRoutes(){
@@ -22,6 +23,7 @@ function MainRoutes(){
                 }/>
                 <Route path='user-profile' element={<UserProfile/>}/>
                 <Route path='user-profile:id' />
+                <Route path='/events' element={<Events/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
                 <Route path='login' index element={<Login/>} />
