@@ -52,6 +52,18 @@ form{
     outline: none;
 }
 
+.inputError{
+    border-radius: 6px;
+    font-size: 17px;
+    width: 330px;
+    border: 1px solid red;
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 330px;
+    outline: none;
+}
+
+
 .btn1{
     background-color: #1877f2;
     border: none;
@@ -104,7 +116,7 @@ form{
     color: #8D94AB;
 }
 .err{
-    height: 24px;
+    height: 20px;
     width: 330px;
 }
 .error{
@@ -114,6 +126,9 @@ form{
 }
 
 .boxNotFound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 10px;
     width: 330px;
     margin-bottom: 10px;
@@ -124,3 +139,4 @@ form{
     font-size: 13px;
     text-align: center;
 }
+

@@ -1,9 +1,7 @@
-/* eslint-disable react/react-in-jsx-scope */
-import Layout from "./Layouts/Layout"
-import './App.css';
+import Routes from "./Routes/Routes";
 
 function App() {
-  return <Layout />
+    return <Routes/>
 }
 
-export default App;
+export default App

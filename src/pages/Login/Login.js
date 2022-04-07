@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import {useFormik} from 'formik';
 import { auth } from '../../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -9,8 +9,9 @@ import styles from  './Login.module.css';
 function Login() {
 
   const [fireNotFoundError, setFireNotFoundError] = useState('');
-  const [fireEmailError, setFireEmailError] = useState('');
   const [firePasswordError, setFirePasswordError] = useState('');
+
+  const navigate = useNavigate();
 
   const validate = values => {
     const errors = {};
@@ -48,30 +49,25 @@ function Login() {
     .then((userCredential) => {
 
     const user = userCredential.user;
-    console.log(user);    
-    alert('logged');
-   
+    console.log(user); 
+    navigate('/');
+ 
     })
     .catch((error) => {
       const errorCode = error.code;
-    //   const errorMessage = error.message;
       switch(errorCode){
-        case 'auth/invalid-email':
-          return setFireEmailError('The email you entered is not connected to an account.');
         case 'auth/user-not-found':
-          return setFireNotFoundError('user-not-found');
+          return setFireNotFoundError('User not found');
         case 'auth/wrong-password':
-          return setFirePasswordError('wrong-password');
+          return setFirePasswordError('Wrong password');
       }
    
-      // console.log(errorMessage);
     });
  
   }
 
   useEffect(()=>{
     if(email.length >0 || password.length >0 ){
-      setFireEmailError('');
       setFirePasswordError('');
       setFireNotFoundError('');
     }
@@ -84,17 +80,20 @@ function Login() {
         <h1>Lightbook</h1>
         <div className={styles.box}>
           <form onSubmit={formik.handleSubmit}>
-            <input type='email' className={styles.input} placeholder='Email' id="email"  name="email"
+            <input type='email' className={fireNotFoundError || formik.touched.email && formik.errors.email ? styles.inputError : styles.input} 
+              placeholder='Email' id="email"  name="email"
               onChange={formik.handleChange}  
               onBlur={formik.handleBlur}
               value={formik.values.email}
             />
             <div className={styles.err}>{formik.touched.email && formik.errors.email ?  
-              <div className={styles.error}>{formik.errors.email}</div> : 
-              <div className={styles.error}>{fireEmailError}</div> }
+              <div className={styles.error}>{formik.errors.email}</div> : null 
+            }
             </div>
            
-            <input type="password"  className={styles.input} placeholder='Password' id="password" name="password"
+            <input type="password"  className={fireNotFoundError || firePasswordError || formik.touched.password &&  formik.errors.password ? 
+              styles.inputError : styles.input} 
+              placeholder='Password' id="password" name="password"
               onChange={formik.handleChange} 
               onBlur={formik.handleBlur}
               value={formik.values.password}

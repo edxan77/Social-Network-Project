@@ -1,0 +1,74 @@
+.ok{
+    width:250px;
+    margin-top: 250px;
+    margin-left: 20px;
+    overflow: hidden;
+    height: 300px;
+    transition: 0.8s;
+    background-color: white;
+ position: absolute;
+    
+
+}
+.ok2{
+    width: 250px;
+    margin-top: 250px;
+    margin-left: 20px;
+    overflow:scroll;
+    height: 350px;
+    transition: 0.3s;
+    background-color:white;
+    scrollbar-width: 1px;
+    position: absolute;
+ 
+}
+
+.more{
+    margin-left: 90px;
+    height:5px;
+   
+}
+
+.more2{
+    margin-left: 70px;
+    height:5px;
+    display: none;
+}
+
+.tor{
+    color: white;
+    background-color: rgb(139, 168, 241);
+    border-radius: 20px;
+  
+    
+    
+}
+
+.item{
+   
+    color:rgb(227, 222, 222);
+    width:200px;
+    margin-top: 5px;
+    font-weight: bold;
+    border-radius: 10px;
+   
+    transition: 0.7s;
+    
+    
+}
+.item:hover{
+    background-color: rgb(0, 94, 244);
+    color:white;
+    border-radius: 10px;
+    margin-top: 5px;
+    font-weight: bold;
+   
+    
+    
+    
+}
+
+.btn{
+    
+    margin-top: 8px;
+}

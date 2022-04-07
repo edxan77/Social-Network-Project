@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { collection, addDoc, getDocs, query, setDoc, doc, where, orderBy } from 'firebase/firestore';
-import { firebase } from '../libPers/firebase';
-import { auth } from "../libPers/firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+} from 'firebase/firestore';
+import { firebase } from '../lib/firebase';
 
 export const addPost = async (post) => {
   await addDoc(collection(firebase, 'posts'), post);
 };
-
-// export const setPost = async (post) => {
-//     const docsRef = doc(firebase, 'posts', 'user1');
-// setDoc(docsRef, {post}, { merge: true });
-// }
 
 export const getAllPostsById = async (uid) => {
   const postsRef = query(
@@ -38,10 +39,7 @@ export const addUser = async (meta) => {
 };
 
 export const getAllUsersById = async (id) => {
-  const usersRef = query(
-    collection(firebase, 'users'),
-    where('id', '==', id)
-  );
+  const usersRef = query(collection(firebase, 'users'), where('id', '==', id));
 
   const querySnapshot = await getDocs(usersRef);
 
