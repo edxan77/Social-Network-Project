@@ -6,6 +6,7 @@ import {
   query,
   where,
   orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import { firebase } from '../libTaronTest/firebase';
 
@@ -13,26 +14,48 @@ export const addPost = async (post) => {
   await addDoc(collection(firebase, 'posts'), post);
 };
 
-export const getAllPostsById = async (uid) => {
-  const postsRef = query(
-    collection(firebase, 'posts'),
-    where('uid', '==', uid),
-    orderBy('createdAt', 'desc')
-  );
+// export const getAllPostsById = async (uid) => {
+//   const postsRef = query(
+//     collection(firebase, 'posts'),
+//     where('uid', '==', uid),
+//     orderBy('createdAt', 'desc')
+//   );
 
-  const querySnapshot = await getDocs(postsRef);
+//   const querySnapshot = await getDocs(postsRef);
 
-  const data = [];
+//   const data = [];
 
-  querySnapshot.forEach((doc) => {
-    const post = { ...doc.data(), id: doc.id };
+//   querySnapshot.forEach((doc) => {
+//     const post = { ...doc.data(), id: doc.id };
 
-    data.push(post);
-    // console.log(data)
-  });
+//     data.push(post);
+//     // console.log(data)
+//   });
 
-  return data;
-};
+//   return data;
+// };
+
+// export const getAllPostsByIdOnSnapshot = (uid) => {
+//   const postsRef = query(
+//     collection(firebase, 'posts'),
+//     where('uid', '==', uid),
+//     orderBy('createdAt', 'desc')
+//   );
+
+//   const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
+
+//   const data = [];
+
+//   querySnapshot.forEach((doc) => {
+//     const post = { ...doc.data(), id: doc.id };
+
+//     data.push(post);
+//     // console.log(data)
+//   })
+//   return data;
+// });
+// return () => unsubscribe();
+// };
 
 export const addUser = async (meta) => {
   await addDoc(collection(firebase, 'users'), meta);

@@ -14,9 +14,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import ReadMoreOutlinedIcon from '@mui/icons-material/ReadMoreOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
-import { getAllPostsById, getAllUsersById } from '../../../Service/firestore';
+import {getAllUsersById } from '../../../Service/firestore';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+import { firebase } from '../../../libTaronTest/firebase';
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
@@ -26,13 +28,37 @@ export default function PostsContent() {
 
   const [users, setUser] = useState(null);
 
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     getAllPostsById(currentUser.uid).then((postData) => {
+  //       setNewPosts(postData);
+  //     });
+  //   }
+  // }, [currentUser, newPosts]);
+
   useEffect(() => {
     if (currentUser) {
-      getAllPostsById(currentUser.uid).then((postData) => {
-        setNewPosts(postData);
+        const postsRef = query(
+          collection(firebase, 'posts'),
+          where('uid', '==', currentUser.uid),
+          orderBy('createdAt', 'desc')
+        );
+      
+        const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
+      
+        const data = [];
+      
+        querySnapshot.forEach((doc) => {
+          const post = { ...doc.data(), id: doc.id };
+      
+          data.push(post);
+          // console.log(data)
+        })
+        setNewPosts(data)
       });
-    }
-  }, [currentUser, newPosts]);
+      return () => unsubscribe();}
+    
+  }, [currentUser])
 
   useEffect(() => {
     if (currentUser) {
@@ -62,7 +88,7 @@ export default function PostsContent() {
   //   // ...
   // });
 
-  // console.log(users)
+  console.log(newPosts)
 
   return (
     <>
