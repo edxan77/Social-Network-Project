@@ -4,7 +4,7 @@ import UserPosts from "../../components/Posts/UserPosts";
 
 import Image from '../../static/maxresdefault.jpg';
 
-function UserPage() {
+function UserProfile() {
   
 
     return (
@@ -37,4 +37,4 @@ function UserPage() {
     );
   }
   
-  export default UserPage;
+  export default UserProfile;

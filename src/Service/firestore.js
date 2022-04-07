@@ -7,7 +7,7 @@ import {
   where,
   orderBy,
 } from 'firebase/firestore';
-import { firebase } from '../lib/firebase';
+import { firebase } from '../libTaronTest/firebase';
 
 export const addPost = async (post) => {
   await addDoc(collection(firebase, 'posts'), post);
