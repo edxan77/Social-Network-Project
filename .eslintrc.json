@@ -7,8 +7,17 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:react/jsx-runtime"
+        "plugin:react/jsx-runtime",
+        "plugin:import/errors", 
+        "plugin:import/warnings"
     ],
+    "settings": {
+        "import/resolver": {
+          "node": {
+            "moduleDirectory": ["node_modules", "src/"]
+          }
+        }
+      },
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true

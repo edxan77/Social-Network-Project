@@ -1,6 +1,9 @@
 import { Link, useNavigate} from 'react-router-dom';
 import {useFormik} from 'formik';
-import { auth } from '../../lib/firebase';
+// import { auth } from '../../lib/firebase';
+
+import { auth } from '../../libTaronTest/firebase';
+
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import styles from  './Login.module.css';

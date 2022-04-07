@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../lib/firebase";
+import { auth } from "../libTaronTest/firebase";
 
 export const AuthContext = React.createContext();
 

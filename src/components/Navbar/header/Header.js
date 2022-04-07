@@ -11,20 +11,31 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { IconButton, Typography } from '@mui/material';
 import { Avatar } from '@mui/material';
-// import { useState, useEffect, useContext } from 'react';
-// import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { getAllUsersById } from '../../../Service/firestore';
 // import { doc, getDoc } from "firebase/firestore";
 // import { ref } from 'firebase/database';
 // import { onValue } from 'firebase/database';
 // import {db, firebase} from '../../../lib/firebase';
 import styles from './Header.module.css';
+import { Link } from 'react-router-dom';
+
 
 
 function Header(){
-    // const [userName, setUserName] = useState("");
-    // const { currentUser } = useContext(AuthContext);
+    
+    const [userName, setUserName] = useState("");
+    const { currentUser } = useContext(AuthContext);
 
-
+    useEffect(() => {
+        if (currentUser) {
+          getAllUsersById(currentUser.uid).then((userData) => {
+            setUserName(userData.map(data => data.firstName));
+            // console.log(userData);
+          });
+        }
+      }, [currentUser]);
 
 
     // const [userName, setUserName] = useState("");
@@ -68,9 +79,9 @@ function Header(){
 
                 <div className={styles.headerRight}>
                     <div className={styles.headerInfo}>
-                        <Avatar className={styles.avatar}/>
+                       <Link to="user-profile"> <Avatar className={styles.avatar}/></Link>
                         <Typography variant='h6' className={styles.name}>
-                            Dianna
+                            {userName}
                         </Typography>
                     </div>
                     <IconButton className={styles.rightBtn}>
