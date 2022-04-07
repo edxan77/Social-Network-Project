@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import AddNewPostForm from "./postsComponents/AddNewPostForm";
-import Posts from "./postsComponents/PostsContent";
+import PostsContent from "./postsComponents/PostsContent";
 
 function UserPosts() {
   return (
@@ -11,7 +11,7 @@ function UserPosts() {
 
     }}>
       <AddNewPostForm/>
-      <Posts />
+     <PostsContent/>
     </Container>
   )
 }

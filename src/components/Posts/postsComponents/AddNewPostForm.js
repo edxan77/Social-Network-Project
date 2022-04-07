@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
-import { addPost} from 'Service/firestore';
+import { addPost } from '../../../Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
-import { auth } from 'libPers/firebase';
+import { auth } from '../../../libTaronTest/firebase'
 
-function AddNewPostForm() {
+export default function AddNewPostForm() {
   
   // const dispatch = useDispatch();
   
@@ -82,5 +82,3 @@ function AddNewPostForm() {
     </Box>
   );
 }
-
-export default AddNewPostForm;

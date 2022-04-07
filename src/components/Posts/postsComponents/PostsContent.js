@@ -14,11 +14,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import ReadMoreOutlinedIcon from '@mui/icons-material/ReadMoreOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
-import { getAllPostsById, getAllUsersById } from 'Service/firestore';
-import { AuthContext } from 'AuthProvider/AuthProvider';
-import CircularIndeterminate from 'Loading';
+import { getAllPostsById, getAllUsersById } from '../../../Service/firestore';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import CircularIndeterminate from '../../Loading/Loading';
 
-export default function Posts() {
+export default function PostsContent() {
   const authContext = useContext(AuthContext);
   const user = authContext.currentUser;
 
@@ -45,7 +45,7 @@ export default function Posts() {
   }, [user]);
 
   if (newPosts === null) {
-    return <CircularIndeterminate />;
+    return <CircularIndeterminate/>;
   }
 
   if (newPosts && newPosts.length === 0) {
