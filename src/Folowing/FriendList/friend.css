@@ -2,11 +2,11 @@
     width:250px;
     margin-top: 250px;
     margin-left: 20px;
-    overflow: hidden;
-    height: 300px;
+    overflow: auto;
+    height: 350px;
     transition: 0.8s;
     background-color: white;
- position: absolute;
+    position: absolute;
     
 
 }
@@ -26,6 +26,7 @@
 .more{
     margin-left: 90px;
     height:5px;
+    margin-top: -2000px;
    
 }
 
@@ -39,7 +40,8 @@
     color: white;
     background-color: rgb(139, 168, 241);
     border-radius: 20px;
-  
+  position: absolute;
+ 
     
     
 }
