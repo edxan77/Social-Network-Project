@@ -3,7 +3,7 @@ import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
 import { addPost } from '../../../Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
-import { auth } from '../../../libTaronTest/firebase'
+import { auth } from '../../../lib/firebase'
 
 export default function AddNewPostForm() {
   

@@ -18,7 +18,7 @@ import {getAllUsersById } from '../../../Service/firestore';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
 import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
-import { firebase } from '../../../libTaronTest/firebase';
+import { firebase } from '../../../lib/firebase';
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
