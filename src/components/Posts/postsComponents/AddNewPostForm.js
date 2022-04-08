@@ -3,18 +3,11 @@ import { Box, Button, FormControl, TextField } from '@mui/material';
 import { useState } from 'react';
 import { addPost } from '../../../Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
-import { auth } from '../../../lib/firebase'
+import { auth } from '../../../lib/firebase';
+import './addNewPostForm.css';
+import { AccountCircle } from '@material-ui/icons';
 
 export default function AddNewPostForm() {
-  
-  // const dispatch = useDispatch();
-  
-  // const posts = useSelector(function (state) {
-  //   return state.post.posts;
-  // });
-
-  // console.log(posts)
-
   const [text, setText] = useState('');
 
   const handleChange = (e) => {
@@ -27,9 +20,6 @@ export default function AddNewPostForm() {
     if (!text.trim()) {
       return;
     }
-    
-    // dispatch(addItem({ text: text }));
-
     try {
       await addPost({
         text: text,
@@ -48,38 +38,39 @@ export default function AddNewPostForm() {
     <Box
       sx={{
         display: 'flex',
-        width: '700',
+        width: '100%',
         justifyContent: 'center',
         marginTop: 5,
         marginBottom: 5,
       }}
     >
-      <form onSubmit={onSubmit}>
-        <FormControl
+      <form onSubmit={onSubmit} className="main-input-form">
+
+      <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 1 }}>
+      <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+
+        <TextField
+          multiline
+          rows={3}
+          fullWidth
+          label="Make Your Post"
+          id="standard-multiline-static"
+          variant="standard"
+          value={text}
+          onChange={handleChange}
           sx={{
-            width: '100%',
+          }}
+        />
+</Box>
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            width: 600,
           }}
         >
-          <TextField
-            multiline
-            rows={2}
-            fullWidth
-            label="Make Your Post"
-            id="fullWidth"
-            value={text}
-            onChange={handleChange}
-            // value={formik.values.name}
-            // onChange={formik.handleChange}
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            // onClick={onSubmit}
-          >
-            Post
-          </Button>
-        </FormControl>
+          Post
+        </Button>
       </form>
     </Box>
   );

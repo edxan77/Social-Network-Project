@@ -42,6 +42,7 @@ export const addPost = async (post) => {
 //     orderBy('createdAt', 'desc')
 //   );
 
+
 //   const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
 
 //   const data = [];

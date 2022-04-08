@@ -102,7 +102,7 @@ export default function PostsContent() {
               sx={{
                 display: 'flex',
                 // flexDirection: 'column',
-                width: '700',
+                // width: 700,
                 // alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 5,
