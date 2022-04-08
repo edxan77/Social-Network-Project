@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   Divider,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
@@ -34,16 +33,23 @@ export default function AccountMenu() {
           marginTop: 5,
         }}
       >
-        <Tooltip title="Account settings">
-          <IconButton
+        <Box>
+        <Tooltip title="Account settings"
+       
+        >
+          {/* <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-          >
+          > */}
             <Avatar
+            onClick={handleClick}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
               sx={{
                 bgcolor: deepPurple[500],
                 width: 100,
@@ -53,9 +59,10 @@ export default function AccountMenu() {
             >
               B
             </Avatar>
-            <AddAPhotoIcon fontSize="medium" />
-          </IconButton>
+          {/* </IconButton> */}
         </Tooltip>
+        <AddAPhotoIcon fontSize="medium" />
+        </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
           Name Surname
         </Typography>
