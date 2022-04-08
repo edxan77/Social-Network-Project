@@ -31,7 +31,7 @@ function Sidebar(){
     return(
         <Box sx={{
             width:'350px',
-            boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px;',
+            // boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px;',
             padding: '20px',
             position:'fixed',
             marginTop:'75px'
