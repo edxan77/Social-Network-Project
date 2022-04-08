@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
   Divider,
-  IconButton,
   ListItemIcon,
   Menu,
   MenuItem,
   Tooltip,
   Typography,
+  Button
 } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { TextField } from '@material-ui/core';
+import { storage } from '../../lib/firebase';
+import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+
 
 export default function AccountMenu() {
+  const [image, setImage] = useState();
+  const [url, setUrl] = useState();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,6 +30,26 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  function handleImageChange(e){
+    if(e.target.files[0]){
+      setImage(e.target.files[0]);
+    }
+  }
+  function handleSubmit(){
+    const imageRef = ref(storage, 'image');
+    uploadBytes(imageRef, image);
+    getDownloadURL(imageRef).then((url)=>{
+      setUrl(url);
+    }).catch((err)=>{
+      console.log(err.message);
+      setImage(null);
+    }).catch((error)=>{
+      console.log(error.message);
+    })
+  }
+
   return (
     <React.Fragment>
       <Box
@@ -34,28 +61,37 @@ export default function AccountMenu() {
           marginTop: 5,
         }}
       >
-        <Tooltip title="Account settings">
-          <IconButton
+        <Box>
+        <Tooltip title="Account settings"
+       
+        >
+          {/* <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-          >
+          > */}
             <Avatar
+            onClick={handleClick}
+            aria-controls={open ? 'account-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
               sx={{
                 bgcolor: deepPurple[500],
                 width: 100,
                 height: 100,
                 marginTop: 2,
               }}
-            >
-              B
-            </Avatar>
-            <AddAPhotoIcon fontSize="medium" />
-          </IconButton>
+              src={url}
+            />
+          {/* </IconButton> */}
         </Tooltip>
+        <TextField type='file' onChange={handleImageChange} />
+        <Button onClick={handleSubmit}>submit</Button>
+        <AddAPhotoIcon fontSize="medium" />
+        </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
           Name Surname
         </Typography>
