@@ -1,4 +1,4 @@
-import   { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -7,8 +7,8 @@ import { ListItemText, Typography, Button } from '@mui/material';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import Divider from '@mui/material/Divider';
-import {firebase} from "../../lib/firebase"
-import { collection, getDocs, updateDoc,doc } from 'firebase/firestore';
+import { firebase } from '../../lib/firebase';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FollowContext } from '../followprovider/followProvider';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -17,60 +17,51 @@ import './friend.css';
 
 function Friendlist() {
   const [switching, setswitching] = useState(false);
-  const [val, setval] = useState([])
-  const [friends,setfriends] = useState([])
-  const userRef = collection(firebase, "users")
+  const [val, setval] = useState([]);
+  const [friends, setfriends] = useState([]);
+  const userRef = collection(firebase, 'users');
   const ref = useRef();
-  const {currentUser} = useContext(AuthContext)
-  const {userInfo,setUserInfo} = useContext(FollowContext)
-  const {get,setget} = useContext(FollowContext)
+  const { currentUser } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useContext(FollowContext);
+  const { get, setget } = useContext(FollowContext);
 
-
- 
-useEffect(function(){
-  setget(get+1)
-},[])
+  useEffect(function () {
+    setget(get + 1);
+  }, []);
 
   const toggle = function () {
     setswitching(!switching);
     ref.current.scrollTop = 0;
   };
 
-  useEffect(()=>{
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(userRef);
+      setval(
+        data.docs.map(function (item) {
+          if (item.data().id == currentUser.uid) {
+            setfriends({ ...item.data(), adress: item._key.path.segments[6] });
+          }
 
-    const getUsers = async ()=>{
-      const data = await getDocs(userRef)
-      setval (data.docs.map(function (item){
-        if(item.data().id == currentUser.uid){
-          setfriends({...item.data(),adress:item._key.path.segments[6]},)
-        }
-        
-          return {...item.data(), adress:item._key.path.segments[6]}
-     
-      }))
-      
-     
-    
-      
-    }
-    getUsers()
-  },[get])
+          return { ...item.data(), adress: item._key.path.segments[6] };
+        })
+      );
+    };
+    getUsers();
+  }, [get]);
 
-  const gg=  function(id,data){
-    return async function k (){
-    setUserInfo({...userInfo,follows:[ ...userInfo.follows,id]})
-    setget(get+1)
-      console.log(id)
-       const userdoc =doc(firebase,"users",id)
-       const currentuserdoc = doc(firebase,"users",friends.adress)
-       
-        await updateDoc(userdoc,{followers:[...data, currentUser.uid]})
-        await updateDoc(currentuserdoc,{follows:[...friends.follows,id ]})
-    }
-  }
+  const gg = function (id, data) {
+    return async function k() {
+      setUserInfo({ ...userInfo, follows: [...userInfo.follows, id] });
+      setget(get + 1);
+      console.log(id);
+      const userdoc = doc(firebase, 'users', id);
+      const currentuserdoc = doc(firebase, 'users', friends.adress);
 
-
- 
+      await updateDoc(userdoc, { followers: [...data, currentUser.uid] });
+      await updateDoc(currentuserdoc, { follows: [...friends.follows, id] });
+    };
+  };
 
   return (
     <div ref={ref} className={switching === true ? 'ok2' : 'ok'}>
@@ -86,47 +77,46 @@ useEffect(function(){
         </Typography>
         <PeopleOutlineIcon sx={{ marginLeft: '10px', marginTop: '0px' }} />
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
-        {val.map(function(item,index){
-      
-            return (
-
-              <div key={index}>
-                
+        {val.map(function (item, index) {
+          return (
+            <div key={index}>
               <ListItem alignItems="flex-start" className="item" key={index}>
-          <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary={(
-              <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
-                {item.firstName}
-              </Typography>
-            )}
-            secondary={(
-              <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
-                {item.lastName}
-              </Typography>
-            )}
-          />
-          <span className="btn" onClick={gg(item.adress,item.followers)}>
-            <Button variant={userInfo.follows.includes(item.adress)?"outlined":"contained"} size="small">
-              {userInfo.follows.includes(item.adress)?<PersonOutlineIcon />:<PersonAddIcon />}
-            </Button>
-          </span>
-          
-        </ListItem>
-        
-</div>
-          
-            )
-          
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={
+                    <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                      {item.firstName}
+                    </Typography>
+                  }
+                  secondary={
+                    <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                      {item.lastName}
+                    </Typography>
+                  }
+                />
+                <span className="btn" onClick={gg(item.adress, item.followers)}>
+                  <Button
+                    variant={
+                      userInfo.follows.includes(item.adress)
+                        ? 'outlined'
+                        : 'contained'
+                    }
+                    size="small"
+                  >
+                    {userInfo.follows.includes(item.adress) ? (
+                      <PersonOutlineIcon />
+                    ) : (
+                      <PersonAddIcon />
+                    )}
+                  </Button>
+                </span>
+              </ListItem>
+            </div>
+          );
         })}
-        
 
-       
-       
-        
-       
         <span
           className="more"
           role="button"
