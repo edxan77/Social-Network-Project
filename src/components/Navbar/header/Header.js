@@ -64,7 +64,7 @@ function Header(){
     // }, [currentUser]);
 
     return (
-        <Box sx={{ flexGrow: 1, top:0, position:'fixed', width:'100%' }}>
+        <Box sx={{ flexGrow: 1, top:0, position:'fixed', width:'100%',}}>
             <Toolbar id={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
@@ -91,12 +91,14 @@ function Header(){
                 </div>
 
                 <div className={styles.headerRight}>
-                    <div className={styles.headerInfo}>
-                       <Link to="user-profile"> <Avatar className={styles.avatar}/></Link>
-                        <Typography variant='h6' className={styles.name}>
-                            {userName}
-                        </Typography>
-                    </div>
+                    <Link to="user-profile" className={styles.link}>
+                        <div className={styles.headerInfo}>
+                            <Avatar className={styles.avatar}/>
+                            <Typography variant='h6' className={styles.name}>
+                                {userName}
+                            </Typography>
+                        </div>
+                    </Link>
                     <IconButton  id={styles.rightBtns}>
                         <AppsIcon/>
                     </IconButton>
