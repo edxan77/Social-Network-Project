@@ -4,7 +4,6 @@ import Register from '../pages/Register/Register';
 import {AuthProvider} from '../AuthProvider/AuthProvider'
 import NotFound from '../pages/NotFound/NotFound';
 import Home from '../pages/Home/Home';
-// import UserProfile from '../pages/UserProfile/UserProfile';
 import UserProfile from '../pages/UserProfile/UserProfile'
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
@@ -21,13 +20,16 @@ function MainRoutes(){
                 <RequireAuth>
                   <Home/>
                 </RequireAuth>
+                // <Home/>
                 }/>
                 <Route path='user-profile' element={<UserProfile/>}/>
                 <Route path='user-profile:id' />
                 <Route path='/events' element={<Events/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
-                <Route path='login' index element={<Login/>} />
+              {/* <RequireAuth> */}
+              <Route path='login' element={<Login/>} />
+              {/* </RequireAuth> */}
                 <Route path='register' element={<Register />}/>
             </Routes>
         </AuthProvider>
