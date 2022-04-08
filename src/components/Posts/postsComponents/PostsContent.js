@@ -116,7 +116,7 @@ export default function PostsContent() {
                   alignItems: 'center',
                   maxWidth: 500,
                   marginTop: 6,
-                  borderRadius: 8,
+                  borderRadius: 18,
                   bgcolor: lightGreen['50'],
                 }}
               >
@@ -148,7 +148,7 @@ export default function PostsContent() {
                     display: 'flex',
                     flexDirection: 'column',
                     width: 500,
-                    minHeight: 300,
+                    minHeight: 200,
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',

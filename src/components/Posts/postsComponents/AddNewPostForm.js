@@ -46,8 +46,8 @@ export default function AddNewPostForm() {
     >
       <form onSubmit={onSubmit} className="main-input-form">
 
-      <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 1 }}>
-      <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+      <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 0 }}>
+      {/* <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} /> */}
 
         <TextField
           multiline
@@ -55,7 +55,7 @@ export default function AddNewPostForm() {
           fullWidth
           label="Make Your Post"
           id="standard-multiline-static"
-          variant="standard"
+          variant="filled"
           value={text}
           onChange={handleChange}
           sx={{
