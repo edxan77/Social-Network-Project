@@ -47,9 +47,11 @@ export default function AddNewPostForm() {
   return (
     <Box
       sx={{
-        width: 700,
-        maxWidth: '100%',
+        display: 'flex',
+        width: '700',
+        justifyContent: 'center',
         marginTop: 5,
+        marginBottom: 5,
       }}
     >
       <form onSubmit={onSubmit}>

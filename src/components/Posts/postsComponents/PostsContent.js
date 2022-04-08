@@ -101,9 +101,9 @@ export default function PostsContent() {
               key={post.id}
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
+                // flexDirection: 'column',
                 width: '700',
-                alignItems: 'center',
+                // alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 5,
                 marginBottom: 5,
