@@ -3,8 +3,6 @@ import {useFormik} from 'formik';
 import { auth } from '../../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState, useEffect } from 'react';
-import {firebase} from "../../lib/firebase"
-import { collection, getDocs } from 'firebase/firestore';
 import styles from  './Login.module.css';
 
 
@@ -13,9 +11,7 @@ function Login() {
   const [fireNotFoundError, setFireNotFoundError] = useState('');
   const [fireEmailError, setFireEmailError] = useState('');
   const [firePasswordError, setFirePasswordError] = useState('');
-  const [val, setval] = useState([])
-  const [friends,setfriends] = useState([])
-  const userRef = collection(firebase, "users")
+
   const validate = values => {
     const errors = {};
 
@@ -81,29 +77,7 @@ function Login() {
     }
   },[email, password])
 
-useEffect(()=>{
 
-  const getUsers = async ()=>{
-    const data = await getDocs(userRef)
-    setval (data.docs.map(function (item){
-      if(item.data().id == "iQXLQL9b9tckgkDe3k9XpvsN09C3"){
-        setfriends(item.data())
-      }
-      
-        return {...item.data()}
-   
-    }))
-    
-   
-  
-    
-  }
-  getUsers()
-},[])
-
-
-console.log(val)
-console.log(friends)
 
     return (
       <div className={styles.boxWrapper}>
