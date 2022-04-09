@@ -60,7 +60,10 @@ export default function AddNewPostForm() {
           value={text}
           onChange={handleChange}
           sx={{
+            backgroundColor: '#d4f0ff',
+  
           }}
+          inputProps={{ style: { color: "black" } }}
         />
 </Box>
         <Button
