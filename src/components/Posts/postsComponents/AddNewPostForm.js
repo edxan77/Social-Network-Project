@@ -25,6 +25,7 @@ export default function AddNewPostForm() {
         text: text,
         createdAt: serverTimestamp(),
         uid: auth.currentUser.uid,
+        likes: 0
       });
     } catch (error) {
       // eslint-disable-next-line no-console

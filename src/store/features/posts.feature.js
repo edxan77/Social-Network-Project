@@ -11,8 +11,7 @@ const { actions, reducer } = createSlice({
   reducers: {
     addItem: (state, { payload }) => {
       state.posts.push({
-        ...payload,
-        id: nanoid(),
+        ...payload
       });
     },
   },

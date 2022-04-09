@@ -3,7 +3,8 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
 // added for firestore
-import { getFirestore } from 'firebase/firestore';
+// eslint-disable-next-line no-unused-vars
+import {enableIndexedDbPersistence, initializeFirestore, CACHE_SIZE_UNLIMITED, getFirestore } from 'firebase/firestore';
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 // const authDomain = process.env.REACT_APP_AUTH_DOMAIN;
@@ -14,14 +15,14 @@ import { getFirestore } from 'firebase/firestore';
 // const appId = process.env.REACT_APP_APP_ID;
 
 const firebaseConfig = {
-  // apiKey: 'AIzaSyDaTcGszQUQBGvzehp7dspQpYvk6On07L4',
-  // authDomain: 'sosial-network-e2964.firebaseapp.com',
-  // databaseURL: 'https://sosial-network-e2964-default-rtdb.firebaseio.com',
-  // projectId: 'sosial-network-e2964',
-  // storageBucket: 'sosial-network-e2964.appspot.com',
-  // messagingSenderId: '267114802245',
-  // appId: '1:267114802245:web:187c89edc13f60feb3c72c',
-};
+  apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
+  authDomain: "social-network-ef434.firebaseapp.com",
+  projectId: "social-network-ef434",
+  storageBucket: "social-network-ef434.appspot.com",
+  messagingSenderId: "300929157083",
+  appId: "1:300929157083:web:0704c1fd05bed2916789fe",
+  measurementId: "G-FJDEF26910"
+}
 
 // Initialize Firebase
 
@@ -30,6 +31,25 @@ export const auth = getAuth();
 export const db = getDatabase(app);
 
 // added for firestore
-export const firebase = getFirestore(app);
+export const firebase = initializeFirestore(app, {
+  cacheSizeBytes: CACHE_SIZE_UNLIMITED
+});
+
+// getFirestore(app);
 
 export default app;
+
+enableIndexedDbPersistence(firebase)
+  .catch((err) => {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled
+          // in one tab at a a time.
+          // ...
+      } else if (err.code == 'unimplemented') {
+          // The current browser does not support all of the
+          // features required to enable persistence
+          // ...
+      }
+  });
+// Subsequent queries will use persistence, if it was enabled successfully
+
