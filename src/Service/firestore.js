@@ -4,9 +4,7 @@ import {
   addDoc,
   getDocs,
   query,
-  where,
-  orderBy,
-  onSnapshot,
+  where
 } from 'firebase/firestore';
 import { firebase } from '../lib/firebase';
 
@@ -33,29 +31,6 @@ export const addPost = async (post) => {
 //   });
 
 //   return data;
-// };
-
-// export const getAllPostsByIdOnSnapshot = (uid) => {
-//   const postsRef = query(
-//     collection(firebase, 'posts'),
-//     where('uid', '==', uid),
-//     orderBy('createdAt', 'desc')
-//   );
-
-
-//   const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
-
-//   const data = [];
-
-//   querySnapshot.forEach((doc) => {
-//     const post = { ...doc.data(), id: doc.id };
-
-//     data.push(post);
-//     // console.log(data)
-//   })
-//   return data;
-// });
-// return () => unsubscribe();
 // };
 
 export const addUser = async (meta) => {

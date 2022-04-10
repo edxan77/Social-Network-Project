@@ -1,10 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import {getDatabase} from 'firebase/database';
+import { getAuth } from "firebase/auth";
 // added for firestore
-// eslint-disable-next-line no-unused-vars
-import {enableIndexedDbPersistence, initializeFirestore, CACHE_SIZE_UNLIMITED, getFirestore } from 'firebase/firestore';
+import { getFirestore } from "firebase/firestore";
+import {getStorage} from "firebase/storage";
+
 
 // const apiKey = process.env.REACT_APP_API_KEY;
 // const authDomain = process.env.REACT_APP_AUTH_DOMAIN;
@@ -13,6 +15,7 @@ import {enableIndexedDbPersistence, initializeFirestore, CACHE_SIZE_UNLIMITED, g
 // const storageBucket = process.env.REACT_APP_STORAGE_BUCKET;
 // const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID;
 // const appId = process.env.REACT_APP_APP_ID;
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
@@ -23,6 +26,7 @@ const firebaseConfig = {
   appId: "1:300929157083:web:0704c1fd05bed2916789fe",
   measurementId: "G-FJDEF26910"
 }
+  
 
 // Initialize Firebase
 
@@ -31,25 +35,11 @@ export const auth = getAuth();
 export const db = getDatabase(app);
 
 // added for firestore
-export const firebase = initializeFirestore(app, {
-  cacheSizeBytes: CACHE_SIZE_UNLIMITED
-});
+export const firebase = getFirestore(app)
+// eslint-disable-next-line no-unused-vars
+const analytics = getAnalytics(app);
 
-// getFirestore(app);
+
+export const  storage = getStorage(app);
 
 export default app;
-
-enableIndexedDbPersistence(firebase)
-  .catch((err) => {
-      if (err.code == 'failed-precondition') {
-          // Multiple tabs open, persistence can only be enabled
-          // in one tab at a a time.
-          // ...
-      } else if (err.code == 'unimplemented') {
-          // The current browser does not support all of the
-          // features required to enable persistence
-          // ...
-      }
-  });
-// Subsequent queries will use persistence, if it was enabled successfully
-

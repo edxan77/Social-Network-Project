@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Avatar,
   Box,
@@ -9,11 +8,11 @@ import {
   CardContent,
   Typography,
   IconButton,
+  TextField,
 } from '@mui/material';
 import { blue, lightGreen } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
-import ReadMoreOutlinedIcon from '@mui/icons-material/ReadMoreOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { getAllUsersById } from '../../../Service/firestore';
@@ -31,13 +30,19 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import { firebase } from '../../../lib/firebase';
+import { handleEdit } from './utils';
+import './addNewPostForm.css';
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
-
   const [newPosts, setNewPosts] = useState(null);
-
   const [users, setUser] = useState(null);
+  const [newText, setNewText] = useState('');
+
+  const handleChange = (e) => {
+    e.stopPropagation();
+    setNewText(e.target.value);
+  };
 
   useEffect(() => {
     if (currentUser) {
@@ -51,9 +56,7 @@ export default function PostsContent() {
 
         querySnapshot.forEach((doc) => {
           const post = { ...doc.data(), id: doc.id };
-
           data.push(post);
-          // console.log(data)
         });
         setNewPosts(data);
       });
@@ -65,7 +68,6 @@ export default function PostsContent() {
     if (currentUser) {
       getAllUsersById(currentUser.uid).then((userData) => {
         setUser(userData);
-        // console.log(userData);
       });
     }
   }, [currentUser]);
@@ -78,8 +80,6 @@ export default function PostsContent() {
     return <h1>Write your first post</h1>;
   }
 
-  console.log(newPosts);
-
   return (
     <>
       {
@@ -91,9 +91,6 @@ export default function PostsContent() {
               key={post.id}
               sx={{
                 display: 'flex',
-                // flexDirection: 'column',
-                // width: 700,
-                // alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 5,
                 marginBottom: 5,
@@ -116,7 +113,6 @@ export default function PostsContent() {
                   sx={{
                     display: 'flex',
                     justifyContent: 'space-around',
-                    // alignItems: 'center',
                     marginBottom: 1,
                     width: '100%',
                   }}
@@ -126,7 +122,7 @@ export default function PostsContent() {
                       bgcolor: blue[600],
                       width: 75,
                       height: 75,
-                      marginRight: 4
+                      marginRight: 4,
                     }}
                   >
                     {'Photo'}
@@ -140,10 +136,7 @@ export default function PostsContent() {
                       variant="outlined"
                       size="small"
                       color="primary"
-                      // endIcon={<DeleteIcon />}
-                      // onClick={async () => {
-                      //   await deleteDoc(doc(firebase, 'posts', post.id));
-                      // }}
+                      onClick={() => handleEdit(post.id, post.text)}
                     >
                       Edit
                     </Button>
@@ -173,21 +166,50 @@ export default function PostsContent() {
                   }}
                 >
                   <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {post.text}
-                    </Typography>
+                    {post.isEdit ? (
+                      <form
+                        id="edit-input-form"
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          const postsRef = doc(firebase, 'posts', post.id);
+                          if (!newText.trim()) {
+                            await updateDoc(postsRef, {
+                              isEdit: false,
+                            });
+                          } else {
+                            await updateDoc(postsRef, {
+                              isEdit: false,
+                              text: newText,
+                            });
+                          }
+                          setNewText('');
+                        }}
+                      >
+                        <TextField
+                          fullWidth
+                          multiline
+                          rows={7}
+                          onChange={handleChange}
+                          defaultValue={post.text}
+                        ></TextField>
+
+                        <Button type="submit" variant="contained">
+                          Edit
+                        </Button>
+                      </form>
+                    ) : (
+                      <Typography gutterBottom variant="h6" component="div">
+                        {post.text}
+                      </Typography>
+                    )}
                   </CardContent>
                 </CardMedia>
-                <CardActions 
-                sx={{
-                  marginTop: 3
-                }}
+                <CardActions
+                  sx={{
+                    marginTop: 3,
+                  }}
                 >
                   <Button variant="contained" endIcon={<ShareIcon />}></Button>
-                  <Button
-                    variant="contained"
-                    // endIcon={<ReadMoreOutlinedIcon />}
-                  >{post?.createdAt?.toDate().toDateString()}</Button>
                   <Button
                     onClick={async () => {
                       const postsRef = doc(firebase, 'posts', post.id);
@@ -201,6 +223,14 @@ export default function PostsContent() {
                     {post.likes}
                   </Button>
                 </CardActions>
+                <Typography
+                  gutterBottom
+                  variant="body1"
+                  component="div"
+                  color={blue[600]}
+                >
+                  {post?.createdAt?.toDate().toDateString()}
+                </Typography>
               </Card>
             </Box>
           ))
