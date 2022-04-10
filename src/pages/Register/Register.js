@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 // import { auth } from '../../lib/firebase';
-import { auth } from '../../lib/firebase'
+import { auth } from '../../lib/firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { ref, set } from "firebase/database";
 import { addUser } from '../../Service/firestore';
-import { useFormik } from 'formik';
-import { useState, useEffect } from 'react';
+import {  useFormik } from 'formik';
+import { useState, useEffect, useContext } from 'react';
+import {UrlContext} from '../../UrlProvider/UrlProvider';
 import styles from './Register.module.css';
+// import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 
@@ -16,8 +18,12 @@ function Register() {
   
     const [fireEmailError, setFireEmailError] = useState('');
     const [firePasswordError, setFirePasswordError] = useState('');
-  
+
+    // const {currentUser} = useContext(AuthContext);
+    const {url} = useContext(UrlContext);
+
     
+    console.log(url);
     const validate = values => {
       const errors = {}
       if (!values.firstName) {
@@ -77,7 +83,7 @@ function Register() {
       }
     },[email, password])
   
-  
+
     function createAccount(){
       
       createUserWithEmailAndPassword(auth, email, password)
@@ -90,12 +96,13 @@ function Register() {
         //   email:email,
         //   password:password
         // })
+
         addUser({
           id: user.uid,
           firstName: firstName,
           lastName:lastName,
           email:email,
-          password:password,
+          photoURL: url,
           follows:[],
           followers:[]
       })

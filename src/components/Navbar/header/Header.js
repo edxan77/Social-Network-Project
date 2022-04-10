@@ -26,6 +26,7 @@ import styles from './Header.module.css';
 function Header(){
     
     const [userName, setUserName] = useState("");
+    const [img, setImg] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ function Header(){
         if (currentUser) {
           getAllUsersById(currentUser.uid).then((userData) => {
             setUserName(userData.map(data => data.firstName));
+            setImg(userData.map(data => data.photoURL));
             // console.log(userData);
           });
         }
@@ -93,7 +95,7 @@ function Header(){
                 <div className={styles.headerRight}>
                     <Link to="user-profile" className={styles.link}>
                         <div className={styles.headerInfo}>
-                            <Avatar className={styles.avatar}/>
+                            <Avatar className={styles.avatar} src={img} />
                             <Typography variant='h6' className={styles.name}>
                                 {userName}
                             </Typography>

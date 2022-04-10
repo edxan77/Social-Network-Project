@@ -8,30 +8,30 @@ import UserProfile from '../pages/UserProfile/UserProfile'
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
 import Events from '../pages/Events/Events';
+import UrlProvider from '../UrlProvider/UrlProvider';
 
 
 function MainRoutes(){
 
     return (
         <AuthProvider>
+          <UrlProvider>
             <Routes>
               <Route path='/' element={<Layout/>}>
                 <Route path='/' index  element={
-                <RequireAuth>
+                  <RequireAuth>
                   <Home/>
                 </RequireAuth>
-                // <Home/>
                 }/>
                 <Route path='user-profile' element={<UserProfile/>}/>
                 <Route path='user-profile:id' />
                 <Route path='/events' element={<Events/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
-              {/* <RequireAuth> */}
               <Route path='login' element={<Login/>} />
-              {/* </RequireAuth> */}
                 <Route path='register' element={<Register />}/>
             </Routes>
+          </UrlProvider>
         </AuthProvider>
       )
 }
