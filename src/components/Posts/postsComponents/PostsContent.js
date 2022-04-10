@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Avatar,
   Box,
@@ -8,88 +7,78 @@ import {
   CardActions,
   CardContent,
   Typography,
+  IconButton,
+  TextField,
 } from '@mui/material';
 import { blue, lightGreen } from '@mui/material/colors';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
-import ReadMoreOutlinedIcon from '@mui/icons-material/ReadMoreOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { getAllUsersById } from '../../../Service/firestore';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
-import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+  doc,
+  updateDoc,
+  increment,
+  deleteDoc,
+} from 'firebase/firestore';
 import { firebase } from '../../../lib/firebase';
+import { handleEdit } from './utils';
+import './addNewPostForm.css';
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
-
-
   const [newPosts, setNewPosts] = useState(null);
-
   const [users, setUser] = useState(null);
+  const [newText, setNewText] = useState('');
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     getAllPostsById(currentUser.uid).then((postData) => {
-  //       setNewPosts(postData);
-  //     });
-  //   }
-  // }, [currentUser, newPosts]);
+  const handleChange = (e) => {
+    e.stopPropagation();
+    setNewText(e.target.value);
+  };
 
   useEffect(() => {
     if (currentUser) {
-        const postsRef = query(
-          collection(firebase, 'posts'),
-          where('uid', '==', currentUser.uid),
-          orderBy('createdAt', 'desc')
-        );
-      
-        const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
-      
+      const postsRef = query(
+        collection(firebase, 'posts'),
+        where('uid', '==', currentUser.uid),
+        orderBy('createdAt', 'desc')
+      );
+      const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
         const data = [];
-      
+
         querySnapshot.forEach((doc) => {
           const post = { ...doc.data(), id: doc.id };
-          // setNewPosts(post)
-      
           data.push(post);
-          console.log(data)
-        })
-        setNewPosts(data)
+        });
+        setNewPosts(data);
       });
-      return () => unsubscribe();}
-    
-  }, [currentUser])
+      return () => unsubscribe();
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     if (currentUser) {
       getAllUsersById(currentUser.uid).then((userData) => {
         setUser(userData);
-        console.log(userData);
       });
     }
   }, [currentUser]);
 
-  // if (newPosts === null) {
-  //   return <CircularIndeterminate/>;
-  // }
-
-  if (newPosts && newPosts.length === 0) {
-    return <h1>Write your first post</h1>;
+  if (newPosts === null) {
+    return <CircularIndeterminate />;
   }
 
-  // updateProfile(auth.currentUser, {
-  //   displayName: users?.map(user => user.firstName),
-  //   photoURL: "https://example.com/jane-q-user/profile.jpg"
-  // }).then(() => {
-  //   // Profile updated!
-  //   // ...
-  // }).catch((error) => {
-  //   // An error occurred
-  //   // ...
-  // });
-
-  // console.log(users)
+  if (newPosts.length === 0) {
+    return <h1>Write your first post</h1>;
+  }
 
   return (
     <>
@@ -102,12 +91,10 @@ export default function PostsContent() {
               key={post.id}
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
-                width: '700',
-                alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 5,
                 marginBottom: 5,
+                borderRadius: 18,
               }}
             >
               <Card
@@ -117,6 +104,7 @@ export default function PostsContent() {
                   alignItems: 'center',
                   maxWidth: 500,
                   marginTop: 6,
+                  padding: '5px 0px 5px 5px',
                   borderRadius: 8,
                   bgcolor: lightGreen['50'],
                 }}
@@ -125,23 +113,44 @@ export default function PostsContent() {
                   sx={{
                     display: 'flex',
                     justifyContent: 'space-around',
-                    alignItems: 'center',
+                    marginBottom: 1,
                     width: '100%',
                   }}
                 >
                   <Avatar
                     sx={{
                       bgcolor: blue[600],
-                      width: 85,
-                      height: 85,
+                      width: 75,
+                      height: 75,
+                      marginRight: 4,
                     }}
                   >
                     {'Photo'}
                   </Avatar>
 
-                  <Typography gutterBottom variant="h5" sx={{ width: '50%' }}>
+                  <Typography gutterBottom variant="h5">
                     {users?.map((user) => `${user.firstName} ${user.lastName}`)}
                   </Typography>
+                  <div>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="primary"
+                      onClick={() => handleEdit(post.id, post.text)}
+                    >
+                      Edit
+                    </Button>
+
+                    <IconButton
+                      aria-label="delete"
+                      color="secondary"
+                      onClick={async () => {
+                        await deleteDoc(doc(firebase, 'posts', post.id));
+                      }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
                 </CardActions>
 
                 <CardMedia
@@ -149,7 +158,7 @@ export default function PostsContent() {
                     display: 'flex',
                     flexDirection: 'column',
                     width: 500,
-                    minHeight: 300,
+                    minHeight: 200,
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
@@ -157,22 +166,71 @@ export default function PostsContent() {
                   }}
                 >
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {post.text}
-                    </Typography>
+                    {post.isEdit ? (
+                      <form
+                        id="edit-input-form"
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          const postsRef = doc(firebase, 'posts', post.id);
+                          if (!newText.trim()) {
+                            await updateDoc(postsRef, {
+                              isEdit: false,
+                            });
+                          } else {
+                            await updateDoc(postsRef, {
+                              isEdit: false,
+                              text: newText,
+                            });
+                          }
+                          setNewText('');
+                        }}
+                      >
+                        <TextField
+                          fullWidth
+                          multiline
+                          rows={7}
+                          onChange={handleChange}
+                          defaultValue={post.text}
+                        ></TextField>
+
+                        <Button type="submit" variant="contained">
+                          Edit
+                        </Button>
+                      </form>
+                    ) : (
+                      <Typography gutterBottom variant="h6" component="div">
+                        {post.text}
+                      </Typography>
+                    )}
                   </CardContent>
                 </CardMedia>
-                <CardActions>
+                <CardActions
+                  sx={{
+                    marginTop: 3,
+                  }}
+                >
                   <Button variant="contained" endIcon={<ShareIcon />}></Button>
                   <Button
-                    variant="contained"
-                    endIcon={<ReadMoreOutlinedIcon />}
-                  ></Button>
-                  <Button
+                    onClick={async () => {
+                      const postsRef = doc(firebase, 'posts', post.id);
+                      await updateDoc(postsRef, {
+                        likes: increment(1),
+                      });
+                    }}
                     variant="contained"
                     endIcon={<ThumbUpIcon />}
-                  ></Button>
+                  >
+                    {post.likes}
+                  </Button>
                 </CardActions>
+                <Typography
+                  gutterBottom
+                  variant="body1"
+                  component="div"
+                  color={blue[600]}
+                >
+                  {post?.createdAt?.toDate().toDateString()}
+                </Typography>
               </Card>
             </Box>
           ))
