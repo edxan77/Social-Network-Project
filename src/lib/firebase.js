@@ -5,6 +5,7 @@ import {getDatabase} from 'firebase/database';
 import { getAuth } from "firebase/auth";
 // added for firestore
 import { getFirestore } from "firebase/firestore";
+import {getStorage} from "firebase/storage";
 
 
 // const apiKey = process.env.REACT_APP_API_KEY;
@@ -37,5 +38,8 @@ export const db = getDatabase(app);
 export const firebase = getFirestore(app)
 // eslint-disable-next-line no-unused-vars
 const analytics = getAnalytics(app);
+
+export const  storage = getStorage(app);
+
 
 export default app;
