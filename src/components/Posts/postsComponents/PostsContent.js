@@ -39,6 +39,16 @@ export default function PostsContent() {
   const [users, setUser] = useState(null);
   const [newText, setNewText] = useState('');
 
+  const [photoURL, setPhotoURL] = useState(
+    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+  );
+
+  useEffect(() => {
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, [currentUser])
+
   const handleChange = (e) => {
     e.stopPropagation();
     setNewText(e.target.value);
@@ -118,6 +128,7 @@ export default function PostsContent() {
                   }}
                 >
                   <Avatar
+                  src={photoURL}
                     sx={{
                       bgcolor: blue[600],
                       width: 75,

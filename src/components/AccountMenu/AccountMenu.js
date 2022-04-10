@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Avatar,
   Box,
@@ -12,16 +13,42 @@ import {
 import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { upload } from '../../Service/firestore';
 
 export default function AccountMenu() {
+  const { currentUser } = useContext(AuthContext);
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [photoURL, setPhotoURL] = useState(
+    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+  );
+
+  function handleChange(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  }
+
+  function handleClick() {
+    upload(photo, currentUser, setLoading);
+  }
+
+  useEffect(() => {
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, [currentUser]);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleclick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <React.Fragment>
       <Box
@@ -34,22 +61,13 @@ export default function AccountMenu() {
         }}
       >
         <Box>
-        <Tooltip title="Account settings"
-       
-        >
-          {/* <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          > */}
+          <Tooltip title="Account settings">
             <Avatar
-            onClick={handleClick}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+              src={photoURL}
+              onClick={handleclick}
+              aria-controls={open ? 'account-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
               sx={{
                 bgcolor: deepPurple[500],
                 width: 100,
@@ -59,9 +77,7 @@ export default function AccountMenu() {
             >
               B
             </Avatar>
-          {/* </IconButton> */}
-        </Tooltip>
-        <AddAPhotoIcon fontSize="medium" />
+          </Tooltip>
         </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
           Name Surname
@@ -76,7 +92,6 @@ export default function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -107,33 +122,15 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem>
-          <Avatar /> My account
+          <input type="file" onChange={handleChange} />
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+          <button disabled={loading || !photo} onClick={handleClick}>
+            <AddAPhotoIcon fontSize="medium" />
+          </button>
         </MenuItem>
       </Menu>
     </React.Fragment>
   );
 }
-
-// export default AccountMenu;

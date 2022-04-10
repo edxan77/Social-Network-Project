@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { updateProfile } from 'firebase/auth';
 import {
   collection,
   addDoc,
@@ -6,6 +7,7 @@ import {
   query,
   where
 } from 'firebase/firestore';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { firebase } from '../lib/firebase';
 
 export const addPost = async (post) => {
@@ -53,3 +55,18 @@ export const getAllUsersById = async (id) => {
 
   return data;
 };
+
+const storage = getStorage();
+// Storage
+export async function upload(file, currentUser, setLoading) {
+  const fileRef = ref(storage, currentUser.uid + '.png');
+
+  setLoading(true);
+  
+  const snapshot = await uploadBytes(fileRef, file);
+  const photoURL = await getDownloadURL(fileRef);
+
+  updateProfile(currentUser, {photoURL});
+  
+  setLoading(false);
+}
