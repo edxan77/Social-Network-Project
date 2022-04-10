@@ -23,9 +23,7 @@ function Home(){
          
             <Posts/>
             <RightSidebar/>
-            <div style={{height:'25px', border:'1px solid red',marginLeft:'0px',width:'50px',position:'absolute'}}>
-                ggg
-            </div>
+            
 <AuthProvider>
      <FollowProvider>
           <Friendlist></Friendlist>
