@@ -9,7 +9,8 @@
   margin-left: 400px;
   cursor: pointer;
   transition: 1s;
-  position: absolute;
+
+  position: fixed;
 }
 
 .mainlist2 {
@@ -23,14 +24,16 @@
   margin-left: 400px;
   cursor: pointer;
   transition: 1s;
-  position: absolute;
+
+  position: fixed;
 }
 
 .blok {
+  position: fixed;
   width: 200px;
-  margin-left: 82%;
-  position: absolute;
-
+  margin-left: 84%;
+ 
+margin-top:80px;
   transition: 1s;
 }
 
@@ -73,4 +76,16 @@
 
 .list {
   margin-left: -15px;
+}
+
+.navlink{
+  text-decoration: none;
+  color:white;
+}
+.title{
+  margin-left: 50px;
+}
+
+.txt{
+  margin-left: 90px;
 }

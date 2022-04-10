@@ -13,6 +13,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FollowContext } from '../followprovider/followProvider';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { Link } from 'react-router-dom';
 import './friend.css';
 
 function Friendlist() {
@@ -63,17 +64,22 @@ function Friendlist() {
     };
   };
 
+  const getinc = function (){
+    setget(get+1)
+  }
+
   return (
-    <div ref={ref} className={switching === true ? 'ok2' : 'ok'}>
+    <div ref={ref} className= 'ok2'>
       <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
         <Typography
           sx={{
+         
             marginLeft: '40px',
             position: 'absolute',
             color: 'rgb(0, 94, 244);',
           }}
         >
-          Expand Your Friendzone
+          <span className='title'>Expand Your Friendzone</span>
         </Typography>
         <PeopleOutlineIcon sx={{ marginLeft: '10px', marginTop: '0px' }} />
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
@@ -81,19 +87,24 @@ function Friendlist() {
           return (
             <div key={index}>
               <ListItem alignItems="flex-start" className="item" key={index}>
-                <ListItemAvatar>
+                <ListItemAvatar sx={{marginTop:'15px'}}>
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 </ListItemAvatar>
                 <ListItemText
+                sx={{marginTop:'15px'}}
                   primary={
+                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
                     <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
                       {item.firstName}
                     </Typography>
+                    </Link>
                   }
                   secondary={
-                    <Typography sx={{ fontSize: '11px', fontWeight: 'bold' }}>
+                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
+                    <Typography sx={{ fontSize: '11px', fontWeight: 'bold'}}>
                       {item.lastName}
                     </Typography>
+                    </Link>
                   }
                 />
                 <span className="btn" onClick={gg(item.adress, item.followers)}>

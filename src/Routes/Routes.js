@@ -8,6 +8,7 @@ import UserProfile from '../pages/UserProfile/UserProfile'
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
 import Events from '../pages/Events/Events';
+import AnotherUserPage from '../pages/AnotherUserProfile';
 
 
 function MainRoutes(){
@@ -23,7 +24,7 @@ function MainRoutes(){
                 // <Home/>
                 }/>
                 <Route path='user-profile' element={<UserProfile/>}/>
-                <Route path='user-profile:id' />
+                <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
                 <Route path='/events' element={<Events/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
