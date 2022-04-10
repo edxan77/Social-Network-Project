@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Avatar,
   Box,
@@ -14,15 +14,42 @@ import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { TextField } from '@material-ui/core';
-import { storage } from '../../lib/firebase';
-import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+// import { storage } from '../../lib/firebase';
+// import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { UrlContext } from '../../UrlProvider/UrlProvider';
+import { getAllUsersById } from '../../Service/firestore';
+
 
 
 export default function AccountMenu() {
-  const [image, setImage] = useState();
-  const [url, setUrl] = useState();
 
+  // const [image, setImage] = useState();
+  // const [urlImg, setUrlImg] = useState();
+
+  const [userName, setUserName] = useState("");
+  const [lastName, setLastName] = useState("");
+  // const [img, setImg] = useState("");
+  const { currentUser } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  
+
+  const { handleImageChange, handleSubmit, url} = useContext(UrlContext);
+
+
+  useEffect(() => {
+    if (currentUser) {
+      getAllUsersById(currentUser.uid).then((userData) => {
+        setUserName(userData.map(data => data.firstName));
+        setLastName(userData.map(data => data.lastName));
+        // setImg(userData.map(data => data.photoURL));
+        // setImg(userData.map(data => data.photoURL));
+        // console.log(userData);
+      });
+    }
+  }, [currentUser]);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,24 +58,24 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
 
-
-  function handleImageChange(e){
-    if(e.target.files[0]){
-      setImage(e.target.files[0]);
-    }
-  }
-  function handleSubmit(){
-    const imageRef = ref(storage, 'image');
-    uploadBytes(imageRef, image);
-    getDownloadURL(imageRef).then((url)=>{
-      setUrl(url);
-    }).catch((err)=>{
-      console.log(err.message);
-      setImage(null);
-    }).catch((error)=>{
-      console.log(error.message);
-    })
-  }
+  console.log(url)
+  // function handleImageChange(e){
+  //   if(e.target.files[0]){
+  //     setImage(e.target.files[0]);
+  //   }
+  // }
+  // function handleSubmit(){
+  //   const imageRef = ref(storage, 'image');
+  //   uploadBytes(imageRef, image);
+  //   getDownloadURL(imageRef).then((url)=>{
+  //     setUrl(url);
+  //   }).catch((err)=>{
+  //     console.log(err.message);
+  //     setImage(null);
+  //   }).catch((error)=>{
+  //     console.log(error.message);
+  //   })
+  // }
 
   return (
     <React.Fragment>
@@ -93,7 +120,7 @@ export default function AccountMenu() {
         <AddAPhotoIcon fontSize="medium" />
         </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
-          Name Surname
+          {`${userName} ${lastName}`}
         </Typography>
         <Typography sx={{ width: '50%' }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nisi
@@ -161,7 +188,9 @@ export default function AccountMenu() {
           Logout
         </MenuItem>
       </Menu>
+
     </React.Fragment>
+
   );
 }
 
