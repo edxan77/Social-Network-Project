@@ -102,7 +102,7 @@ function Register() {
           firstName: firstName,
           lastName:lastName,
           email:email,
-          photoURL: url,
+          photoURL: `${url}`,
           follows:[],
           followers:[]
       })
