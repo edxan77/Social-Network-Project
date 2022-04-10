@@ -9,6 +9,7 @@ import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
 import Events from '../pages/Events/Events';
 import AnotherUserPage from '../pages/AnotherUserProfile';
+import UrlProvider from '../UrlProvider/UrlProvider';
 
 
 
