@@ -11,7 +11,7 @@ import Switch from '@mui/material/Switch';
 import {firebase} from "../../lib/firebase"
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { FollowContext } from '../followprovider/followProvider';
+import { Followcontext } from '../followprovider/FollowProvider';
 import { Link, useParams} from 'react-router-dom';
 import PersonlineIcon from '@mui/icons-material/PersonOutline';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -25,13 +25,13 @@ function AnotherUser() {
   const ref = useRef();
   const {currentUser} = useContext(AuthContext)
   const userRef = collection(firebase, "users")
-  const {userInfo,setUserInfo} = useContext(FollowContext)
+  const {userInfo,setUserInfo} = useContext(Followcontext)
   const [usersInfo, setUsersInfo] = useState([])
   const [followers,setFollowers] = useState([])
   const [followerss,setFollowerss] = useState([])
   const [follows,setFollows] = useState([])
   const [switchBtn, setSwitchBtn] = useState(false)
-  const {get,setget} = useContext(FollowContext)
+  const {get,setget} = useContext(Followcontext)
   const [mainuser,setmainuser] = useState([])
   const param = useParams()
  

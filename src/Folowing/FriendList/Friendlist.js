@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import { firebase } from '../../lib/firebase';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { FollowContext } from '../followprovider/followProvider';
+import { Followcontext } from '../followprovider/FollowProvider'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Link } from 'react-router-dom';
@@ -23,8 +23,10 @@ function Friendlist() {
   const userRef = collection(firebase, 'users');
   const ref = useRef();
   const { currentUser } = useContext(AuthContext);
-  const { userInfo, setUserInfo } = useContext(FollowContext);
-  const { get, setget } = useContext(FollowContext);
+  const { userInfo, setUserInfo,get,setget } = useContext(Followcontext);
+  
+  console.log(userInfo)
+  console.log(currentUser)
 
   useEffect(function () {
     setget(get + 1);

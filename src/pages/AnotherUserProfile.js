@@ -1,4 +1,4 @@
-import {FollowProvider} from "../Folowing/followprovider/followProvider"
+import {FollowProvider} from "../Folowing/followprovider/FollowProvider"
 import {AnotherUser} from "../Folowing/AnotherUserFriendList/AnotherUser"
 
 function AnotherUserPage(){

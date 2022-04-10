@@ -3,9 +3,9 @@ import { firebase } from '../../lib/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-export const FollowContext = React.createContext();
+ const Followcontext = React.createContext();
 
-export const FollowProvider = ({ children }) => {
+const FollowProvider = ({ children }) => {
   const userRef = collection(firebase, 'users');
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState([]);
@@ -30,8 +30,9 @@ export const FollowProvider = ({ children }) => {
     getUsers();
   }, [currentUser]);
   return (
-    <FollowContext.Provider value={{ userInfo, setUserInfo, get, setget }}>
+    <Followcontext.Provider value={{ userInfo, setUserInfo, get, setget }}>
       {children}
-    </FollowContext.Provider>
+    </Followcontext.Provider>
   );
 };
+export {Followcontext,FollowProvider}
