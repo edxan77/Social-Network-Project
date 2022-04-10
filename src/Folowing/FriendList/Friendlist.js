@@ -63,13 +63,14 @@ function Friendlist() {
 
       await updateDoc(userdoc, { followers: [...data, currentUser.uid] });
       await updateDoc(currentuserdoc, { follows: [...friends.follows, id] });
+      
     };
   };
 
   const getinc = function (){
     setget(get+1)
   }
-
+console.log(currentUser)
   return (
     <div ref={ref} className= 'ok2'>
       <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
@@ -81,9 +82,9 @@ function Friendlist() {
             color: 'rgb(0, 94, 244);',
           }}
         >
-          <span className='title'>Expand Your Friendzone</span>
+          <span className='title'>May Be Know</span>
         </Typography>
-        <PeopleOutlineIcon sx={{ marginLeft: '10px', marginTop: '0px' }} />
+        <PeopleOutlineIcon sx={{ marginLeft: '30px', marginTop: '0px' }} />
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
         {val.map(function (item, index) {
           return (
@@ -93,10 +94,10 @@ function Friendlist() {
                   <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 </ListItemAvatar>
                 <ListItemText
-                sx={{marginTop:'15px'}}
+                sx={{marginTop:'15px',fontSize:'10px'}}
                   primary={
                     <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
-                    <Typography sx={{ fontWeight: 'bold', fontSize: '13px' }}>
+                    <Typography sx={{ fontWeight: 'bold', Size: '5px' }}>
                       {item.firstName}
                     </Typography>
                     </Link>
@@ -111,6 +112,7 @@ function Friendlist() {
                 />
                 <span className="btn" onClick={gg(item.adress, item.followers)}>
                   <Button
+                  
                     variant={
                       userInfo.follows.includes(item.adress)
                         ? 'outlined'

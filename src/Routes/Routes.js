@@ -10,6 +10,7 @@ import Layout from '../components/Layout/Layout';
 import Events from '../pages/Events/Events';
 import AnotherUserPage from '../pages/AnotherUserProfile';
 import UrlProvider from '../UrlProvider/UrlProvider';
+import {FollowProvider} from '../Folowing/followprovider/FollowProvider'
 
 
 
@@ -18,14 +19,18 @@ function MainRoutes(){
     return (
         <AuthProvider>
           <UrlProvider>
+          <FollowProvider>
             <Routes>
+           
               <Route path='/' element={<Layout/>}>
                 <Route path='/' index  element={
                   <RequireAuth>
                   <Home/>
                 </RequireAuth>
                 }/>
+                
                 <Route path='user-profile' element={<UserProfile/>}/>
+                
                 <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
                 <Route path='/events' element={<Events/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
@@ -33,6 +38,7 @@ function MainRoutes(){
               <Route path='login' element={<Login/>} />
                 <Route path='register' element={<Register />}/>
             </Routes>
+            </FollowProvider>
           </UrlProvider>
         </AuthProvider>
       )

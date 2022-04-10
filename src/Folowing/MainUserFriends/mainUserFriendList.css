@@ -6,7 +6,7 @@
   height: 40px;
   overflow: hidden;
   border-radius: 18px;
-  margin-left: 400px;
+  margin-left: 350px;
   cursor: pointer;
   transition: 1s;
 
@@ -18,10 +18,10 @@
   max-width: 360;
   background-color: rgb(139, 168, 241);
   color: white;
-  height: 350px;
+  height: 200px;
   overflow: auto;
   border-radius: 18px;
-  margin-left: 400px;
+  margin-left: 350px;
   cursor: pointer;
   transition: 1s;
 
@@ -31,7 +31,7 @@
 .blok {
   position: fixed;
   width: 200px;
-  margin-left: 84%;
+  margin-left: 82%;
  
 margin-top:80px;
   transition: 1s;
@@ -83,7 +83,7 @@ margin-top:80px;
   color:white;
 }
 .title{
-  margin-left: 50px;
+  margin-left: 70px;
 }
 
 .txt{

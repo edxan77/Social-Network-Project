@@ -1,4 +1,4 @@
-import './mainUserFriendList.css';
+
 import  { useState, useRef,useContext,useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,8 +13,9 @@ import PersonOffIcon from '@mui/icons-material/PersonOff';
 import {firebase} from "../../lib/firebase"
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { Followcontext } from '../followprovider/followProvider';
+import { Followcontext } from '../../Folowing/followprovider/FollowProvider';
 import { Link } from 'react-router-dom';
+import './mainUserFriendList.css';
 
 
 
@@ -125,6 +126,7 @@ info()
          
           await updateDoc(userdoc,{followers:[...a]})
           await updateDoc(currentuserdoc, {follows:[...b]})
+          setget(get+1)
       }
     }
 
@@ -134,6 +136,7 @@ const getinc = function (){
 }
    
 console.log(usersInfo)
+
  
 
   
