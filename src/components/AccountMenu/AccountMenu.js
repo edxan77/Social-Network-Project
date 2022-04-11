@@ -14,6 +14,7 @@ import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { getAuth, updateProfile } from "firebase/auth";
 import { upload } from '../../Service/firestore';
 
 export default function AccountMenu() {
@@ -23,7 +24,30 @@ export default function AccountMenu() {
   const [photoURL, setPhotoURL] = useState(
     'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
   );
+const [name, setName] = useState("");
+const auth = getAuth();
 
+const onChange = (e) => {
+  e.stopPropagation();
+  setName(e.target.value);
+};
+
+function onSubmit (e) {
+  e.preventDefault();
+  // if (!name.trim()) 
+updateProfile(auth.currentUser, {
+  displayName: name, 
+  // photoURL: {photoURL}
+}).then(() => {
+  console.log('Profile updated!')
+  setName('')
+  // ...
+}).catch((error) => {
+  console.log(error)
+  // ...
+})
+// setName("")
+}
   function handleChange(e) {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
@@ -80,7 +104,7 @@ export default function AccountMenu() {
           </Tooltip>
         </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
-          Name Surname
+          {auth.currentUser?.displayName}
         </Typography>
         <Typography sx={{ width: '50%' }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nisi
@@ -129,6 +153,12 @@ export default function AccountMenu() {
           <button disabled={loading || !photo} onClick={handleClick}>
             <AddAPhotoIcon fontSize="medium" />
           </button>
+        </MenuItem>
+        <Divider />
+        <MenuItem>
+          <form onSubmit={onSubmit}>
+            <input onChange={onChange}></input>
+          </form>
         </MenuItem>
       </Menu>
     </React.Fragment>

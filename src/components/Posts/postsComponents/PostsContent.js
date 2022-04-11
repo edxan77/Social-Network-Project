@@ -15,7 +15,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
-import { getAllUsersById } from '../../../Service/firestore';
+// import { getAllUsersById } from '../../../Service/firestore';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
 import {
@@ -32,11 +32,13 @@ import {
 import { firebase } from '../../../lib/firebase';
 import { handleEdit } from './utils';
 import './addNewPostForm.css';
+import { getAuth } from 'firebase/auth';
 
 export default function PostsContent() {
+  const Auth = getAuth();
   const { currentUser } = useContext(AuthContext);
   const [newPosts, setNewPosts] = useState(null);
-  const [users, setUser] = useState(null);
+  const [users, setUser] = useState(Auth.currentUser?.displayName);
   const [newText, setNewText] = useState('');
 
   const [photoURL, setPhotoURL] = useState(
@@ -44,15 +46,20 @@ export default function PostsContent() {
   );
 
   useEffect(() => {
-    if (currentUser?.photoURL) {
+    if (Auth.currentUser?.photoURL) {
       setPhotoURL(currentUser.photoURL);
     }
-  }, [currentUser])
+    if(Auth.currentUser?.displayName) {
+      setUser(currentUser.displayName)
+    }
+  }, [getAuth, currentUser])
 
   const handleChange = (e) => {
     e.stopPropagation();
     setNewText(e.target.value);
   };
+
+  // const auth = getAuth();
 
   useEffect(() => {
     if (currentUser) {
@@ -74,13 +81,13 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    if (currentUser) {
-      getAllUsersById(currentUser.uid).then((userData) => {
-        setUser(userData);
-      });
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     getAllUsersById(currentUser.uid).then((userData) => {
+  //       setUser(userData);
+  //     });
+  //   }
+  // }, [currentUser]);
 
   if (newPosts === null) {
     return <CircularIndeterminate />;
@@ -89,6 +96,8 @@ export default function PostsContent() {
   if (newPosts.length === 0) {
     return <h1>Write your first post</h1>;
   }
+
+  console.log(users)
 
   return (
     <>
@@ -140,7 +149,9 @@ export default function PostsContent() {
                   </Avatar>
 
                   <Typography gutterBottom variant="h5">
-                    {users?.map((user) => `${user.firstName} ${user.lastName}`)}
+                    {/* {users?.map((user) => `${user.firstName} ${user.lastName}`)} */}
+                    {/* {auth.currentUser?.displayName} */}
+                    {users}
                   </Typography>
                   <div>
                     <Button
