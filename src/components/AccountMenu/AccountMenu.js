@@ -14,40 +14,39 @@ import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { getAuth, updateProfile } from "firebase/auth";
+import {  updateProfile } from 'firebase/auth';
 import { upload } from '../../Service/firestore';
 
 export default function AccountMenu() {
-  const { currentUser } = useContext(AuthContext);
+  const {currentUser } = useContext(AuthContext);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [photoURL, setPhotoURL] = useState(
-    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-  );
-const [name, setName] = useState("");
-const auth = getAuth();
+  const [name, setName] = useState('');
 
-const onChange = (e) => {
-  e.stopPropagation();
-  setName(e.target.value);
-};
+  const onChange = (e) => {
+    e.stopPropagation();
+    setName(e.target.value);
+  };
 
-function onSubmit (e) {
-  e.preventDefault();
-  // if (!name.trim()) 
-updateProfile(auth.currentUser, {
-  displayName: name, 
-  // photoURL: {photoURL}
-}).then(() => {
-  console.log('Profile updated!')
-  setName('')
-  // ...
-}).catch((error) => {
-  console.log(error)
-  // ...
-})
-// setName("")
-}
+  function onSubmit(e) {
+    e.preventDefault();
+    // if (!name.trim())
+    updateProfile(currentUser, {
+      displayName: name
+    })
+      .then(() => {
+        console.log('Profile updated!');
+        setName('');
+        // ...
+      })
+      .catch((error) => {
+        console.log(error);
+        // ...
+      });
+
+    // console.log(photoURL)
+    // setName("")
+  }
   function handleChange(e) {
     if (e.target.files[0]) {
       setPhoto(e.target.files[0]);
@@ -57,12 +56,6 @@ updateProfile(auth.currentUser, {
   function handleClick() {
     upload(photo, currentUser, setLoading);
   }
-
-  useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL);
-    }
-  }, [currentUser]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -87,7 +80,7 @@ updateProfile(auth.currentUser, {
         <Box>
           <Tooltip title="Account settings">
             <Avatar
-              src={photoURL}
+              src={currentUser?.photoURL}
               onClick={handleclick}
               aria-controls={open ? 'account-menu' : undefined}
               aria-haspopup="true"
@@ -104,7 +97,7 @@ updateProfile(auth.currentUser, {
           </Tooltip>
         </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
-          {auth.currentUser?.displayName}
+          {currentUser?.displayName}
         </Typography>
         <Typography sx={{ width: '50%' }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nisi
@@ -158,6 +151,7 @@ updateProfile(auth.currentUser, {
         <MenuItem>
           <form onSubmit={onSubmit}>
             <input onChange={onChange}></input>
+            {/* <input type="file" onChange={handleChange} /> */}
           </form>
         </MenuItem>
       </Menu>

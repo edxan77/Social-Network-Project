@@ -15,7 +15,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
-// import { getAllUsersById } from '../../../Service/firestore';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import CircularIndeterminate from '../../Loading/Loading';
 import {
@@ -32,34 +31,16 @@ import {
 import { firebase } from '../../../lib/firebase';
 import { handleEdit } from './utils';
 import './addNewPostForm.css';
-import { getAuth } from 'firebase/auth';
 
 export default function PostsContent() {
-  const Auth = getAuth();
   const { currentUser } = useContext(AuthContext);
   const [newPosts, setNewPosts] = useState(null);
-  const [users, setUser] = useState(Auth.currentUser?.displayName);
   const [newText, setNewText] = useState('');
-
-  const [photoURL, setPhotoURL] = useState(
-    'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-  );
-
-  useEffect(() => {
-    if (Auth.currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL);
-    }
-    if(Auth.currentUser?.displayName) {
-      setUser(currentUser.displayName)
-    }
-  }, [getAuth, currentUser])
 
   const handleChange = (e) => {
     e.stopPropagation();
     setNewText(e.target.value);
   };
-
-  // const auth = getAuth();
 
   useEffect(() => {
     if (currentUser) {
@@ -72,7 +53,12 @@ export default function PostsContent() {
         const data = [];
 
         querySnapshot.forEach((doc) => {
-          const post = { ...doc.data(), id: doc.id };
+          const post = {
+            ...doc.data(),
+            id: doc.id,
+            profilName: currentUser?.displayName,
+            photo: currentUser?.photoURL,
+          };
           data.push(post);
         });
         setNewPosts(data);
@@ -97,7 +83,7 @@ export default function PostsContent() {
     return <h1>Write your first post</h1>;
   }
 
-  console.log(users)
+  // console.log(users)
 
   return (
     <>
@@ -137,7 +123,7 @@ export default function PostsContent() {
                   }}
                 >
                   <Avatar
-                  src={photoURL}
+                    src={post.photo}
                     sx={{
                       bgcolor: blue[600],
                       width: 75,
@@ -151,7 +137,8 @@ export default function PostsContent() {
                   <Typography gutterBottom variant="h5">
                     {/* {users?.map((user) => `${user.firstName} ${user.lastName}`)} */}
                     {/* {auth.currentUser?.displayName} */}
-                    {users}
+                    {/* {users} — */}
+                    {post.profilName}
                   </Typography>
                   <div>
                     <Button
