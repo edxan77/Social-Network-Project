@@ -9,3 +9,12 @@ export const handleEdit = async (id) => {
     about: 'Write your bio',
   });
 };
+
+export const handleUserEdit = async (id) => {
+  const postsRef = doc(firebase, 'users', id);
+
+  await updateDoc(postsRef, {
+    isEdit: true,
+    about: 'Write your bio',
+  });
+};

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 // import { auth } from '../../lib/firebase';
+<<<<<<< HEAD
+import { auth } from '../../lib/firebase'
+=======
 import { auth } from '../../lib/firebase';
+>>>>>>> develop
 import { createUserWithEmailAndPassword } from "firebase/auth";
 // import { ref, set } from "firebase/database";
 import { addUser } from '../../Service/firestore';
