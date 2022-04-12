@@ -6,5 +6,6 @@ export const handleEdit = async (id) => {
 
   await updateDoc(postsRef, {
     isEdit: true,
+    about: 'Write your bio',
   });
 };
