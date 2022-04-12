@@ -17,9 +17,11 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { getAllUsersById } from '../../../Service/firestore';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { auth } from '../../../lib/firebase';
+import { Followcontext } from '../../../Folowing/followprovider/FollowProvider';
 import styles from './Header.module.css';
+
 
 
 
@@ -29,9 +31,10 @@ function Header(){
     const [img, setImg] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
-
+    const nav = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+    const {get,setget} = useContext(Followcontext)
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -39,6 +42,10 @@ function Header(){
       setAnchorEl(null);
     };
 
+    
+useEffect(()=>[
+        setget(get+1)
+],[])
 
     useEffect(() => {
         if (currentUser) {
@@ -48,7 +55,7 @@ function Header(){
             // console.log(userData);
           });
         }
-      }, [currentUser]);
+      }, [get]);
 
 
     // const [userName, setUserName] = useState("");
@@ -65,6 +72,7 @@ function Header(){
     //   }
     // }, [currentUser]);
 
+
     return (
         <Box sx={{ flexGrow: 1, top:0, position:'fixed', width:'100%',}}>
             <Toolbar id={styles.header} >
@@ -72,7 +80,10 @@ function Header(){
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
                     <div className={styles.headerSearch}>
                         <SearchIcon className={styles.searchIcon}/>
-                        <input className={styles.search}  type='text' placeholder='Search Lightbook' />
+                        <input className={styles.search} type='text' placeholder='Search Lightbook'/>
+                       
+                        
+                        
                     </div>
                 </div>
                 <div className={styles.headerMiddle}>
@@ -93,14 +104,16 @@ function Header(){
                 </div>
 
                 <div className={styles.headerRight}>
-                    <Link to="user-profile" className={styles.link}>
-                        <div className={styles.headerInfo}>
+                
+                        <div className={styles.headerInfo} onClick={()=>{
+                                nav(`/${currentUser.uid}`)
+                        }}>
                             <Avatar className={styles.avatar} src={img} />
                             <Typography variant='h6' className={styles.name}>
                                 {userName}
                             </Typography>
                         </div>
-                    </Link>
+                   
                     <IconButton  id={styles.rightBtns}>
                         <AppsIcon/>
                     </IconButton>

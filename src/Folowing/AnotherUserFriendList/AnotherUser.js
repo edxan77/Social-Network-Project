@@ -69,7 +69,7 @@ function AnotherUser() {
 
   useEffect( function(){
     const info = async ()=>{ 
-      
+   
       const data = await getDocs(userRef)
       setFollowers(data.docs.map(function(item){
         if(userInfo.followers.includes(item.data().id)){
@@ -91,13 +91,17 @@ info()
   },[userInfo])
 
  useEffect(function(){
+   
     setFollows(followers.map(function(item){
       if(userInfo.follows.includes(item.adress)){
+        
         return {...item}
       }
       setFollowerss(followerss.slice(followerss.length/2,followerss.length))
     }))
-    
+    if(get<2){
+      setget(get+1)
+    }
     },  [followers])
 
     const folowsload =  function(){
@@ -131,11 +135,33 @@ info()
       }
     }
 
+     const following=  function(data1,data2){
+      
+      return async function u (){
+        
+
+       
+        
+       
+       
+        
+         const userdoc =doc(firebase,"users",userInfo.adress)
+         const currentuserdoc = doc(firebase,"users",mainuser.adress)
+         
+          await updateDoc(userdoc,{followers:[...data1,mainuser.id]})
+          await updateDoc(currentuserdoc, {follows:[...data2,userInfo.adress]})
+          setget(get+1)
+          
+      }
+    }
+
    
 const getinc = function (){
   setget(get+1)
 }
-   
+   useEffect(()=>{
+      setget(get+1)
+   },[currentUser])
 console.log(usersInfo)
 console.log("guest")
 console.log(userInfo)
@@ -156,10 +182,14 @@ console.log(follows)
           }}
         >
           <span className='userlist' role="button" onClick={clicking} onKeyDown={clicking} tabIndex={0} >{switchBtn===false?<span className='text'>Followers</span>:<span className='text'>Follows</span>}</span>
+          
         </Typography>
-        <span ><PeopleOutlineIcon sx={{ marginLeft: '120px', marginTop: '0px', color: 'white' }} /></span>
+        <span style={{opacity:'0'}}><Button variant="contained" color="warning" size="small">Follow</Button></span>
+        <span style={{position:'absolute',marginLeft:'-90px',marginTop:'7px'}}><PeopleOutlineIcon sx={{ marginLeft: '90px', marginTop: '-180px', color: 'white' }} /></span> 
+        <span onClick={following(userInfo.followers,mainuser.follows)} style={{position:'absolute',marginTop:'-5px',marginLeft:'30px'}}>{get>1&&mainuser.follows.includes(userInfo.adress) ?<Button variant="outlined" color="warning" size="small" disabled={true}>Followed</Button>:<Button variant="contained" color="warning" size="small"disabled={false}>Follow</Button>}</span>
+        
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
-       
+        <Button variant="contained" color="warning" size="small"sx={{opacity:'0'}}></Button>
             {switchBtn === false? followerss.map(function(item,index){
               
               return(
@@ -238,7 +268,7 @@ console.log(follows)
 
        
         
-        <span className="closing" role="button" onClick={clicking} onKeyDown={clicking} tabIndex={0}><Button variant="contained" color="error" size="small">X</Button></span>
+        <span className={switchBtn==false?"closing":'closing2'} role="button" onClick={clicking} onKeyDown={clicking} tabIndex={0}><Button variant="contained" color="error" size="small">X</Button></span>
         <Switch onClick={folowsload}/>
       </List>
 

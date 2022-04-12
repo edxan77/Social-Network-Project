@@ -1,9 +1,9 @@
 .listmain {
-    width: 17%;
+    width: 100%;
     max-width: 360;
     background-color: rgb(139, 168, 241);
     color: white;
-    height: 350px;
+    height: 250px;
     overflow: auto;
     border-radius: 18px;
     margin-left: 150px;
@@ -15,7 +15,7 @@
   
   
   .userblok {
-    width: 100%;
+    width: 17%;
     margin-left: 11%;
     
   margin-top:200px;
@@ -25,7 +25,9 @@
   .closing {
     margin-left: 70px;
   }
-  
+  .closing2{
+    margin-left: 70px;
+  }
   .anotherpeople {
     color: rgb(227, 222, 222);
     width: 200px;
@@ -44,17 +46,7 @@
     transition: 0.4s;
   }
   
-  
-  
-  .deleting {
-    color: rgb(233, 236, 240);
-  }
-  
-  .deleting:hover {
-    color: rgb(255, 85, 0);
-    scale: 1.2;
-    transition: 0.5s;
-  }
+ 
   
   .userlist {
     margin-left: -15px;
@@ -87,7 +79,7 @@ padding: 0px;
 
 }
   .text{
-    margin-left: 50px;
+    margin-left: 18px;
     color:white;
   }
   .button{
