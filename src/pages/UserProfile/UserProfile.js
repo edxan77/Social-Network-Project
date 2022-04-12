@@ -16,13 +16,20 @@ function UserProfile() {
         // width: '700',
         maxWidth: 'md',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
       }}
     >
-      <Container>
-        <CardMedia component="img" height="140" src={Image} />
+      {/* <Container  sx={{
+        display: 'flex',
+        // flexDirection: 'column',
+        // width: '700',
+        maxWidth: 'md',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}> */}
+        <CardMedia component="img" height="200" src={Image}/>
         <AccountMenu />
-      </Container>
+      {/* </Container> */}
 
       <Container
         sx={{

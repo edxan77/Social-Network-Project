@@ -39,7 +39,6 @@ export const firebase = getFirestore(app)
 // eslint-disable-next-line no-unused-vars
 // const analytics = getAnalytics(app);
 
-
 export const  storage = getStorage(app);
 
 export default app;

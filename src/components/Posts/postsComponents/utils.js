@@ -8,3 +8,12 @@ export const handleEdit = async (id) => {
     isEdit: true,
   });
 };
+
+export const handleUserEdit = async (id) => {
+  const postsRef = doc(firebase, 'users', id);
+
+  await updateDoc(postsRef, {
+    isEdit: true,
+    about: 'Write your bio',
+  });
+};

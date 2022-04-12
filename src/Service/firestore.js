@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { updateProfile } from 'firebase/auth';
 import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
@@ -30,27 +29,23 @@ export const getAllUsersById = async (id) => {
 
 const storage = getStorage();
 
-// Storage
+// Storage photo
 export async function upload(file, currentUser, setLoading) {
   const fileRef = ref(storage, currentUser.uid + '.png');
 
   setLoading(true);
 
-  const snapshot = await uploadBytes(fileRef, file);
+  await uploadBytes(fileRef, file);
   const photoUrl = await getDownloadURL(fileRef);
 
-  console.log(snapshot);
-
-  updateProfile(currentUser, {
+  await updateProfile(currentUser, {
     photoURL: photoUrl,
   })
     .then(() => {
       console.log('Photo updated!');
-      // ...
     })
     .catch((error) => {
       console.log(error);
-      // ...
     });
 
   setLoading(false);

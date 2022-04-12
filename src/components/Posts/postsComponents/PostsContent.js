@@ -67,14 +67,6 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     getAllUsersById(currentUser.uid).then((userData) => {
-  //       setUser(userData);
-  //     });
-  //   }
-  // }, [currentUser]);
-
   if (newPosts === null) {
     return <CircularIndeterminate />;
   }
@@ -82,8 +74,6 @@ export default function PostsContent() {
   if (newPosts.length === 0) {
     return <h1>Write your first post</h1>;
   }
-
-  // console.log(users)
 
   return (
     <>
@@ -135,9 +125,6 @@ export default function PostsContent() {
                   </Avatar>
 
                   <Typography gutterBottom variant="h5">
-                    {/* {users?.map((user) => `${user.firstName} ${user.lastName}`)} */}
-                    {/* {auth.currentUser?.displayName} */}
-                    {/* {users} — */}
                     {post.profilName}
                   </Typography>
                   <div>
