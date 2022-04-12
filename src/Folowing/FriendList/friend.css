@@ -1,74 +1,83 @@
-.ok{
-    width:250px;
-    margin-top: 250px;
-    margin-left: 20px;
-    overflow: hidden;
-    height: 300px;
-    transition: 0.8s;
-    background-color: white;
- position: absolute;
-    
+
+.ok2 {
+  width: 220px;
+  margin-top: 24%;
+margin-left: 81%;
+  overflow: scroll;
+  height: 295px;
+  transition: 0.3s;
+background-color: rgb(139, 168, 241);
+  scrollbar-width: 1px;
+  position:fixed;
+  border-radius: 50px;
+
 
 }
-.ok2{
-    width: 250px;
-    margin-top: 250px;
-    margin-left: 20px;
-    overflow:scroll;
-    height: 350px;
-    transition: 0.3s;
-    background-color:white;
-    scrollbar-width: 1px;
-    position: absolute;
+
+.more {
+  margin-left: 90px;
+  height: 5px;
+  margin-top: -2000px;
+}
+
+.more2 {
+  margin-left: 70px;
+  height: 5px;
+  display: none;
+}
+
+.tor {
+  color: white;
+  background-color: rgb(139, 168, 241);
+  border-radius: 20px;
+  position: absolute;
+  font-size: 1px;
+  transition: 1s;
+
+}
+
+.item {
+  color: rgb(227, 222, 222);
+
+ 
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 10px;
+  transition: 0.7s;
  
 }
-
-.more{
-    margin-left: 90px;
-    height:5px;
-   
+.item:hover {
+  background-color: rgb(0, 94, 244);
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
-.more2{
-    margin-left: 70px;
-    height:5px;
-    display: none;
-}
-
-.tor{
-    color: white;
-    background-color: rgb(139, 168, 241);
-    border-radius: 20px;
+.btn {
+  margin-left: 20px;
+  margin-top: 10px;
   
-    
-    
+  height:2px;
 }
 
-.item{
-   
-    color:rgb(227, 222, 222);
-    width:200px;
-    margin-top: 5px;
-    font-weight: bold;
-    border-radius: 10px;
-   
-    transition: 0.7s;
-    
-    
+.navigate{
+  text-decoration: none;
+  color:white;
 }
-.item:hover{
-    background-color: rgb(0, 94, 244);
-    color:white;
-    border-radius: 10px;
-    margin-top: 5px;
-    font-weight: bold;
-   
-    
-    
-    
+.input{
+  display:none;
+}
+.input2{
+  display:block;
+  transition: 1s;
+  margin-top: 2px;
+  height: 30px;
+  width:85%;
+  margin-left: 20px;
+  border-radius: 15px;
+  background-color: rgb(116, 130, 255);
+  border:1px solid white;
+  color:white;
+  font-size: 16px;
 }
 
-.btn{
-    
-    margin-top: 8px;
-}

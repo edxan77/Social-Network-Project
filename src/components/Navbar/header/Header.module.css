@@ -1,15 +1,11 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.header{
+
+#header{
     display: flex;
     justify-content: space-between;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;;
     background-color: #fff;
-    padding: 15px  20px ;
-    
+    padding: 15px  50px;
+    z-index: 999;
 }
 
 .headerLeft{
@@ -27,7 +23,7 @@
     border-radius: 24px;
     padding:  10px;
     height: 45px;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .headerSearch svg{
@@ -51,10 +47,10 @@
 
 .headerOption{
     padding: 2px 50px;
+    border-radius: 20px;
 }
 .headerOption:hover{
     background-color: #F4F4F4;
-    border-radius: 20px;
     cursor: pointer;
 }
 .headerOption svg {
@@ -78,19 +74,35 @@
     display: flex;
     align-items: center;
     color: #000;
+    background-color: #E4E6EB;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 20px;
 
 }
 .headerInfo .name{
-    margin-right: 60px;
+    margin-right: 20px;
     font-size: 16px;
     font-weight: bold;
 }
 .headerInfo .avatar{
-    margin-right: 10px;
+    margin-right: 5px;
     height: 30px;
     width: 30px;
 }
 
-.rightBtn{
-    padding: 15px;
+.headerRight #rightBtns{
+    padding: 10px;
+    background-color: #E4E6EB;
+    color: #000;
+    margin-left: 10px;
 }
+#rightBtn:hover{
+    background-color: #e2e2e2;
+}
+
+.link{
+    text-decoration: none;
+    color: #000;
+}
+
