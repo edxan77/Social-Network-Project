@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useRef } from 'react';
-=======
 import { useState, useRef, useEffect, useContext } from 'react';
->>>>>>> develop
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';

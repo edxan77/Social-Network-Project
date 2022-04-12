@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import './mainUserFriendList.css';
-import { useState, useRef } from 'react';
-=======
 
 import  { useState, useRef,useContext,useEffect } from 'react';
->>>>>>> develop
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
