@@ -29,7 +29,7 @@ function MainRoutes(){
                 </RequireAuth>
                 }/>
                 
-                <Route path='user-profile' element={<UserProfile/>}/>
+                <Route path='/:id' element={<UserProfile/>}/>
                 
                 <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
                 <Route path='/events' element={<Events/>}/>

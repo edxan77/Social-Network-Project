@@ -32,6 +32,7 @@ background-color: rgb(139, 168, 241);
   border-radius: 20px;
   position: absolute;
   font-size: 1px;
+  transition: 1s;
 
 }
 
@@ -63,3 +64,20 @@ background-color: rgb(139, 168, 241);
   text-decoration: none;
   color:white;
 }
+.input{
+  display:none;
+}
+.input2{
+  display:block;
+  transition: 1s;
+  margin-top: 2px;
+  height: 30px;
+  width:85%;
+  margin-left: 20px;
+  border-radius: 15px;
+  background-color: rgb(116, 130, 255);
+  border:1px solid white;
+  color:white;
+  font-size: 16px;
+}
+
