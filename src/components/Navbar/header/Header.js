@@ -74,7 +74,7 @@ useEffect(()=>[
 
 
     return (
-        <Box sx={{ flexGrow: 1, top:0, position:'fixed', width:'100%',}}>
+        <Box sx={{ flexGrow: 1,  top:0, width:'100%',}}>
             <Toolbar id={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>

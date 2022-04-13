@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-// import { auth } from '../../lib/firebase';
 import { auth } from '../../lib/firebase';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-// import { ref, set } from "firebase/database";
 import { addUser } from '../../Service/firestore';
 import {  useFormik } from 'formik';
 import { useState, useEffect } from 'react';
 import styles from './Register.module.css';
+// import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 
@@ -17,6 +16,8 @@ function Register() {
   
     const [fireEmailError, setFireEmailError] = useState('');
     const [firePasswordError, setFirePasswordError] = useState('');
+
+    // const {currentUser} = useContext(AuthContext);
 
     const validate = values => {
       const errors = {}
@@ -95,6 +96,7 @@ function Register() {
           id: user.uid,
           firstName: firstName,
           lastName:lastName,
+          displayName:`${firstName} ${lastName}`,
           biography:'',
           email:email,
           follows:[],
