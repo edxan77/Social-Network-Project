@@ -51,6 +51,9 @@ const userRef = collection(firebase, 'users');
   useEffect(() => {
     if (currentUser) {
         
+     
+
+
       setUserInfo({...userInfo})
       const postsRef = query(
         collection(firebase, 'posts'),
@@ -77,7 +80,7 @@ const userRef = collection(firebase, 'users');
             if(i.uid == currentUser.uid){
               return i
             }
-            return get>1?follows.follows.includes(i.adress):userInfo.follows.includes(i.adress)
+            return get>2&&follows.follows?follows.follows.includes(i.adress):userInfo.follows.includes(i.adress)
           
         }));
       });
