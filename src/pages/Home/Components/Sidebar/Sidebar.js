@@ -7,7 +7,7 @@ import { getAllUsersById } from "../../../../Service/firestore";
 
 const blank = '_blank';
 
-function Sidebar(){
+export default function Sidebar(){
 
     const [userName, setUserName] = useState("");
     const { currentUser } = useContext(AuthContext);
@@ -48,5 +48,3 @@ function Sidebar(){
         </Box>
     )
 }
-
-export default Sidebar;
