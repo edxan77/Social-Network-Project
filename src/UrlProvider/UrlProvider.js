@@ -12,14 +12,15 @@ const usersRef = collection(firebase, 'users');
 function UrlProvider ({ children }) {
     
     const [image, setImage] = useState();
+    const [url, setUrl] = useState();
     const [key, setKey] = useState();
     const {currentUser} = useContext(AuthContext);
 
 
     async function updateUser(id, imageUrl){
       const userDoc = doc(firebase, 'users', id);
-      const newField = {photo: imageUrl};
-      await updateDoc(userDoc, newField);
+      const imageField = {backgroundImg: imageUrl};
+      await updateDoc(userDoc, imageField);
   }
   
 
@@ -29,10 +30,7 @@ function UrlProvider ({ children }) {
             if(currentUser){
                 data.docs.map((user)=>{
                   if(user.data().id === currentUser.uid){
-                      console.log('user', user)
-                      console.log('user uid', currentUser.uid)
                       setKey(user.id);
-                      // console.log('users',data.docs);
                   }
 
               }) 
@@ -49,22 +47,13 @@ function UrlProvider ({ children }) {
   }
   function handleSubmit(){
         console.log(currentUser);
-        console.log(image.name);
+        // console.log(image.name);
         const imageRef = ref(storage, `images/${image.name}`);
-        // uploadBytes(imageRef, image);
-        // getDownloadURL(imageRef).then((url)=>{
-        //     updateUser(key, url);
-        //     console.log('key',key);
-        // }).catch((err)=>{
-        //   console.log(err.message);
-        //   setImage(null);
-        // }).catch((error)=>{
-        //   console.log(error.message);
-        // })
         uploadBytesResumable(imageRef,image,image).then(
           () =>{
             getDownloadURL(imageRef).then(function(url){
               updateUser(key, url);
+              setUrl(url);
           }
         )
         }).catch((error)=>{
@@ -77,7 +66,7 @@ function UrlProvider ({ children }) {
  
 
   return (
-    <UrlContext.Provider value={{  handleImageChange, handleSubmit }}>
+    <UrlContext.Provider value={{url,  handleImageChange, handleSubmit }}>
       {children}
     </UrlContext.Provider>
   )
