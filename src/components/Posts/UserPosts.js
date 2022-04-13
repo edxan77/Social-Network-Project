@@ -10,6 +10,7 @@ function UserPosts() {
       marginTop: 5,
 
     }}>
+     
       <AddNewPostForm/>
      <PostsContent/>
     </Container>

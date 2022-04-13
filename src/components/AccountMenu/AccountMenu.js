@@ -1,126 +1,249 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Avatar,
   Box,
+  Button,
+  Container,
   Divider,
-  ListItemIcon,
+  Input,
   Menu,
   MenuItem,
+  TextField,
   Tooltip,
   Typography,
-  // Button
 } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
-import { Logout, PersonAdd, Settings } from '@mui/icons-material';
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-// import { TextField } from '@material-ui/core';
-
-
-// import { AuthContext } from '../../AuthProvider/AuthProvider';
-// import { UrlContext } from '../../UrlProvider/UrlProvider';
-// import { getAllUsersById } from '../../Service/firestore';
-
-
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { getAuth, updateProfile } from 'firebase/auth';
+import { upload } from '../../Service/firestore';
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
+import { firebase } from '../../lib/firebase';
+import { handleUserEdit } from '../Posts/postsComponents/utils';
 
 export default function AccountMenu() {
+  const auth = getAuth();
+  const { currentUser } = useContext(AuthContext);
+  // console.log(currentUser)
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [user, setUser] = useState(null);
+  const [newText, setNewText] = useState('');
 
+  const profilCreationTime = new Date(
+    `${currentUser?.metadata.creationTime}`
+  ).toDateString();
 
-  // const [userName, setUserName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [img, setImg] = useState("");
-  // const { currentUser } = useContext(AuthContext);
+  const onChange = (e) => {
+    e.stopPropagation();
+    setName(e.target.value);
+  };
+
+  function onSubmit(e) {
+    e.preventDefault();
+
+    if (name.trim()) {
+      updateProfile(currentUser, {
+        displayName: name,
+      })
+        .then(() => {
+          setName('');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+  function handleChange(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  }
+
+  async function handleClick() {
+    upload(photo, currentUser, setLoading);
+
+    if (user) {
+      const id = user.id;
+      console.log(id);
+      const userRef = doc(firebase, 'users', id);
+      await updateDoc(userRef, {
+        profile_picture: currentUser.photoURL,
+      });
+    }
+  }
+
   const [anchorEl, setAnchorEl] = React.useState(null);
-  
-
-  // const { handleImageChange, handleSubmit} = useContext(UrlContext);
-
-
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     getAllUsersById(currentUser.uid).then((userData) => {
-  //       setUserName(userData.map(data => data.firstName));
-  //       setLastName(userData.map(data => data.lastName));
-  //       setImg(userData.map(data => data.photo));
-        
-  //     });
-  //   }
-  // }, [currentUser, img]);
-
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  const handleclick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      const userRef = query(
+        collection(firebase, 'users'),
+        where('id', '==', currentUser.uid)
+      );
+      const unsubscribe = onSnapshot(userRef, (querySnapshot) => {
+        const data = [];
+
+        querySnapshot.forEach((doc) => {
+          const user = {
+            ...doc.data(),
+            id: doc.id,
+          };
+          data.push(user);
+        });
+        setUser(...data);
+      });
+      return () => unsubscribe();
+    }
+  }, [currentUser]);
+
+  const handleUserChange = (e) => {
+    e.stopPropagation();
+    setNewText(e.target.value);
+  };
 
   return (
     <React.Fragment>
       <Box
         sx={{
           display: 'flex',
-          width: '100%',
+          width: 'calc(100% - 1px);',
           alignItems: 'center',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           marginTop: 5,
+          padding: 3,
+          backgroundColor: '#d4e3fa',
+          filter: 'drop-shadow(0px 1px 3px rgba(0,0,0,0.32))',
         }}
       >
-        <Box>
-        <Tooltip title="Account settings"
-       
-        >
-          {/* <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ }}
+        {/* <Box> */}
+        <Tooltip title="Account settings" width="15%">
+          <Avatar
+            src={auth.currentUser?.photoURL}
+            onClick={handleclick}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
-          > */}
-            <Avatar
-            onClick={handleClick}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-              sx={{
-                bgcolor: deepPurple[500],
-                width: 100,
-                height: 100,
-                marginTop: 2,
-              }}
-              // src={img ?`${img}` : ''}
-            />
-          {/* </IconButton> */}
+            sx={{
+              bgcolor: deepPurple[500],
+              width: '6em',
+              height: '6em',
+              filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.32))',
+            }}
+          >
+            B
+          </Avatar>
         </Tooltip>
-        {/* <TextField type='file' onChange={handleImageChange} /> */}
-        {/* <Button onClick={handleSubmit}>submit</Button> */}
-        <AddAPhotoIcon fontSize="medium" />
+        {/* </Box> */}
+
+        <Typography gutterBottom width="20%" variant='h6'
+       sx={{
+         fontSize: '25vw'
+       }}
+        >
+          {currentUser?.displayName}
+        </Typography>
+
+        <Box
+          sx={{
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'end',
+          }}
+        >
+          <Box
+            mb={2}
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'start',
+            }}
+          >
+            {user?.isEdit ? (
+              <form
+                id="edit-input-form"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const usersRef = doc(firebase, 'users', user.id);
+                  if (!newText.trim()) {
+                    await updateDoc(usersRef, {
+                      isEdit: false,
+                    });
+                  } else {
+                    await updateDoc(usersRef, {
+                      isEdit: false,
+                      about: newText,
+                    });
+                  }
+                  setNewText('');
+                }}
+              >
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={7}
+                  onChange={handleUserChange}
+                  defaultValue={user.about}
+                ></TextField>
+
+                <Button type="submit" variant="contained">
+                  Edit
+                </Button>
+              </form>
+            ) : (
+              <Typography variant="h6" component="h2">
+                {user?.about}
+              </Typography>
+            )}
+
+            <DriveFileRenameOutlineIcon
+              color="primary"
+              sx={{ marginLeft: 5 }}
+              onClick={() => handleUserEdit(user.id)}
+            >
+              Edit
+            </DriveFileRenameOutlineIcon>
+          </Box>
+
+          <Typography mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <CalendarMonthIcon color="primary" /> CreatedAt {profilCreationTime}
+          </Typography>
         </Box>
-        <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
-          {/* {`${userName} ${lastName}`} */}
-        </Typography>
-        <Typography sx={{ width: '50%' }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nisi
-          quos dignissimos facilis beatae.
-        </Typography>
       </Box>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
+            // width: 350,
             overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            filter: 'drop-shadow(0px 5px 12px rgba(0,0,0,0.32))',
             mt: 1.5,
             '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
+              width: 42,
+              height: 42,
               ml: -0.5,
               mr: 1,
             },
@@ -129,7 +252,7 @@ export default function AccountMenu() {
               display: 'block',
               position: 'absolute',
               top: 0,
-              right: 14,
+              right: 150,
               width: 10,
               height: 10,
               bgcolor: 'background.paper',
@@ -142,35 +265,54 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <PhotoCamera color="primary" />
+          Set Profile Image
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <label htmlFor="icon-button-file">
+            <Input
+              accept="image/*"
+              id="icon-button-file"
+              type="file"
+              onChange={handleChange}
+            />
+          </label>
+        </MenuItem>
+        <MenuItem>
+          <Button
+            color="primary"
+            type="submit"
+            variant="contained"
+            disabled={loading || !photo}
+            onClick={handleClick}
+          >
+            {'Update'}
+          </Button>
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
+          <DriveFileRenameOutlineIcon color="primary" /> Change DisplayName
         </MenuItem>
         <MenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
+          <form
+            onSubmit={onSubmit}
+            style={{ display: 'flex', alignItems: 'start' }}
+          >
+            <Input
+              onChange={onChange}
+              defaultValue={currentUser?.displayName}
+            ></Input>
+            <Button
+              color="primary"
+              type="submit"
+              variant="outlined"
+              sx={{ marginTop: 1 }}
+            >
+              {'Update'}
+            </Button>
+          </form>
         </MenuItem>
       </Menu>
-
     </React.Fragment>
-
   );
 }
-
-// export default AccountMenu;

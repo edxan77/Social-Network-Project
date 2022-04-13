@@ -6,10 +6,11 @@
   height: 40px;
   overflow: hidden;
   border-radius: 18px;
-  margin-left: 400px;
+  margin-left: 350px;
   cursor: pointer;
   transition: 1s;
-  position: absolute;
+
+  position: fixed;
 }
 
 .mainlist2 {
@@ -17,20 +18,22 @@
   max-width: 360;
   background-color: rgb(139, 168, 241);
   color: white;
-  height: 350px;
+  height: 200px;
   overflow: auto;
   border-radius: 18px;
-  margin-left: 400px;
+  margin-left: 350px;
   cursor: pointer;
   transition: 1s;
-  position: absolute;
+
+  position: fixed;
 }
 
 .blok {
+  position: fixed;
   width: 200px;
   margin-left: 82%;
-  position: absolute;
-
+ 
+margin-top:80px;
   transition: 1s;
 }
 
@@ -73,4 +76,16 @@
 
 .list {
   margin-left: -15px;
+}
+
+.navlink{
+  text-decoration: none;
+  color:white;
+}
+.title{
+  margin-left: 70px;
+}
+
+.txt{
+  margin-left: 90px;
 }
