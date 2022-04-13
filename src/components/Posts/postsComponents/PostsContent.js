@@ -13,6 +13,7 @@ import {
 import { blue, lightGreen } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
+import CachedIcon from '@mui/icons-material/Cached';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
@@ -22,7 +23,7 @@ import {
   onSnapshot,
   orderBy,
   query,
-
+getDocs,
   doc,
   updateDoc,
   increment,
@@ -37,7 +38,10 @@ export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
   const [newPosts, setNewPosts] = useState(null);
   const [newText, setNewText] = useState('');
-const {userInfo} = useContext(Followcontext)
+const {userInfo,get,setget,setUserInfo} = useContext(Followcontext)
+const [users,setusers] = useState([])
+const [follows,setfollows] = useState([])
+const userRef = collection(firebase, 'users');
 
   const handleChange = (e) => {
     e.stopPropagation();
@@ -47,7 +51,7 @@ const {userInfo} = useContext(Followcontext)
   useEffect(() => {
     if (currentUser) {
         
-      
+      setUserInfo({...userInfo})
       const postsRef = query(
         collection(firebase, 'posts'),
       
@@ -73,19 +77,19 @@ const {userInfo} = useContext(Followcontext)
             if(i.uid == currentUser.uid){
               return i
             }
-            return userInfo.follows.includes(i.adress)
+            return get>1?follows.follows.includes(i.adress):userInfo.follows.includes(i.adress)
           
         }));
       });
     
       return () => unsubscribe();
-    }else{
-      return setNewPosts()
     }
 
     
   
-  }, []);
+  }, [follows]);
+
+  
 
   if (newPosts === null) {
     return <CircularIndeterminate />;
@@ -95,18 +99,37 @@ const {userInfo} = useContext(Followcontext)
     return <h1>Write your first post</h1>;
   }
 
+    const ref = function(){
+      setget(get+1)
+      const getUsers = async () => {
+        const data = await getDocs(userRef);
+        setusers(
+          data.docs.map(function (item) {
+            if (item.data().id == currentUser.uid) {
+              setfollows({ ...item.data(), adress: item._key.path.segments[6] });
+            }
+  
+            return { ...item.data(), adress: item._key.path.segments[6] };
+          })
+        );
+      };
+      getUsers();
 
+    }
 
     
   
- 
+ console.log(get)
 console.log(newPosts)
 console.log(userInfo.follows)
 console.log(currentUser)
-
+console.log("--------------------")
+console.log(users)
+console.log(follows)
   return (
-    <>
 
+    <>
+<span onClick={ref} ><Button><CachedIcon/></Button></span>
       {
         // loading ?
         newPosts &&

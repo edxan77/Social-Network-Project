@@ -97,10 +97,7 @@ function Register() {
           lastName:lastName,
           biography:'',
           email:email,
-<<<<<<< HEAD
           
-=======
->>>>>>> 241174b64db23c535de9f0b65cb6ffe7b43a9f0c
           follows:[],
           followers:[]
       })
