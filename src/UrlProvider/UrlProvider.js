@@ -46,7 +46,7 @@ function UrlProvider ({ children }) {
     }
   }
   function handleSubmit(){
-        console.log(currentUser);
+        // console.log(currentUser);
         // console.log(image.name);
         const imageRef = ref(storage, `images/${image.name}`);
         uploadBytesResumable(imageRef,image,image).then(

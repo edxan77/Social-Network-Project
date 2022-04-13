@@ -9,6 +9,7 @@ const FollowProvider = ({ children }) => {
   const userRef = collection(firebase, 'users');
   const { currentUser } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [usersInfo, setUsersInfo] = useState([]);
   const [get, setget] = useState(0);
 
@@ -17,7 +18,7 @@ const FollowProvider = ({ children }) => {
       const data = await getDocs(userRef);
       setUsersInfo(
         data.docs.map(function (item) {
-          if (item.data().id == currentUser.uid) {
+          if (item.data().id == currentUser?.uid) {
             setUserInfo({ ...item.data(), adress: item._key.path.segments[6] });
           }
 
@@ -26,7 +27,6 @@ const FollowProvider = ({ children }) => {
       );
     };
     setget(get + 1);
-    console.log(usersInfo);
     getUsers();
   }, [currentUser]);
   return (

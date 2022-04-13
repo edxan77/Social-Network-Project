@@ -26,6 +26,7 @@ function AnotherUser() {
   const {currentUser} = useContext(AuthContext)
   const userRef = collection(firebase, "users")
   const {userInfo,setUserInfo} = useContext(Followcontext)
+  // eslint-disable-next-line no-unused-vars
   const [usersInfo, setUsersInfo] = useState([])
   const [followers,setFollowers] = useState([])
   const [followerss,setFollowerss] = useState([])
@@ -72,8 +73,7 @@ function AnotherUser() {
    
       const data = await getDocs(userRef)
       setFollowers(data.docs.map(function(item){
-        if(userInfo.followers.includes(item.data().id)){
-          console.log("yes")
+        if(userInfo?.followers?.includes(item.data().id)){
           setFollowerss(function(prev){return [...prev,{data:item.data(),adress:item._key.path.segments[6]}]})
         }
 
@@ -93,7 +93,7 @@ info()
  useEffect(function(){
    
     setFollows(followers.map(function(item){
-      if(userInfo.follows.includes(item.adress)){
+      if(userInfo?.follows.includes(item.adress)){
         
         return {...item}
       }
@@ -124,7 +124,6 @@ info()
         
        
        
-        console.log(id)
          const userdoc =doc(firebase,"users",id)
          const currentuserdoc = doc(firebase,"users",mainuser.adress)
          
@@ -162,14 +161,6 @@ const getinc = function (){
    useEffect(()=>{
       setget(get+1)
    },[currentUser])
-console.log(usersInfo)
-console.log("guest")
-console.log(userInfo)
-console.log("mainuser")
- console.log(mainuser)
-console.log(followerss)
-console.log("follows")
-console.log(follows)
   
   return (
     <div className="userblok">

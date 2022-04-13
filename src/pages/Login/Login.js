@@ -49,8 +49,9 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
+    // eslint-disable-next-line no-unused-vars
     const user = userCredential.user;
-    console.log(user); 
+
     navigate('/');
  
     })

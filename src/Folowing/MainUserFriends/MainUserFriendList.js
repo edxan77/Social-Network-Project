@@ -25,6 +25,7 @@ function MainUserFriendList() {
   const {currentUser} = useContext(AuthContext)
   const userRef = collection(firebase, "users")
   const {userInfo,setUserInfo} = useContext(Followcontext)
+  // eslint-disable-next-line no-unused-vars
   const [usersInfo, setUsersInfo] = useState([])
   const [followers,setFollowers] = useState([])
   const [followerss,setFollowerss] = useState([])
@@ -67,7 +68,7 @@ function MainUserFriendList() {
       const data = await getDocs(userRef)
       setFollowers(data.docs.map(function(item){
         if(userInfo.followers.includes(item.data().id)){
-          console.log("yes")
+
           setFollowerss(function(prev){return [...prev,item.data()]})
         }
 
@@ -116,11 +117,11 @@ info()
         })
 
         let b = userInfo.follows.filter(function(item){
-          console.log(item)
+
           return item!=id
         })
        
-        console.log(id)
+
          const userdoc =doc(firebase,"users",id)
          const currentuserdoc = doc(firebase,"users",userInfo.adress)
          
@@ -135,7 +136,7 @@ const getinc = function (){
   setget(get+1)
 }
    
-console.log(usersInfo)
+
 
  
 

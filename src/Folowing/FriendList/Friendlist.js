@@ -28,8 +28,6 @@ function Friendlist() {
   const { userInfo, setUserInfo,get,setget } = useContext(Followcontext);
   const [srchvalue,setsrchvalue] = useState("")
   const [srchclick,setsrchclick] = useState(0)
-  console.log(userInfo)
-  console.log(currentUser)
 
   useEffect(function () {
     setget(get + 1);
@@ -80,9 +78,7 @@ function Friendlist() {
       setsrchvalue("")
     }
   }
-console.log(currentUser)
-console.log(srchvalue)
-console.log("br"+"rb")
+
   return (
     <div ref={ref} className= 'ok2'>
       <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
@@ -180,13 +176,13 @@ console.log("br"+"rb")
                   <Button
                   
                     variant={
-                      userInfo.follows.includes(item.adress)
+                      userInfo?.follows?.includes(item.adress)
                         ? 'outlined'
                         : 'contained'
                     }
                     size="small"
                   >
-                    {userInfo.follows.includes(item.adress) ? (
+                    {userInfo?.follows?.includes(item.adress) ? (
                       <PersonOutlineIcon />
                     ) : (
                       <PersonAddIcon />
