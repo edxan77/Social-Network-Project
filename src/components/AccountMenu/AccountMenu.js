@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import {
   Avatar,
   Box,
@@ -8,47 +8,44 @@ import {
   MenuItem,
   Tooltip,
   Typography,
-  Button
+  // Button
 } from '@mui/material';
 import { deepPurple } from '@mui/material/colors';
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { TextField } from '@material-ui/core';
-// import { storage } from '../../lib/firebase';
-// import {ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+// import { TextField } from '@material-ui/core';
 
-import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { UrlContext } from '../../UrlProvider/UrlProvider';
-import { getAllUsersById } from '../../Service/firestore';
+
+// import { AuthContext } from '../../AuthProvider/AuthProvider';
+// import { UrlContext } from '../../UrlProvider/UrlProvider';
+// import { getAllUsersById } from '../../Service/firestore';
 
 
 
 export default function AccountMenu() {
 
-  // const [image, setImage] = useState();
-  // const [urlImg, setUrlImg] = useState();
 
-  const [userName, setUserName] = useState("");
-  const [lastName, setLastName] = useState("");
+  // const [userName, setUserName] = useState("");
+  // const [lastName, setLastName] = useState("");
   // const [img, setImg] = useState("");
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   
 
-  const { handleImageChange, handleSubmit, url} = useContext(UrlContext);
+  // const { handleImageChange, handleSubmit} = useContext(UrlContext);
 
 
-  useEffect(() => {
-    if (currentUser) {
-      getAllUsersById(currentUser.uid).then((userData) => {
-        setUserName(userData.map(data => data.firstName));
-        setLastName(userData.map(data => data.lastName));
-        // setImg(userData.map(data => data.photoURL));
-        // setImg(userData.map(data => data.photoURL));
-        // console.log(userData);
-      });
-    }
-  }, [currentUser]);
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     getAllUsersById(currentUser.uid).then((userData) => {
+  //       setUserName(userData.map(data => data.firstName));
+  //       setLastName(userData.map(data => data.lastName));
+  //       setImg(userData.map(data => data.photo));
+        
+  //     });
+  //   }
+  // }, [currentUser, img]);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -58,24 +55,6 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
 
-  console.log(url)
-  // function handleImageChange(e){
-  //   if(e.target.files[0]){
-  //     setImage(e.target.files[0]);
-  //   }
-  // }
-  // function handleSubmit(){
-  //   const imageRef = ref(storage, 'image');
-  //   uploadBytes(imageRef, image);
-  //   getDownloadURL(imageRef).then((url)=>{
-  //     setUrl(url);
-  //   }).catch((err)=>{
-  //     console.log(err.message);
-  //     setImage(null);
-  //   }).catch((error)=>{
-  //     console.log(error.message);
-  //   })
-  // }
 
   return (
     <React.Fragment>
@@ -111,16 +90,16 @@ export default function AccountMenu() {
                 height: 100,
                 marginTop: 2,
               }}
-              src={url}
+              // src={img ?`${img}` : ''}
             />
           {/* </IconButton> */}
         </Tooltip>
-        <TextField type='file' onChange={handleImageChange} />
-        <Button onClick={handleSubmit}>submit</Button>
+        {/* <TextField type='file' onChange={handleImageChange} /> */}
+        {/* <Button onClick={handleSubmit}>submit</Button> */}
         <AddAPhotoIcon fontSize="medium" />
         </Box>
         <Typography gutterBottom variant="h5" sx={{ width: '25%' }}>
-          {`${userName} ${lastName}`}
+          {/* {`${userName} ${lastName}`} */}
         </Typography>
         <Typography sx={{ width: '50%' }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nisi

@@ -53,4 +53,4 @@ export const getAllUsersById = async (id) => {
   });
 
   return data;
-};
+}
