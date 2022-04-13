@@ -17,7 +17,7 @@ import CachedIcon from '@mui/icons-material/Cached';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import CircularIndeterminate from '../../Loading/Loading';
+// import CircularIndeterminate from '../../Loading/Loading';
 import {
   collection,
   onSnapshot,
@@ -39,6 +39,7 @@ export default function PostsContent() {
   const [newPosts, setNewPosts] = useState(null);
   const [newText, setNewText] = useState('');
 const {userInfo,get,setget,setUserInfo} = useContext(Followcontext)
+// eslint-disable-next-line no-unused-vars
 const [users,setusers] = useState([])
 const [follows,setfollows] = useState([])
 const userRef = collection(firebase, 'users');
@@ -92,13 +93,8 @@ const userRef = collection(firebase, 'users');
   
   }, [follows]);
 
-  
 
-  if (newPosts === null) {
-    return <CircularIndeterminate />;
-  }
-
-  if (newPosts.length === 0) {
+  if (newPosts && newPosts?.length === 0) {
     return <h1>Write your first post</h1>;
   }
 
@@ -120,15 +116,6 @@ const userRef = collection(firebase, 'users');
 
     }
 
-    
-  
- console.log(get)
-console.log(newPosts)
-console.log(userInfo.follows)
-console.log(currentUser)
-console.log("--------------------")
-console.log(users)
-console.log(follows)
   return (
 
     <>
