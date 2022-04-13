@@ -10,7 +10,7 @@ function RightSidebar(){
         // backgroundColor:'#EAEAFF',
         // padding:'15px',
         // borderRadius:'20px'
-        marginRight:'350px',
+        // marginRight:'350px',
         // marginBottom:'400px'
     }}>
         <Friendlist/>
