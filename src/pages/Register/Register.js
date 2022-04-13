@@ -95,6 +95,7 @@ function Register() {
           id: user.uid,
           firstName: firstName,
           lastName:lastName,
+          biography:'',
           email:email,
           follows:[],
           followers:[]
