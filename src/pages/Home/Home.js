@@ -1,11 +1,7 @@
 import Sidebar from "./Components/Sidebar/Sidebar";
 import Posts from "./Components/Posts/Posts";
-// import RightSidebar from "./Components/RightSidebar/RightSidebar";
 import Box from '@mui/material/Box';
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Posts from "./Components/Posts/Posts";
 import RightSidebar from "./Components/RightSidebar/RightSidebar";
-import Box from '@mui/material/Box';
 import MainUserFriends from '../../Folowing/MainUserFriends/MainUserFriendList'
 import {FollowProvider} from '../../Folowing/followprovider/FollowProvider'
 import {AuthProvider} from '../../AuthProvider/AuthProvider'
