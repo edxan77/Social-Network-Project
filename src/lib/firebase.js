@@ -26,7 +26,15 @@ const firebaseConfig = {
   appId: "1:300929157083:web:0704c1fd05bed2916789fe",
   measurementId: "G-FJDEF26910"
 }
-  
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCT_q0diRKuHQVTNDAZN5V2H0bYaawaGBw",
+//   authDomain: "network-aa639.firebaseapp.com",
+//   projectId: "network-aa639",
+//   storageBucket: "network-aa639.appspot.com",
+//   messagingSenderId: "1052465034399",
+//   appId: "1:1052465034399:web:b33b85ed346a80b593deaa"
+// }
+
 
 // Initialize Firebase
 
