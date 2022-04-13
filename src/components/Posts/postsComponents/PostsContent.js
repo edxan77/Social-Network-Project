@@ -16,7 +16,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import CircularIndeterminate from '../../Loading/Loading';
+// import CircularIndeterminate from '../../Loading/Loading';
 import {
   collection,
   onSnapshot,
@@ -67,11 +67,11 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  if (newPosts === null) {
-    return <CircularIndeterminate />;
-  }
+  // if (newPosts === null) {
+  //   return <CircularIndeterminate />;
+  // }
 
-  if (newPosts.length === 0) {
+  if (newPosts && newPosts.length === 0) {
     return <h1>Write your first post</h1>;
   }
 

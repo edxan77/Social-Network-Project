@@ -45,7 +45,7 @@ function Friendlist() {
       const data = await getDocs(userRef);
       setval(
         data.docs.map(function (item) {
-          if (item.data().id == currentUser.uid) {
+          if (item.data().id == currentUser?.uid) {
             setfriends({ ...item.data(), adress: item._key.path.segments[6] });
           }
 
@@ -173,17 +173,17 @@ console.log("br"+"rb")
                     </Link>
                   }
                 />
-                <span className="btn" onClick={gg(item.adress, item.followers)}>
+                <span className="btn" onClick={gg(item?.adress, item?.followers)}>
                   <Button
                   
                     variant={
-                      userInfo.follows.includes(item.adress)
+                      userInfo?.follows?.includes(item.adress)
                         ? 'outlined'
                         : 'contained'
                     }
                     size="small"
                   >
-                    {userInfo.follows.includes(item.adress) ? (
+                    {userInfo?.follows?.includes(item.adress) ? (
                       <PersonOutlineIcon />
                     ) : (
                       <PersonAddIcon />

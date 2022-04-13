@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import {
   Avatar,
   Box,
   Button,
-  Container,
   Divider,
   Input,
   Menu,
@@ -34,7 +32,6 @@ import { handleUserEdit } from '../Posts/postsComponents/utils';
 export default function AccountMenu() {
   const auth = getAuth();
   const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser)
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
@@ -87,9 +84,11 @@ export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleclick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
 
@@ -128,10 +127,14 @@ export default function AccountMenu() {
           width: 'calc(100% - 1px);',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginTop: 5,
+          marginTop: 10,
+          // paddingTop: 10,
           padding: 3,
           backgroundColor: '#d4e3fa',
           filter: 'drop-shadow(0px 1px 3px rgba(0,0,0,0.32))',
+          // transition: 'all 0.1s linear',
+          // position: 'fixed',
+          zIndex: 500,
         }}
       >
         {/* <Box> */}
@@ -156,7 +159,7 @@ export default function AccountMenu() {
 
         <Typography gutterBottom width="20%" variant='h6'
        sx={{
-         fontSize: '25vw'
+         fontSize: '1.6rem'
        }}
         >
           {currentUser?.displayName}

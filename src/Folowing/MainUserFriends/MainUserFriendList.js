@@ -45,7 +45,7 @@ function MainUserFriendList() {
     
       const data = await getDocs(userRef)
       setUsersInfo (data.docs.map(function (item){
-        if(item.data().id == currentUser.uid){
+        if(item.data().id == currentUser?.uid){
           setUserInfo({...item.data(),adress:item._key.path.segments[6]},)
         }
         
