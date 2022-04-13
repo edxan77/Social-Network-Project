@@ -58,11 +58,11 @@ function UserProfile() {
         {img ?
           <Button onClick={onButtonClick} style={{position:'absolute', marginLeft:'820px', marginTop:'320px', backgroundColor:'#fff', color:'#000'}}>
           <h4 style={{color:'#000', textTransform:'capitalize'}}>Edit photo</h4>
-          <PhotoCameraIcon fontSize='large' />
+          <PhotoCameraIcon fontSize='medium' />
           </Button> :
            <Button onClick={onButtonClick} style={{position:'absolute', marginLeft:'820px', marginTop:'320px', backgroundColor:'#fff', color:'#000'}}>
            <h4 style={{color:'#000', textTransform:'capitalize'}}>Add photo</h4>
-           <PhotoCameraIcon fontSize='large' />
+           <PhotoCameraIcon fontSize='medium' />
            </Button>
         }
       

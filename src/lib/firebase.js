@@ -25,6 +25,12 @@ const firebaseConfig = {
   messagingSenderId: "300929157083",
   appId: "1:300929157083:web:0704c1fd05bed2916789fe",
   measurementId: "G-FJDEF26910"
+  // apiKey: "AIzaSyA60XDZ-7sGuSrbNCJfcnRKHU_Xgjlayck",
+  // authDomain: "my-app-e6d00.firebaseapp.com",
+  // projectId: "my-app-e6d00",
+  // storageBucket: "my-app-e6d00.appspot.com",
+  // messagingSenderId: "1037784566456",
+  // appId: "1:1037784566456:web:90488784d12ff02593c24d"
 }
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCT_q0diRKuHQVTNDAZN5V2H0bYaawaGBw",
