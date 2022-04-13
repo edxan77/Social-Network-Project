@@ -230,7 +230,7 @@ console.log(follows)
               return(
                 <ListItem alignItems="flex-start" className="people" key={index}>
                   <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                    <Avatar alt="Remy Sharp" src={item.profile_picture} />
                   </ListItemAvatar>
                   <ListItemText
                     primary={(

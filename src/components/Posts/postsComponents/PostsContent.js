@@ -22,7 +22,7 @@ import {
   onSnapshot,
   orderBy,
   query,
-  where,
+
   doc,
   updateDoc,
   increment,
@@ -31,11 +31,13 @@ import {
 import { firebase } from '../../../lib/firebase';
 import { handleEdit } from './utils';
 import './addNewPostForm.css';
+import {Followcontext} from "../../../Folowing/followprovider/FollowProvider"
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
   const [newPosts, setNewPosts] = useState(null);
   const [newText, setNewText] = useState('');
+const {userInfo} = useContext(Followcontext)
 
   const handleChange = (e) => {
     e.stopPropagation();
@@ -44,28 +46,46 @@ export default function PostsContent() {
 
   useEffect(() => {
     if (currentUser) {
+        
+      
       const postsRef = query(
         collection(firebase, 'posts'),
-        where('uid', '==', currentUser.uid),
+      
         orderBy('createdAt', 'desc')
       );
+      
       const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
         const data = [];
 
-        querySnapshot.forEach((doc) => {
-          const post = {
-            ...doc.data(),
-            id: doc.id,
-            profilName: currentUser?.displayName,
-            photo: currentUser?.photoURL,
-          };
-          data.push(post);
-        });
-        setNewPosts(data);
+  querySnapshot.forEach((doc) => {
+    const post = {
+      ...doc.data(),
+      id: doc.id,
+      profilName: currentUser?.displayName,
+      photo: currentUser?.photoURL,
+    };
+    data.push(post);
+  });
+
+        
+        setNewPosts(data.filter((i)=>{
+         
+            if(i.uid == currentUser.uid){
+              return i
+            }
+            return userInfo.follows.includes(i.adress)
+          
+        }));
       });
+    
       return () => unsubscribe();
+    }else{
+      return setNewPosts()
     }
-  }, [currentUser]);
+
+    
+  
+  }, []);
 
   if (newPosts === null) {
     return <CircularIndeterminate />;
@@ -75,8 +95,18 @@ export default function PostsContent() {
     return <h1>Write your first post</h1>;
   }
 
+
+
+    
+  
+ 
+console.log(newPosts)
+console.log(userInfo.follows)
+console.log(currentUser)
+
   return (
     <>
+
       {
         // loading ?
         newPosts &&
@@ -125,10 +155,10 @@ export default function PostsContent() {
                   </Avatar>
 
                   <Typography gutterBottom variant="h5">
-                    {post.profilName}
+                    {post.firstName + " " + post.lastName}
                   </Typography>
                   <div>
-                    <Button
+                    {post.uid==currentUser.uid? <div><Button
                       variant="outlined"
                       size="small"
                       color="primary"
@@ -145,7 +175,8 @@ export default function PostsContent() {
                       }}
                     >
                       <DeleteIcon />
-                    </IconButton>
+                    </IconButton></div>:<div></div>}
+                    
                   </div>
                 </CardActions>
 

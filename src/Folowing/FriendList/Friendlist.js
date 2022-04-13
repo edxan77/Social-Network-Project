@@ -76,6 +76,9 @@ function Friendlist() {
 
   const search = function(){
     setsrchclick(srchclick+1)
+    if(srchclick%2!==0){
+      setsrchvalue("")
+    }
   }
 console.log(currentUser)
 console.log(srchvalue)
@@ -154,7 +157,7 @@ console.log("br"+"rb")
               
               <ListItem alignItems="flex-start" className="item" key={index}>
                 <ListItemAvatar sx={{marginTop:'15px'}}>
-                  <Avatar alt="Remy Sharp" src={item.photo} />
+                  <Avatar alt="Remy Sharp" src={item.profile_picture} />
                 </ListItemAvatar>
                 <ListItemText
                 sx={{marginTop:'15px',fontSize:'10px'}}
