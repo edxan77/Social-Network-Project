@@ -111,7 +111,7 @@ useEffect(()=>[
                             setActive('info')
                             nav(`/${currentUser.uid}`)
                         }}>
-                            <Avatar className={styles.avatar} src={currentUser?.photoURL}  />
+                            <Avatar className={styles.avatar} src={currentUser?.photoURL} />
                             <Typography variant='h6' className={styles.name} >
                                 {userName}
                             </Typography>

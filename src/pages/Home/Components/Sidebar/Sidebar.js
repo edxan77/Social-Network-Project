@@ -13,6 +13,12 @@ export default function Sidebar(){
     const { currentUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+    function e(){
+        return  navigate('/events');
+    }
+>>>>>>> 0e5548cc8a4b80ae517b43f08ca1e7c71c09d1ee
 
     useEffect(() => {
         if (currentUser) {
