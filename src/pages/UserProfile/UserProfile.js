@@ -75,6 +75,7 @@ function UserProfile() {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              backgroundColor: '#fff'
             }}
             src={img ? `${img}` : ''}
           >
