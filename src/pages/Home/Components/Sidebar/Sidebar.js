@@ -36,7 +36,8 @@ export default function Sidebar(){
             position:'fixed',
             marginTop:'75px'
         }}>
-            <SidebarOption title={userName} src={currentUser?.photoURL} sx={{position:'relative'}} />
+            
+            <span onClick={()=> navigate('/user-profile')}><SidebarOption title={userName} src={currentUser?.photoURL} sx={{position:'relative'}} /></span>
             <a href='https://www.worldometers.info/coronavirus/' target={blank} style={{textDecoration:'none', color:'#000'}} >
                 <SidebarOption title='Covid 2019 information' src='https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/tInzwsw2pVX.png'/>
             </a>
