@@ -64,6 +64,9 @@
     color: #177afd !important;
     border-bottom: 3px solid #177afd;
 }
+#activeInfo svg{
+    color: #1C79F2 !important;
+}
 
 .headerRight{
     display: flex;
@@ -105,4 +108,5 @@
     text-decoration: none;
     color: #000;
 }
+
 
