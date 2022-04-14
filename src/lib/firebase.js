@@ -17,24 +17,24 @@ import {getStorage} from "firebase/storage";
 // const appId = process.env.REACT_APP_APP_ID;
 
 
-//const firebaseConfig = {
-  //apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
-  //authDomain: "social-network-ef434.firebaseapp.com",
-  //projectId: "social-network-ef434",
-  //storageBucket: "social-network-ef434.appspot.com",
-  //messagingSenderId: "300929157083",
-  //appId: "1:300929157083:web:0704c1fd05bed2916789fe",
-  //measurementId: "G-FJDEF26910"
-//}
- const firebaseConfig = {
-    apiKey: 'AIzaSyDaTcGszQUQBGvzehp7dspQpYvk6On07L4',
- authDomain: 'sosial-network-e2964.firebaseapp.com',
- databaseURL: 'https://sosial-network-e2964-default-rtdb.firebaseio.com',
- projectId: 'sosial-network-e2964',
- storageBucket: 'sosial-network-e2964.appspot.com',
- messagingSenderId: '267114802245',
- appId: '1:267114802245:web:187c89edc13f60feb3c72c',
- }
+const firebaseConfig = {
+  apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
+  authDomain: "social-network-ef434.firebaseapp.com",
+  projectId: "social-network-ef434",
+  storageBucket: "social-network-ef434.appspot.com",
+  messagingSenderId: "300929157083",
+  appId: "1:300929157083:web:0704c1fd05bed2916789fe",
+  measurementId: "G-FJDEF26910"
+}
+//  const firebaseConfig = {
+//     apiKey: 'AIzaSyDaTcGszQUQBGvzehp7dspQpYvk6On07L4',
+//  authDomain: 'sosial-network-e2964.firebaseapp.com',
+//  databaseURL: 'https://sosial-network-e2964-default-rtdb.firebaseio.com',
+//  projectId: 'sosial-network-e2964',
+//  storageBucket: 'sosial-network-e2964.appspot.com',
+//  messagingSenderId: '267114802245',
+//  appId: '1:267114802245:web:187c89edc13f60feb3c72c',
+//  }
 
 
 // Initialize Firebase
