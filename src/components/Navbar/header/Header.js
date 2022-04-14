@@ -12,12 +12,10 @@ import { IconButton, Typography, Avatar } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import { getAllUsersById } from '../../../Service/firestore';
 import {  useNavigate } from 'react-router-dom';
 import { auth } from '../../../lib/firebase';
-import { Followcontext } from '../../../Folowing/followprovider/FollowProvider';
 import styles from './Header.module.css';
 
 
@@ -25,13 +23,11 @@ import styles from './Header.module.css';
 
 function Header(){
     
-    const [userName, setUserName] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const nav = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const {get,setget} = useContext(Followcontext);
     const [isActive,setActive] = useState('home');
 
     const handleClick = (event) => {
@@ -40,36 +36,6 @@ function Header(){
     const handleClose = () => {
       setAnchorEl(null);
     };
-
-    
-useEffect(()=>[
-        setget(get+1)
-],[])
-
-    useEffect(() => {
-        if (currentUser) {
-          getAllUsersById(currentUser.uid).then((userData) => {
-            setUserName(userData.map(data => data.firstName));
-            // console.log(userData);
-          });
-        }
-      }, [get]);
-
-
-    // const [userName, setUserName] = useState("");
-    // const { currentUser } = useContext(AuthContext);
-    // useEffect(() => {
-    //   if (currentUser) {
-    //     const currentUserRef = ref(db, "users/" + currentUser.uid);
-    //     onValue(currentUserRef, (snapshot) => {
-    //       if (snapshot.exists()) {
-    //         let data = snapshot.val();
-    //         setUserName(data.firstName);
-    //       }
-    //     });
-    //   }
-    // }, [currentUser]);
-
 
     return (
         <Box sx={{
@@ -113,7 +79,7 @@ useEffect(()=>[
                         }}>
                             <Avatar className={styles.avatar} src={currentUser?.photoURL} />
                             <Typography variant='h6' className={styles.name} >
-                                {userName}
+                            {currentUser?.displayName.toString().split(' ')[0]}
                             </Typography>
                         </div>
                    
