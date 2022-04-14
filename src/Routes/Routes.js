@@ -18,8 +18,9 @@ function MainRoutes(){
 
     return (
         <AuthProvider>
-          <UrlProvider>
           <FollowProvider>
+          <UrlProvider>
+          
             <Routes>
            
               <Route path='/' element={<Layout/>}>
@@ -38,8 +39,9 @@ function MainRoutes(){
               <Route path='login' element={<Login/>} />
                 <Route path='register' element={<Register />}/>
             </Routes>
-            </FollowProvider>
-          </UrlProvider>
+           
+          </UrlProvider> 
+          </FollowProvider>
         </AuthProvider>
       )
 }

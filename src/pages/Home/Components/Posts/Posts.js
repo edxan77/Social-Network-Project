@@ -1,5 +1,6 @@
-import UserPosts from "../../../../components/Posts/UserPosts";
+// import UserPosts from "../../../../components/Posts/UserPosts";
 import { Box } from "@mui/system";
+import NewsFeed from "../../../../components/Posts/postsComponents/NewsFeed";
 
 function Posts(){
     return(
@@ -11,7 +12,8 @@ function Posts(){
             padding:'15px',
             borderRadius:'20px'
         }}>
-            <UserPosts/>
+            {/* <UserPosts/> */}
+            <NewsFeed/>
         </Box>
     )
 }

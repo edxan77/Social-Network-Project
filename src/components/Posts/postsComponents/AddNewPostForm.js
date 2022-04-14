@@ -5,12 +5,14 @@ import { addPost } from '../../../Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
 import { auth } from '../../../lib/firebase';
 import './addNewPostForm.css';
-import { AccountCircle } from '@material-ui/icons';
+// import { AccountCircle } from '@material-ui/icons';
 import { Followcontext } from '../../../Folowing/followprovider/FollowProvider';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 
 
 export default function AddNewPostForm() {
+  const { currentUser } = useContext(AuthContext);
   const [text, setText] = useState('');
   const {userInfo} = useContext(Followcontext)
   const handleChange = (e) => {
@@ -27,10 +29,9 @@ export default function AddNewPostForm() {
       await addPost({
         text: text,
         createdAt: serverTimestamp(),
-        uid: auth.currentUser.uid,
-        firstName: userInfo.firstName,
-        lastName: userInfo.lastName,
-        adress:userInfo.adress,
+        uid: currentUser.uid,
+        // displayName: currentUser.displayName,
+        adress: userInfo.adress,
         likes: 0
       });
     } catch (error) {
