@@ -2,7 +2,6 @@ import { Box } from '@mui/system';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import GroupIcon from '@mui/icons-material/Group';
 
@@ -74,7 +73,15 @@ useEffect(()=>[
 
 
     return (
-        <Box sx={{ flexGrow: 1,  top:0, width:'100%',}}>
+        <Box sx={{
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            left: 0,
+            zIndex: 2000,
+            backgroundColor: '#fff',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
+          }}>
             <Toolbar id={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
@@ -90,9 +97,6 @@ useEffect(()=>[
                             setActive('home');
                             navigate('/');
                         }}/>
-                    </div>
-                    <div className={styles.headerOption} id={`${isActive === "video" ? styles.active : ''}`}>
-                        <OndemandVideoIcon fontSize='large' onClick={()=> setActive('video')}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "friends" ? styles.active : ''}`}>
                         <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>

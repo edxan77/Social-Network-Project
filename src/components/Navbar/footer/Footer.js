@@ -15,13 +15,18 @@ export default function Footer() {
     return (
         // <ThemeProvider theme={theme}>
             // <AppBar position="static" component="footer" id={styles.footer} >
-                <div   id={styles.footer} >
-                    <Toolbar>
+                <footer  id={styles.footer} >
+                    <Toolbar sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        textAlign: 'center',
+                    }}>
                         <Typography variant="caption" style={{fontSize:'14px'}}>
                             &copy; Lightbook {new Date().getFullYear()}
                         </Typography>
                     </Toolbar>
-                </div>
+                </footer>
             // </AppBar>
         // </ThemeProvider>
     )
