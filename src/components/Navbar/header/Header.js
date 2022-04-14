@@ -80,7 +80,7 @@ function Header(){
                         }}>
                             <Avatar className={styles.avatar} src={currentUser?.photoURL} />
                             <Typography variant='h6' className={styles.name} >
-                            {currentUser?.displayName.toString().split(' ')[0]}
+                                {currentUser?.displayName.toString().split(' ')[0]}
                             </Typography>
                         </div>
                    

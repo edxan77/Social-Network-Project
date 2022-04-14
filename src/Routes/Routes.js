@@ -13,6 +13,9 @@ import UrlProvider from '../UrlProvider/UrlProvider';
 import {FollowProvider} from '../Folowing/followprovider/FollowProvider'
 import Friends from '../pages/Friends/Friends';
 import Game from '../pages/Game/Game';
+import Cards from '../pages/Game/Memory/Cards';
+import Rock from '../pages/Game/rock_peper_scissors/rock';
+import Board from '../pages/Game/tic tak toy/Board';
 
 
 function MainRoutes(){
@@ -36,6 +39,9 @@ function MainRoutes(){
                 <Route path='friends' element={<Friends/>}/>
                 <Route path='events' element={<Events/>}/>
                 <Route path='games' element={<Game/>}/>
+                <Route path='Memory' element={<Cards/>}/>
+                <Route path='/TicTacToe' element={<Board/>}/>
+                <Route path='/Rock_Peper_Scissors' element={<Rock/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
               <Route path='login' element={<Login/>} />
