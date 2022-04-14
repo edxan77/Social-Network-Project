@@ -95,7 +95,10 @@ useEffect(()=>[
                         <OndemandVideoIcon fontSize='large' onClick={()=> setActive('video')}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "friends" ? styles.active : ''}`}>
-                        <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>
+                        <GroupIcon fontSize='large' onClick={()=>{
+                             setActive('friends');
+                             navigate('/friends');
+                        }}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "games" ? styles.active : ''}`}>
                         <SportsEsportsIcon fontSize='large' onClick={()=> setActive('games')}/>
