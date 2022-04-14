@@ -4,7 +4,7 @@ import Register from '../pages/Register/Register';
 import {AuthProvider} from '../AuthProvider/AuthProvider'
 import NotFound from '../pages/NotFound/NotFound';
 import Home from '../pages/Home/Home';
-import UserProfile from '../pages/UserProfile/UserProfile'
+import UserProfile from '../pages/UserProfile/UserProfile';
 import RequireAuth from '../components/RequireAuth/RequireAuth';
 import Layout from '../components/Layout/Layout';
 import Events from '../pages/Events/Events';
