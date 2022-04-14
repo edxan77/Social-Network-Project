@@ -99,6 +99,7 @@ function Register() {
           displayName:`${firstName} ${lastName}`,
           biography:'',
           email:email,
+          
           follows:[],
           followers:[]
       })

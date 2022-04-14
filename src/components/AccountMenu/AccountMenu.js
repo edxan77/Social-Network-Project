@@ -76,7 +76,6 @@ export default function AccountMenu() {
 
     if (user) {
       const id = user.id;
-      console.log(id);
       const userRef = doc(firebase, 'users', id);
       await updateDoc(userRef, {
         profile_picture: currentUser.photoURL,

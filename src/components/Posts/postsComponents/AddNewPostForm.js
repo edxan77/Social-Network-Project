@@ -1,15 +1,18 @@
 /* eslint-disable no-unused-vars */
 import { Box, Button, FormControl, TextField } from '@mui/material';
-import { useState } from 'react';
+import { useState ,useContext} from 'react';
 import { addPost } from '../../../Service/firestore';
 import { serverTimestamp } from 'firebase/firestore';
 import { auth } from '../../../lib/firebase';
 import './addNewPostForm.css';
 import { AccountCircle } from '@material-ui/icons';
+import { Followcontext } from '../../../Folowing/followprovider/FollowProvider';
+
+
 
 export default function AddNewPostForm() {
   const [text, setText] = useState('');
-
+  const {userInfo} = useContext(Followcontext)
   const handleChange = (e) => {
     setText(e.target.value);
   };
@@ -25,6 +28,9 @@ export default function AddNewPostForm() {
         text: text,
         createdAt: serverTimestamp(),
         uid: auth.currentUser.uid,
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        adress:userInfo.adress,
         likes: 0
       });
     } catch (error) {

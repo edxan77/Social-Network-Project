@@ -28,8 +28,6 @@ function Friendlist() {
   const { userInfo, setUserInfo,get,setget } = useContext(Followcontext);
   const [srchvalue,setsrchvalue] = useState("")
   const [srchclick,setsrchclick] = useState(0)
-  console.log(userInfo)
-  console.log(currentUser)
 
   useEffect(function () {
     setget(get + 1);
@@ -76,10 +74,11 @@ function Friendlist() {
 
   const search = function(){
     setsrchclick(srchclick+1)
+    if(srchclick%2!==0){
+      setsrchvalue("")
+    }
   }
-console.log(currentUser)
-console.log(srchvalue)
-console.log("br"+"rb")
+
   return (
     <div ref={ref} className= 'ok2'>
       <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
@@ -154,7 +153,7 @@ console.log("br"+"rb")
               
               <ListItem alignItems="flex-start" className="item" key={index}>
                 <ListItemAvatar sx={{marginTop:'15px'}}>
-                  <Avatar alt="Remy Sharp" src={item.photo} />
+                  <Avatar alt="Remy Sharp" src={item.profile_picture} />
                 </ListItemAvatar>
                 <ListItemText
                 sx={{marginTop:'15px',fontSize:'10px'}}
@@ -177,13 +176,13 @@ console.log("br"+"rb")
                   <Button
                   
                     variant={
-                      userInfo.follows.includes(item.adress)
+                      userInfo?.follows?.includes(item.adress)
                         ? 'outlined'
                         : 'contained'
                     }
                     size="small"
                   >
-                    {userInfo.follows.includes(item.adress) ? (
+                    {userInfo?.follows?.includes(item.adress) ? (
                       <PersonOutlineIcon />
                     ) : (
                       <PersonAddIcon />

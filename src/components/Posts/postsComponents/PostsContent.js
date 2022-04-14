@@ -13,16 +13,17 @@ import {
 import { blue, lightGreen } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
+import CachedIcon from '@mui/icons-material/Cached';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import CircularIndeterminate from '../../Loading/Loading';
+// import CircularIndeterminate from '../../Loading/Loading';
 import {
   collection,
   onSnapshot,
   orderBy,
   query,
-  where,
+getDocs,
   doc,
   updateDoc,
   increment,
@@ -31,11 +32,17 @@ import {
 import { firebase } from '../../../lib/firebase';
 import { handleEdit } from './utils';
 import './addNewPostForm.css';
+import {Followcontext} from "../../../Folowing/followprovider/FollowProvider"
 
 export default function PostsContent() {
   const { currentUser } = useContext(AuthContext);
   const [newPosts, setNewPosts] = useState(null);
   const [newText, setNewText] = useState('');
+const {userInfo,get,setget,setUserInfo} = useContext(Followcontext)
+// eslint-disable-next-line no-unused-vars
+const [users,setusers] = useState([])
+const [follows,setfollows] = useState([])
+const userRef = collection(firebase, 'users');
 
   const handleChange = (e) => {
     e.stopPropagation();
@@ -44,39 +51,75 @@ export default function PostsContent() {
 
   useEffect(() => {
     if (currentUser) {
+        
+     
+
+
+      setUserInfo({...userInfo})
       const postsRef = query(
         collection(firebase, 'posts'),
-        where('uid', '==', currentUser.uid),
+      
         orderBy('createdAt', 'desc')
       );
+      
       const unsubscribe = onSnapshot(postsRef, (querySnapshot) => {
         const data = [];
 
-        querySnapshot.forEach((doc) => {
-          const post = {
-            ...doc.data(),
-            id: doc.id,
-            profilName: currentUser?.displayName,
-            photo: currentUser?.photoURL,
-          };
-          data.push(post);
-        });
-        setNewPosts(data);
+  querySnapshot.forEach((doc) => {
+    const post = {
+      ...doc.data(),
+      id: doc.id,
+      profilName: currentUser?.displayName,
+      photo: currentUser?.photoURL,
+    };
+    data.push(post);
+  });
+
+        
+        setNewPosts(data.filter((i)=>{
+         
+            if(i.uid == currentUser.uid){
+              return i
+            }
+            return get>2&&follows.follows?follows.follows.includes(i.adress):userInfo.follows.includes(i.adress)
+          
+        }));
       });
+    
       return () => unsubscribe();
     }
-  }, [currentUser]);
 
-  if (newPosts === null) {
-    return <CircularIndeterminate />;
-  }
+    
+  
+  }, [follows]);
 
-  if (newPosts.length === 0) {
+
+  if (newPosts && newPosts?.length === 0) {
     return <h1>Write your first post</h1>;
   }
 
+    const ref = function(){
+      setget(get+1)
+      const getUsers = async () => {
+        const data = await getDocs(userRef);
+        setusers(
+          data.docs.map(function (item) {
+            if (item.data().id == currentUser.uid) {
+              setfollows({ ...item.data(), adress: item._key.path.segments[6] });
+            }
+  
+            return { ...item.data(), adress: item._key.path.segments[6] };
+          })
+        );
+      };
+      getUsers();
+
+    }
+
   return (
+
     <>
+<span onClick={ref} ><Button><CachedIcon/></Button></span>
       {
         // loading ?
         newPosts &&
@@ -125,10 +168,10 @@ export default function PostsContent() {
                   </Avatar>
 
                   <Typography gutterBottom variant="h5">
-                    {post.profilName}
+                    {post.firstName + " " + post.lastName}
                   </Typography>
                   <div>
-                    <Button
+                    {post.uid==currentUser.uid? <div><Button
                       variant="outlined"
                       size="small"
                       color="primary"
@@ -145,7 +188,8 @@ export default function PostsContent() {
                       }}
                     >
                       <DeleteIcon />
-                    </IconButton>
+                    </IconButton></div>:<div></div>}
+                    
                   </div>
                 </CardActions>
 

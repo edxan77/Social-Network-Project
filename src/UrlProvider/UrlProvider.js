@@ -70,7 +70,7 @@ function UrlProvider ({ children }) {
     }
   }
   function handleSubmit(){
-        console.log(currentUser);
+        // console.log(currentUser);
         // console.log(image.name);
         if(currentUser){
           setLoading(true)
