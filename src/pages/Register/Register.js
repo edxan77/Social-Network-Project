@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { auth } from '../../lib/firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { addUser } from '../../Service/firestore';
 import {  useFormik } from 'formik';
 import { useState, useEffect } from 'react';
@@ -92,17 +92,25 @@ function Register() {
         //   password:password
         // })
 
-        addUser({
-          id: user.uid,
-          firstName: firstName,
-          lastName:lastName,
-          displayName:`${firstName} ${lastName}`,
-          biography:'',
-          email:email,
-          
-          follows:[],
-          followers:[]
+ updateProfile(user, {
+        displayName: `${firstName} ${lastName}`,
       })
+        .then(() => {
+          addUser({
+            id: user.uid,
+            firstName: firstName,
+            lastName:lastName,
+            displayName: user.displayName,
+            about: 'Write your bio here',
+            email:email,
+            follows:[],
+            followers:[]
+        })
+        console.log('yes-yes-ues')
+        })
+        .catch((error) => {
+          console.log(error);
+        })
         .then(()=>{
           setIsSubmeted(true);
           console.log('created')

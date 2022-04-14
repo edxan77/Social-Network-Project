@@ -12,6 +12,7 @@ import AnotherUserPage from '../pages/AnotherUserProfile';
 import UrlProvider from '../UrlProvider/UrlProvider';
 import {FollowProvider} from '../Folowing/followprovider/FollowProvider'
 import Friends from '../pages/Friends/Friends';
+import Game from '../pages/Game/Game';
 
 
 
@@ -34,7 +35,7 @@ function MainRoutes(){
                 <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
                 <Route path='friends' element={<Friends/>}/>
                 <Route path='events' element={<Events/>}/>
-                <Route path='games'/>
+                <Route path='games' element={<Game/>}/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
               <Route path='login' element={<Login/>} />

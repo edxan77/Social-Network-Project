@@ -3,12 +3,13 @@ import {useFormik} from 'formik';
 
 import { auth } from '../../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from  './Login.module.css';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 function Login() {
-
+  const { setLoading } = useContext(AuthContext);
   const [fireNotFoundError, setFireNotFoundError] = useState('');
   const [firePasswordError, setFirePasswordError] = useState('');
 
@@ -46,11 +47,15 @@ function Login() {
 
   function login(){
 
+    setLoading(true)
+
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
     // eslint-disable-next-line no-unused-vars
     const user = userCredential.user;
+
+    
 
     navigate('/');
  
@@ -63,8 +68,9 @@ function Login() {
         case 'auth/wrong-password':
           return setFirePasswordError('Wrong password');
       }
+     
    
-    });
+    }) .finally(() => setLoading(false));
  
   }
 

@@ -2,38 +2,30 @@ import { Box } from '@mui/system';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
-import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import GroupIcon from '@mui/icons-material/Group';
 
 import AppsIcon from '@mui/icons-material/Apps';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { IconButton, Typography } from '@mui/material';
-import { Avatar } from '@mui/material';
+import { IconButton, Typography, Avatar } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import { getAllUsersById } from '../../../Service/firestore';
 import {  useNavigate } from 'react-router-dom';
 import { auth } from '../../../lib/firebase';
-import { Followcontext } from '../../../Folowing/followprovider/FollowProvider';
 import styles from './Header.module.css';
-
-
 
 
 function Header(){
     
-    const [userName, setUserName] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const nav = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const {get,setget} = useContext(Followcontext);
     const [isActive,setActive] = useState('home');
 
     const handleClick = (event) => {
@@ -43,38 +35,16 @@ function Header(){
       setAnchorEl(null);
     };
 
-    
-useEffect(()=>[
-        setget(get+1)
-],[])
-
-    useEffect(() => {
-        if (currentUser) {
-          getAllUsersById(currentUser.uid).then((userData) => {
-            setUserName(userData.map(data => data.firstName));
-            // console.log(userData);
-          });
-        }
-      }, [get]);
-
-
-    // const [userName, setUserName] = useState("");
-    // const { currentUser } = useContext(AuthContext);
-    // useEffect(() => {
-    //   if (currentUser) {
-    //     const currentUserRef = ref(db, "users/" + currentUser.uid);
-    //     onValue(currentUserRef, (snapshot) => {
-    //       if (snapshot.exists()) {
-    //         let data = snapshot.val();
-    //         setUserName(data.firstName);
-    //       }
-    //     });
-    //   }
-    // }, [currentUser]);
-
-
     return (
-        <Box sx={{ flexGrow: 1,  top:0, width:'100%',}}>
+        <Box sx={{
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            left: 0,
+            zIndex: 2000,
+            backgroundColor: '#fff',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
+          }}>
             <Toolbar id={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
@@ -91,17 +61,14 @@ useEffect(()=>[
                             navigate('/');
                         }}/>
                     </div>
-                    <div className={styles.headerOption} id={`${isActive === "video" ? styles.active : ''}`}>
-                        <OndemandVideoIcon fontSize='large' onClick={()=> setActive('video')}/>
-                    </div>
                     <div className={styles.headerOption} id={`${isActive === "friends" ? styles.active : ''}`}>
-                        <GroupIcon fontSize='large' onClick={()=>{
-                             setActive('friends');
-                             navigate('/friends');
-                        }}/>
+                        <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "games" ? styles.active : ''}`}>
-                        <SportsEsportsIcon fontSize='large' onClick={()=> setActive('games')}/>
+                        <SportsEsportsIcon fontSize='large' onClick={()=> {
+                            navigate('/games');
+                            setActive('games');
+                        }}/>
                     </div>
                 </div>
 
@@ -113,7 +80,7 @@ useEffect(()=>[
                         }}>
                             <Avatar className={styles.avatar} src={currentUser?.photoURL} />
                             <Typography variant='h6' className={styles.name} >
-                                {userName}
+                            {currentUser?.displayName.toString().split(' ')[0]}
                             </Typography>
                         </div>
                    
