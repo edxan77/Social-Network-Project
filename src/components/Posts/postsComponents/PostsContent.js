@@ -16,7 +16,6 @@ import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-// import CircularIndeterminate from '../../Loading/Loading';
 import {
   collection,
   onSnapshot,
@@ -67,10 +66,6 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  // if (newPosts === null) {
-  //   return <CircularIndeterminate />;
-  // }
-
   if (newPosts && newPosts.length === 0) {
     return <h1>Write your first post</h1>;
   }
@@ -78,16 +73,14 @@ export default function PostsContent() {
   return (
     <>
       {
-        // loading ?
         newPosts &&
-          // users &&
           newPosts?.map((post) => (
             <Box
               key={post.id}
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                marginTop: 5,
+                marginTop: 3,
                 marginBottom: 5,
                 borderRadius: 18,
               }}
@@ -98,7 +91,6 @@ export default function PostsContent() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   maxWidth: 500,
-                  marginTop: 6,
                   padding: '5px 0px 5px 5px',
                   borderRadius: 8,
                   bgcolor: lightGreen['50'],
@@ -230,7 +222,6 @@ export default function PostsContent() {
               </Card>
             </Box>
           ))
-        // : <h1>Loading....</h1>
       }
     </>
   );
