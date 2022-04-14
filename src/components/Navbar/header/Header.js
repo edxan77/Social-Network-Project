@@ -28,13 +28,14 @@ import styles from './Header.module.css';
 function Header(){
     
     const [userName, setUserName] = useState("");
-    const [img, setImg] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const nav = useNavigate()
+    const nav = useNavigate();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const {get,setget} = useContext(Followcontext)
+    const {get,setget} = useContext(Followcontext);
+    const [isActive,setActive] = useState('home');
+
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
     };
@@ -51,7 +52,6 @@ useEffect(()=>[
         if (currentUser) {
           getAllUsersById(currentUser.uid).then((userData) => {
             setUserName(userData.map(data => data.firstName));
-            setImg(userData.map(data => data.photoURL));
             // console.log(userData);
           });
         }
@@ -81,35 +81,35 @@ useEffect(()=>[
                     <div className={styles.headerSearch}>
                         <SearchIcon className={styles.searchIcon}/>
                         <input className={styles.search} type='text' placeholder='Search Lightbook'/>
-                       
-                        
-                        
+
                     </div>
                 </div>
                 <div className={styles.headerMiddle}>
-                    <div className={styles.headerOption} id={styles.active}>
+                    <div className={styles.headerOption} id={isActive === "home" ? styles.active : ''}  >
                         <HomeIcon fontSize='large' onClick={()=>{
+                            setActive('home');
                             navigate('/');
                         }}/>
                     </div>
-                    <div className={styles.headerOption}>
-                        <OndemandVideoIcon fontSize='large'/>
+                    <div className={styles.headerOption} id={`${isActive === "video" ? styles.active : ''}`}>
+                        <OndemandVideoIcon fontSize='large' onClick={()=> setActive('video')}/>
                     </div>
-                    <div className={styles.headerOption}>
-                        <GroupIcon fontSize='large'/>
+                    <div className={styles.headerOption} id={`${isActive === "friends" ? styles.active : ''}`}>
+                        <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>
                     </div>
-                    <div className={styles.headerOption}>
-                        <SportsEsportsIcon fontSize='large'/>
+                    <div className={styles.headerOption} id={`${isActive === "games" ? styles.active : ''}`}>
+                        <SportsEsportsIcon fontSize='large' onClick={()=> setActive('games')}/>
                     </div>
                 </div>
 
                 <div className={styles.headerRight}>
                 
-                        <div className={styles.headerInfo} onClick={()=>{
-                                nav(`/${currentUser.uid}`)
+                       <div className={styles.headerInfo}   onClick={()=>{
+                            setActive('info')
+                            nav(`/${currentUser.uid}`)
                         }}>
-                            <Avatar className={styles.avatar} src={img} />
-                            <Typography variant='h6' className={styles.name}>
+                            <Avatar className={styles.avatar} src={currentUser?.photoURL} />
+                            <Typography variant='h6' className={styles.name} >
                                 {userName}
                             </Typography>
                         </div>

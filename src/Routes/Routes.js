@@ -13,7 +13,6 @@ import UrlProvider from '../UrlProvider/UrlProvider';
 import {FollowProvider} from '../Folowing/followprovider/FollowProvider'
 
 
-
 function MainRoutes(){
 
     return (
@@ -24,16 +23,16 @@ function MainRoutes(){
             <Routes>
            
               <Route path='/' element={<Layout/>}>
-                <Route path='/' index  element={
+                <Route path='/'  element={
                   <RequireAuth>
-                  <Home/>
-                </RequireAuth>
+                    <Home/>
+                  </RequireAuth>
                 }/>
                 
                 <Route path='/:id' element={<UserProfile/>}/>
-                
                 <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
-                <Route path='/events' element={<Events/>}/>
+                <Route path='events' element={<Events/>}/>
+                <Route path='games'/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
               <Route path='login' element={<Login/>} />

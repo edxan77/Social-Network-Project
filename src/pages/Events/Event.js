@@ -4,16 +4,19 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-function Event({src, title, desc}){
+function Event({src, title, desc, day}){
     return (
-        <Card sx={{ maxWidth: 300 }}>
+        <Card sx={{ width: 360, height:'460px' }}>
+          
           <CardActionArea>
             <CardMedia
               component="img"
               height="150"
               image={src}
-              alt="green iguana"
             />
+              <Typography gutterBottom variant="h6" component="div">
+                {day}
+              </Typography>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {title}
