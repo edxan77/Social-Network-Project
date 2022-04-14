@@ -19,8 +19,6 @@ import { auth } from '../../../lib/firebase';
 import styles from './Header.module.css';
 
 
-
-
 function Header(){
     
     const { currentUser } = useContext(AuthContext);
@@ -67,7 +65,10 @@ function Header(){
                         <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "games" ? styles.active : ''}`}>
-                        <SportsEsportsIcon fontSize='large' onClick={()=> setActive('games')}/>
+                        <SportsEsportsIcon fontSize='large' onClick={()=> {
+                            navigate('/games');
+                            setActive('games');
+                        }}/>
                     </div>
                 </div>
 

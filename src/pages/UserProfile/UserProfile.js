@@ -83,28 +83,6 @@ function UserProfile() {
         
 
         <div>
-          {/* { img ?
-          <Button onClick={handleClick} 
-            style={{position:'absolute', marginLeft: '350px', marginBottom:'200px', color:'#000', backgroundColor:'fff'}}
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-          <h4 style={{color:'#000', textTransform:'capitalize'}}>Edit photo</h4>
-          <PhotoCameraIcon fontSize='medium' />
-          </Button> :
-           <Button onClick={handleClick} 
-           style={{position:'absolute', marginLeft: '350px', marginBottom:'200px', color:'#000', backgroundColor:'fff'}}
-           id="basic-button"
-           aria-controls={open ? 'basic-menu' : undefined}
-           aria-haspopup="true"
-           aria-expanded={open ? 'true' : undefined}
-           >
-           <h4 style={{color:'#000', textTransform:'capitalize'}}>Add photo</h4>
-           <PhotoCameraIcon fontSize='medium' />
-           </Button>
-        } */}
             <Button onClick={handleClick} 
             style={{position:'absolute', marginLeft: '350px', marginBottom:'200px', color:'#000', backgroundColor:'fff'}}
             id="basic-button"
