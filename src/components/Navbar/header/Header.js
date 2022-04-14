@@ -107,6 +107,7 @@ useEffect(()=>[
                 <div className={styles.headerRight}>
                 
                        <div className={styles.headerInfo}   onClick={()=>{
+                            setActive('info')
                             nav(`/${currentUser.uid}`)
                         }}>
                             <Avatar className={styles.avatar} src={img}  />
