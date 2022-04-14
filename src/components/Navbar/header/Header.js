@@ -28,7 +28,6 @@ import styles from './Header.module.css';
 function Header(){
     
     const [userName, setUserName] = useState("");
-    const [img, setImg] = useState("");
     const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const nav = useNavigate();
@@ -53,7 +52,6 @@ useEffect(()=>[
         if (currentUser) {
           getAllUsersById(currentUser.uid).then((userData) => {
             setUserName(userData.map(data => data.firstName));
-            setImg(userData.map(data => data.photoURL));
             // console.log(userData);
           });
         }
@@ -110,7 +108,7 @@ useEffect(()=>[
                             setActive('info')
                             nav(`/${currentUser.uid}`)
                         }}>
-                            <Avatar className={styles.avatar} src={img}  />
+                            <Avatar className={styles.avatar} src={currentUser?.photoURL} />
                             <Typography variant='h6' className={styles.name} >
                                 {userName}
                             </Typography>

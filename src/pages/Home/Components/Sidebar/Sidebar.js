@@ -36,7 +36,7 @@ export default function Sidebar(){
             position:'fixed',
             marginTop:'75px'
         }}>
-            <SidebarOption title={userName} src='https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80'sx={{position:'relative'}} />
+            <SidebarOption title={userName} src={currentUser?.photoURL} sx={{position:'relative'}} />
             <a href='https://www.worldometers.info/coronavirus/' target={blank} style={{textDecoration:'none', color:'#000'}} >
                 <SidebarOption title='Covid 2019 information' src='https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/tInzwsw2pVX.png'/>
             </a>
