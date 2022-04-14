@@ -32,9 +32,7 @@ import { firebase } from '../../lib/firebase';
 import { handleUserEdit } from '../Posts/postsComponents/utils';
 
 export default function AccountMenu() {
-  const auth = getAuth();
   const { currentUser } = useContext(AuthContext);
-  // console.log(currentUser)
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
@@ -131,12 +129,13 @@ export default function AccountMenu() {
           padding: 3,
           backgroundColor: '#d4e3fa',
           filter: 'drop-shadow(0px 1px 3px rgba(0,0,0,0.32))',
+          zIndex: 500,
         }}
       >
         {/* <Box> */}
         <Tooltip title="Account settings" width="15%">
           <Avatar
-            src={auth.currentUser?.photoURL}
+            src={currentUser?.photoURL}
             onClick={handleclick}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
@@ -155,7 +154,7 @@ export default function AccountMenu() {
 
         <Typography gutterBottom width="20%" variant='h6'
        sx={{
-         fontSize: '25vw'
+         fontSize: '1.6rem'
        }}
         >
           {currentUser?.displayName}
@@ -199,7 +198,7 @@ export default function AccountMenu() {
                 <TextField
                   fullWidth
                   multiline
-                  rows={7}
+                  rows={3}
                   onChange={handleUserChange}
                   defaultValue={user.about}
                 ></TextField>
@@ -224,7 +223,7 @@ export default function AccountMenu() {
           </Box>
 
           <Typography mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CalendarMonthIcon color="primary" /> CreatedAt {profilCreationTime}
+            <CalendarMonthIcon color="primary" /> Joined {profilCreationTime}
           </Typography>
         </Box>
       </Box>

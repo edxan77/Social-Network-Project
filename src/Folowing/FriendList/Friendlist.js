@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef, useEffect, useContext } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,7 +9,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 import Divider from '@mui/material/Divider';
 import { firebase } from '../../lib/firebase';
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc, onSnapshot } from 'firebase/firestore';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { Followcontext } from '../followprovider/FollowProvider'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -33,26 +34,46 @@ function Friendlist() {
     setget(get + 1);
   }, []);
 
+  // console.log(userInfo)
   const toggle = function () {
     setswitching(!switching);
     ref.current.scrollTop = 0;
   };
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(userRef);
-      setval(
-        data.docs.map(function (item) {
-          if (item.data().id == currentUser.uid) {
-            setfriends({ ...item.data(), adress: item._key.path.segments[6] });
-          }
+  // useEffect(() => {
+  //   const getUsers = async () => {
+  //     const data = await getDocs(userRef);
+  //     setval(
+  //       data.docs.map(function (item) {
+  //         if (item.data().id == currentUser.uid) {
+  //           setfriends({ ...item.data(), adress: item._key.path.segments[6] });
+  //         }
 
-          return { ...item.data(), adress: item._key.path.segments[6] };
-        })
-      );
-    };
-    getUsers();
-  }, [get]);
+  //         return { ...item.data(), adress: item._key.path.segments[6] };
+  //       })
+  //     );
+  //   };
+  //   getUsers();
+  // }, [get]);
+
+  useEffect(() => {
+    if(currentUser){
+    const unsubscribe = onSnapshot(userRef, (querySnapshot) => {
+
+    setval( querySnapshot.docs.map(function(item) {
+        if (item.data().id == currentUser?.uid) {
+         setfriends({ ...item.data(), adress: item._key.path.segments[6] });
+        } 
+         return { ...item.data(), adress: item._key.path.segments[6] };
+  
+      }));
+
+    });
+    return () => unsubscribe();
+  }
+  }, [currentUser]);
+
+  // console.log(val)
 
   const gg = function (id, data) {
     return async function k() {
