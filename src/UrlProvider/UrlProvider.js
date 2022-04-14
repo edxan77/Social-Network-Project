@@ -45,9 +45,6 @@ function UrlProvider ({ children }) {
       }
     }
 
-  
-  
-
     useEffect(()=>{
         const getUsers = async () => {
             let data = await getDocs(usersRef);
