@@ -10,7 +10,6 @@ import { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import { Box } from '@mui/system';
 
 function UserProfile() {
   const [img, setImg] = useState();
