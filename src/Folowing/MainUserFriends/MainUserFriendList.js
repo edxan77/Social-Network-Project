@@ -42,12 +42,12 @@ function MainUserFriendList() {
 
   useEffect(() => {
     usersInfo.map((item) => {
-      if (item.follows.includes(userInfo.adress)) {
+      if (item.follows?.includes(userInfo.adress)) {
         setFollowers(function (prev) {
           return [...prev, item];
         });
       }
-      if (item.followers.includes(userInfo.id)) {
+      if (item.followers?.includes(userInfo.id)) {
         setFollows(function (prev) {
           return [...prev, item];
         });
@@ -66,7 +66,7 @@ function MainUserFriendList() {
         return item != userInfo.id;
       });
 
-      let b = userInfo.follows.filter(function (item) {
+      let b = userInfo.follows?.filter(function (item) {
         return item != id;
       });
 
@@ -116,7 +116,7 @@ function MainUserFriendList() {
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
 
         {switchBtn === false
-          ? followers.map(function (item, index) {
+          ? followers?.map(function (item, index) {
               return (
                 <ListItem
                   alignItems="flex-start"
@@ -160,7 +160,7 @@ function MainUserFriendList() {
                 </ListItem>
               );
             })
-          : follows.map(function (item, index) {
+          : follows?.map(function (item, index) {
               if (item != undefined) {
                 return (
                   <ListItem

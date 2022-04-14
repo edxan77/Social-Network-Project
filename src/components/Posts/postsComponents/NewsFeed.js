@@ -60,8 +60,7 @@ import AddNewPostForm from './AddNewPostForm';
             const post = {
               ...doc.data(),
               id: doc.id,
-              name: currentUser?.displayName,
-              photo: currentUser?.photoURL,
+              displayName: currentUser.displayName
             };
             data.push(post);
           });
@@ -136,7 +135,8 @@ import AddNewPostForm from './AddNewPostForm';
                     </Avatar>
   
                     <Typography gutterBottom variant="h5">
-                      {post.displayName}
+                      {/* {post.displayName} */}
+                      { post.uid == currentUser.uid  ? post.displayName :  `${post.firstName} ${post.lastName}`}
                     </Typography>
                     <div>
                       {post.uid == currentUser.uid ? (
