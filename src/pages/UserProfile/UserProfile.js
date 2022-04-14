@@ -33,7 +33,8 @@ function UserProfile() {
         // console.log(userData);
       });
     }
-  }, [currentUser, img]);
+  }, [currentUser, img, !img]);
+
     useEffect(()=>{
       setLoading(false);
     },[url])
@@ -70,19 +71,19 @@ function UserProfile() {
           alignItems:'center'
         }} 
         
-        src={img && `${img}`}>{loading && <img src='http://www.avalonparis.com/wp-content/uploads/2017/01/loading5.gif'/>}</div> : 
+        src={img ? `${img}` : ''}>{loading && <img src='http://www.avalonparis.com/wp-content/uploads/2017/01/loading5.gif'/>}</div> : 
         <CardMedia component="img" height="380" sx={{
             boxShadow:'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;',
             borderBottomLeftRadius:'12px',
             borderBottomRightRadius:'12px',
             width:'1000px' 
           }} 
-          src={img && `${img}`}
+          src={img ? `${img}` : ''}
         /> }
         
 
         <div>
-          { img ?
+          {/* { img ?
           <Button onClick={handleClick} 
             style={{position:'absolute', marginLeft: '350px', marginBottom:'200px', color:'#000', backgroundColor:'fff'}}
             id="basic-button"
@@ -103,7 +104,17 @@ function UserProfile() {
            <h4 style={{color:'#000', textTransform:'capitalize'}}>Add photo</h4>
            <PhotoCameraIcon fontSize='medium' />
            </Button>
-        }
+        } */}
+            <Button onClick={handleClick} 
+            style={{position:'absolute', marginLeft: '350px', marginBottom:'200px', color:'#000', backgroundColor:'fff'}}
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+          <h4 style={{color:'#000', textTransform:'capitalize'}}>{img ? 'Edit photo' : 'Add photo'}</h4>
+          <PhotoCameraIcon fontSize='medium' />
+          </Button> 
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

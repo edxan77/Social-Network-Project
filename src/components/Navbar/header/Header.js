@@ -106,11 +106,11 @@ useEffect(()=>[
 
                 <div className={styles.headerRight}>
                 
-                        <div className={styles.headerInfo} id={`${isActive === "games" ? styles.activeInfo : ''}`}  onClick={()=>{
-                            setActive('info');
+                       <div className={styles.headerInfo}   onClick={()=>{
+                            setActive('info')
                             nav(`/${currentUser.uid}`)
                         }}>
-                            <Avatar className={styles.avatar} src={img} />
+                            <Avatar className={styles.avatar} src={img}  />
                             <Typography variant='h6' className={styles.name} >
                                 {userName}
                             </Typography>
