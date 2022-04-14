@@ -11,8 +11,8 @@ export default function Sidebar(){
 
     const [userName, setUserName] = useState("");
     const { currentUser } = useContext(AuthContext);
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     function e(){
         return  navigate('/events');
     }
@@ -26,12 +26,17 @@ export default function Sidebar(){
         }
       }, [currentUser]);
 
+
+
     return(
         <Box sx={{
+            width:'350px',
+            // boxShadow:'rgba(0, 0, 0, 0.1) 0px 4px 12px;',
             padding: '20px',
             position:'fixed',
             marginTop:'75px'
         }}>
+            
             <span onClick={()=> navigate('/user-profile')}><SidebarOption title={userName} src={currentUser?.photoURL} sx={{position:'relative'}} /></span>
             <a href='https://www.worldometers.info/coronavirus/' target={blank} style={{textDecoration:'none', color:'#000'}} >
                 <SidebarOption title='Covid 2019 information' src='https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/tInzwsw2pVX.png'/>
