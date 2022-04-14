@@ -65,7 +65,7 @@
     border-bottom: 3px solid #177afd;
 }
 #activeInfo svg{
-    color: #1C79F2 !important;
+    background-color: #a1c9fe !important;
 }
 
 .headerRight{
