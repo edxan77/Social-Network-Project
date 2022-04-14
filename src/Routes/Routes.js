@@ -31,7 +31,8 @@ function MainRoutes(){
                 
                 <Route path='/:id' element={<UserProfile/>}/>
                 <Route path='user-profile/:id' element={<AnotherUserPage/>}/>
-                <Route path='/events' element={<Events/>}/>
+                <Route path='events' element={<Events/>}/>
+                <Route path='games'/>
                 <Route path='notFound' element={<NotFound/>}/>
               </Route>
               <Route path='login' element={<Login/>} />
