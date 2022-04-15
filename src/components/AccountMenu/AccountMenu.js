@@ -122,7 +122,7 @@ export default function AccountMenu() {
       <Box
         sx={{
           display: 'flex',
-          width: 'calc(100% - 100px);',
+          width: 'calc(100% - 150px);',
           alignItems: 'center',
           justifyContent: 'space-between',
           marginTop: 5,
@@ -147,8 +147,6 @@ export default function AccountMenu() {
               bgcolor: deepPurple[500],
               width: '10vw',
               height: '10vw',
-              minWidth: '32px',
-              minHeight: '32px',
               filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.32))',
             }}
           >
@@ -157,10 +155,7 @@ export default function AccountMenu() {
         </Tooltip>
         {/* </Box> */}
 
-        <Typography gutterBottom width="20%" variant='h6'
-       sx={{
-         fontSize: '5vw',
-       }}
+        <Typography gutterBottom width="20%"  variant='h6' 
         >
           {currentUser?.displayName}
         </Typography>
