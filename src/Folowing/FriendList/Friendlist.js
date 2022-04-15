@@ -118,10 +118,10 @@ function Friendlist() {
         <input className={srchclick%2==0?"input":"input2"} onChange={(e)=>setsrchvalue(e.target.value.replace(/\s/g, ''))}></input>
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
         
-        {srchvalue?val.filter((i)=>{
+        {srchvalue&&val?val.filter((i)=>{
           let name = i.firstName+i.lastName
           let name2 = i.lasttName+i.firstName
-          return name.toLowerCase().includes(srchvalue.toLowerCase())||name2.toLowerCase().includes(srchvalue.toLowerCase())
+          return name? name.toLowerCase().includes(srchvalue.toLowerCase()):null||name2?name2.toLowerCase().includes(srchvalue.toLowerCase()):null
 
                                      }).map(function (item, index) {
           return (

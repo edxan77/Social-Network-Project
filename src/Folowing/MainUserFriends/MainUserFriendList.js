@@ -16,20 +16,26 @@ import { firebase } from '../../lib/firebase';
 import {
   updateDoc,
   doc,
+  collection,
+  onSnapshot
 } from 'firebase/firestore';
 import { Followcontext } from '../../Folowing/followprovider/FollowProvider';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 import './mainUserFriendList.css';
 
 function MainUserFriendList() {
   const [clicked, setclicked] = useState(false);
   const ref = useRef();
-  // const { currentUser } = useContext(AuthContext);
-  // const userRef = collection(firebase, 'users');
-  const { userInfo, usersInfo } = useContext(Followcontext);
+  const { currentUser } = useContext(AuthContext);
+   const userRef = collection(firebase, 'users');
+  const { userInfo, usersInfo,get,setget} = useContext(Followcontext);
   const [followers, setFollowers] = useState([]);
   const [follows, setFollows] = useState([]);
   const [switchBtn, setSwitchBtn] = useState(false);
+  const [val,setval] = useState([])
+  const [friends,setfriends] = useState([])
+  
 
   const clicking = function () {
     setclicked(!clicked);
@@ -44,24 +50,22 @@ function MainUserFriendList() {
     usersInfo.map((item) => {
       if (item.follows?.includes(userInfo.adress)) {
         setFollowers(function (prev) {
-          return [...prev, item];
+          return [...prev, item]
         });
       }
-      if (item.followers?.includes(userInfo.id)) {
-        setFollows(function (prev) {
-          return [...prev, item];
-        });
-      }
+     
       return item;
     });
-  }, []);
+  
+  }, [userInfo]);
+
   
 
   const unfollowing = function (id, data) {
 
 
     return async function k() {
-
+   
       let a = data.filter(function (item) {
         return item != userInfo.id;
       });
@@ -69,8 +73,11 @@ function MainUserFriendList() {
       let b = userInfo.follows?.filter(function (item) {
         return item != id;
       });
+      setFollows(follows.filter(function(i){
+        return i.adress!=id
+      }))
 
-      const userdoc = doc(firebase, 'users', id);
+            const userdoc = doc(firebase, 'users', id);
       const currentuserdoc = doc(firebase, 'users', userInfo.adress);
 
       await updateDoc(userdoc, { followers: a });
@@ -79,6 +86,46 @@ function MainUserFriendList() {
    
   };
 
+  useEffect(() => {
+    if(currentUser){
+    const unsubscribe = onSnapshot(userRef, (querySnapshot) => {
+
+    setval( querySnapshot.docs.map(function(item) {
+        
+        if(item.data().followers?item.data().followers.includes(currentUser.uid):null){
+          return { ...item.data(), adress: item._key.path.segments[6] };
+        }
+        
+  
+      }));
+
+    });
+    return () => unsubscribe();
+  }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if(currentUser){
+    const unsubscribe = onSnapshot(userRef, (querySnapshot) => {
+
+    setfriends( querySnapshot.docs.map(function(item) {
+        
+        if(item.data().follows?item.data().follows.includes(userInfo.adress):null){
+          return { ...item.data(), adress: item._key.path.segments[6] };
+        }
+        
+  
+      }));
+
+    });
+    return () => unsubscribe();
+  }
+  }, [currentUser]);
+
+ console.log(val.includes(!undefined))
+ console.log("-----------")
+ console.log(friends)
+ console.log(userInfo)
   return (
     <div className="blok">
       <List
@@ -86,6 +133,7 @@ function MainUserFriendList() {
         className={clicked === false ? 'mainlist' : 'mainlist2'}
         sx={{ marginTop: '10px' }}
       >
+        
         <Typography
           sx={{
             marginLeft: '80px',
@@ -114,9 +162,14 @@ function MainUserFriendList() {
           />
         </span>
         <Divider sx={{ marginLeft: '-20px' }} variant="inset" component="li" />
-
+        
+     
         {switchBtn === false
-          ? followers?.map(function (item, index) {
+          && friends?friends.map(function (item, index) {
+            
+            if(item){
+              
+            
               return (
                 <ListItem
                   alignItems="flex-start"
@@ -124,32 +177,32 @@ function MainUserFriendList() {
                   key={index}
                 >
                   <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src={item.profile_picture} />
+                    <Avatar alt="Remy Sharp" src={item?item.profile_picture:null} />
                   </ListItemAvatar>
                   <ListItemText
                     primary={
                       <Link
-                        to={`user-profile/${item.id}`}
+                        to={`user-profile/${item?item.id:null}`}
                         // onClick={getinc}
                         className="navlink"
                       >
                         <Typography
                           sx={{ fontWeight: 'bold', fontSize: '13px' }}
                         >
-                          {item.firstName}
+                          {item?item.firstName:null}
                         </Typography>
                       </Link>
                     }
                     secondary={
                       <Link
-                        to={`user-profile/${item.id}`}
+                        to={`user-profile/${item?item.id:null}`}
                         // onClick={getinc}
                         className="navlink"
                       >
                         <Typography
                           sx={{ fontSize: '11px', fontWeight: 'bold' }}
                         >
-                          {item.lastName}
+                          {item?item.lastName:null}
                         </Typography>
                       </Link>
                     }
@@ -159,8 +212,9 @@ function MainUserFriendList() {
                   </span>
                 </ListItem>
               );
+                  }
             })
-          : follows?.map(function (item, index) {
+          : val?.map(function (item, index) {
               if (item != undefined) {
                 return (
                   <ListItem
@@ -211,7 +265,8 @@ function MainUserFriendList() {
                 );
               }
             })}
-
+          <span style={{marginLeft:'20%',marginTop:'30px',fontSize:'20px'}}>{val.filter((i)=>{return i!=undefined}).length===0&&switchBtn==true?"No Follows":""}</span>
+          <span style={{marginLeft:'5%',marginTop:'30px',fontSize:'20px'}}>{friends.filter((i)=>{return i!=undefined}).length===0&&switchBtn==false?"No Followers":""}</span>
         <span
           className="close"
           role="button"
@@ -219,11 +274,13 @@ function MainUserFriendList() {
           onKeyDown={clicking}
           tabIndex={0}
         >
-          <Button variant="contained" color="error" size="small">
+          
+          <Button variant="contained" color="error" size="small"sx={{marginLeft:'-25%',marginTop:'5%'}}>
             X
           </Button>
         </span>
         <Switch onClick={folowsload} />
+       
       </List>
     </div>
   );
