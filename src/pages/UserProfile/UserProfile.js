@@ -37,10 +37,9 @@ function UserProfile() {
     if (currentUser) {
       getAllUsersById(currentUser.uid).then((userData) => {
         setImg(userData.map((data) => data.backgroundImg));
-        // console.log(userData);
       });
     }
-  }, [currentUser, img, !img]);
+  }, [currentUser, img, url]);
 
   useEffect(() => {
     setLoading(false);
@@ -118,7 +117,7 @@ function UserProfile() {
             aria-expanded={open ? 'true' : undefined}
           >
             <h4 style={{ color: '#000', textTransform: 'capitalize' }}>
-              {img ? 'Edit photo' : 'Add photo'}
+              {url ? 'Edit photo' : 'Add photo'}
             </h4>
             <PhotoCameraIcon fontSize="medium" color="primary" />
           </Button>
