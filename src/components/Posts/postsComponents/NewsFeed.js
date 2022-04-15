@@ -77,7 +77,7 @@ import AddNewPostForm from './AddNewPostForm';
   
         return () => unsubscribe();
       }
-    }, [currentUser]);
+    }, [userInfo]);
   
     if (newPosts && newPosts?.length === 0) {
       return <h1>Write your first post</h1>;
