@@ -72,157 +72,154 @@ export default function PostsContent() {
 
   return (
     <>
-      {
-        newPosts &&
-          newPosts?.map((post) => (
-            <Box
-              key={post.id}
+      {newPosts &&
+        newPosts?.map((post) => (
+          <Box
+            key={post.id}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: 3,
+              marginBottom: 5,
+              borderRadius: 18,
+            }}
+          >
+            <Card
               sx={{
                 display: 'flex',
-                justifyContent: 'center',
-                marginTop: 3,
-                marginBottom: 5,
-                borderRadius: 18,
+                flexDirection: 'column',
+                alignItems: 'center',
+                maxWidth: '50vw',
+                padding: '5px 0px 5px 5px',
+                borderRadius: 8,
+                bgcolor: lightGreen['50'],
               }}
             >
-              <Card
+              <CardActions
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  marginBottom: 1,
+                  width: '100%',
+                }}
+              >
+                <Avatar
+                  src={post.photo}
+                  sx={{
+                    bgcolor: blue[600],
+                    width: '6vw',
+                    height: '6vw',
+                    marginRight: 4,
+                  }}
+                >
+                  {'Photo'}
+                </Avatar>
+
+                <h3 style={{fontFamily: 'roboto'}}>{post.profilName}</h3>
+
+                <div>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="primary"
+                    onClick={() => handleEdit(post.id, post.text)}
+                  >
+                    Edit
+                  </Button>
+
+                  <IconButton
+                    aria-label="delete"
+                    color="secondary"
+                    onClick={async () => {
+                      await deleteDoc(doc(firebase, 'posts', post.id));
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </div>
+              </CardActions>
+
+              <CardMedia
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
+                  width: '35vw',
+                  minHeight: 200,
                   alignItems: 'center',
-                  maxWidth: 500,
-                  padding: '5px 0px 5px 5px',
-                  borderRadius: 8,
-                  bgcolor: lightGreen['50'],
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  borderRadius: 5,
                 }}
               >
-                <CardActions
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-around',
-                    marginBottom: 1,
-                    width: '100%',
-                  }}
-                >
-                  <Avatar
-                    src={post.photo}
-                    sx={{
-                      bgcolor: blue[600],
-                      width: 75,
-                      height: 75,
-                      marginRight: 4,
-                    }}
-                  >
-                    {'Photo'}
-                  </Avatar>
-
-                  <Typography gutterBottom variant="h5">
-                    {post.profilName}
-                  </Typography>
-                  <div>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      color="primary"
-                      onClick={() => handleEdit(post.id, post.text)}
-                    >
-                      Edit
-                    </Button>
-
-                    <IconButton
-                      aria-label="delete"
-                      color="secondary"
-                      onClick={async () => {
-                        await deleteDoc(doc(firebase, 'posts', post.id));
+                <CardContent>
+                  {post.isEdit ? (
+                    <form
+                      id="edit-input-form"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        const postsRef = doc(firebase, 'posts', post.id);
+                        if (!newText.trim()) {
+                          await updateDoc(postsRef, {
+                            isEdit: false,
+                          });
+                        } else {
+                          await updateDoc(postsRef, {
+                            isEdit: false,
+                            text: newText,
+                          });
+                        }
+                        setNewText('');
                       }}
                     >
-                      <DeleteIcon />
-                    </IconButton>
-                  </div>
-                </CardActions>
+                      <TextField
+                        fullWidth
+                        multiline
+                        rows={7}
+                        onChange={handleChange}
+                        defaultValue={post.text}
+                      ></TextField>
 
-                <CardMedia
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: 500,
-                    minHeight: 200,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    borderRadius: 5,
+                      <Button type="submit" variant="contained">
+                        Edit
+                      </Button>
+                    </form>
+                  ) : (
+                    <p style='font-family: sherif'>
+                      {post.text}
+                    </p>
+                  )}
+                </CardContent>
+              </CardMedia>
+              <CardActions
+                sx={{
+                  marginTop: 3,
+                }}
+              >
+                <Button variant="contained" endIcon={<ShareIcon />}></Button>
+                <Button
+                  onClick={async () => {
+                    const postsRef = doc(firebase, 'posts', post.id);
+                    await updateDoc(postsRef, {
+                      likes: increment(1),
+                    });
                   }}
+                  variant="contained"
+                  endIcon={<ThumbUpIcon />}
                 >
-                  <CardContent>
-                    {post.isEdit ? (
-                      <form
-                        id="edit-input-form"
-                        onSubmit={async (e) => {
-                          e.preventDefault();
-                          const postsRef = doc(firebase, 'posts', post.id);
-                          if (!newText.trim()) {
-                            await updateDoc(postsRef, {
-                              isEdit: false,
-                            });
-                          } else {
-                            await updateDoc(postsRef, {
-                              isEdit: false,
-                              text: newText,
-                            });
-                          }
-                          setNewText('');
-                        }}
-                      >
-                        <TextField
-                          fullWidth
-                          multiline
-                          rows={7}
-                          onChange={handleChange}
-                          defaultValue={post.text}
-                        ></TextField>
-
-                        <Button type="submit" variant="contained">
-                          Edit
-                        </Button>
-                      </form>
-                    ) : (
-                      <Typography gutterBottom variant="h6" component="div">
-                        {post.text}
-                      </Typography>
-                    )}
-                  </CardContent>
-                </CardMedia>
-                <CardActions
-                  sx={{
-                    marginTop: 3,
-                  }}
-                >
-                  <Button variant="contained" endIcon={<ShareIcon />}></Button>
-                  <Button
-                    onClick={async () => {
-                      const postsRef = doc(firebase, 'posts', post.id);
-                      await updateDoc(postsRef, {
-                        likes: increment(1),
-                      });
-                    }}
-                    variant="contained"
-                    endIcon={<ThumbUpIcon />}
-                  >
-                    {post.likes}
-                  </Button>
-                </CardActions>
-                <Typography
-                  gutterBottom
-                  variant="body1"
-                  component="div"
-                  color={blue[600]}
-                >
-                  {post?.createdAt?.toDate().toDateString()}
-                </Typography>
-              </Card>
-            </Box>
-          ))
-      }
+                  {post.likes}
+                </Button>
+              </CardActions>
+              <Typography
+                gutterBottom
+                variant="body1"
+                component="div"
+                color={blue[600]}
+              >
+                {post?.createdAt?.toDate().toDateString()}
+              </Typography>
+            </Card>
+          </Box>
+        ))}
     </>
   );
 }

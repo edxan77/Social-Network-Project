@@ -4,7 +4,6 @@ import {
   Avatar,
   Box,
   Button,
-  Container,
   Divider,
   Input,
   Menu,
@@ -18,7 +17,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { getAuth, updateProfile } from 'firebase/auth';
+import { updateProfile } from 'firebase/auth';
 import { upload } from '../../Service/firestore';
 import {
   collection,
@@ -30,6 +29,7 @@ import {
 } from 'firebase/firestore';
 import { firebase } from '../../lib/firebase';
 import { handleUserEdit } from '../Posts/postsComponents/utils';
+import './AccountMenu.css';
 
 export default function AccountMenu() {
   const { currentUser } = useContext(AuthContext);
@@ -122,19 +122,22 @@ export default function AccountMenu() {
       <Box
         sx={{
           display: 'flex',
-          width: 'calc(100% - 1px);',
+          width: 'calc(100% - 100px);',
           alignItems: 'center',
           justifyContent: 'space-between',
           marginTop: 5,
           padding: 3,
+          paddingBottom: 4,
           backgroundColor: '#d4e3fa',
-          filter: 'drop-shadow(0px 1px 3px rgba(0,0,0,0.32))',
+          filter: 'drop-shadow(0px 3px 6px rgba(0,0,0,0.32))',
+          borderRadius: 3,
           zIndex: 500,
         }}
       >
         {/* <Box> */}
         <Tooltip title="Account settings" width="15%">
           <Avatar
+          className='main-menu'
             src={currentUser?.photoURL}
             onClick={handleclick}
             aria-controls={open ? 'account-menu' : undefined}
@@ -142,8 +145,10 @@ export default function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
             sx={{
               bgcolor: deepPurple[500],
-              width: '6em',
-              height: '6em',
+              width: '10vw',
+              height: '10vw',
+              minWidth: '32px',
+              minHeight: '32px',
               filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.32))',
             }}
           >
@@ -154,7 +159,7 @@ export default function AccountMenu() {
 
         <Typography gutterBottom width="20%" variant='h6'
        sx={{
-         fontSize: '1.6rem'
+         fontSize: '5vw',
        }}
         >
           {currentUser?.displayName}

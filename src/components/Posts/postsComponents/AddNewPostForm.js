@@ -46,16 +46,16 @@ export default function AddNewPostForm() {
     <Box
       sx={{
         display: 'flex',
-        width: '100%',
+        // MaxWidth: '100%',
+        // minWidth: '90%',
         justifyContent: 'center',
         marginTop: 5,
-        marginBottom: 5,
+        marginBottom: 3,
       }}
     >
       <form onSubmit={onSubmit} className="main-input-form">
 
       <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%', marginBottom: 0 }}>
-      {/* <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} /> */}
 
         <TextField
           multiline
@@ -77,7 +77,7 @@ export default function AddNewPostForm() {
           type="submit"
           variant="contained"
           sx={{
-            width: 600,
+            width: '50vw',
           }}
         >
           Post
