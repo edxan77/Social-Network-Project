@@ -1,40 +1,17 @@
+
 .listmain {
-    width: 100%;
-    max-width: 360;
-    background-color: rgb(139, 168, 241);
+    background-color: rgb(159, 184, 247);
     color: white;
-    height: 250px;
     overflow: auto;
     border-radius: 18px;
-    margin-left: 150px;
     cursor: pointer;
     transition: 1s;
-    position: absolute;
   }
-  
-  
-  
-  .userblok {
-    width: 17%;
-    margin-left: 11%;
-    
-  margin-top:200px;
-    transition: 1s;
-  }
-  
-  .closing {
-    margin-left: 70px;
-  }
-  .closing2{
-    margin-left: 70px;
-  }
+
   .anotherpeople {
     color: rgb(227, 222, 222);
-    width: 200px;
-    margin-top: 5px;
     font-weight: bold;
     border-radius: 10px;
-  
     transition: 0.4s;
   }
   
@@ -44,12 +21,6 @@
     font-weight: bold;
   
     transition: 0.4s;
-  }
-  
- 
-  
-  .userlist {
-    margin-left: -15px;
   }
   
   .link{
@@ -79,9 +50,5 @@ padding: 0px;
 
 }
   .text{
-    margin-left: 18px;
     color:white;
-  }
-  .button{
-    margin-left: 110px;
   }
