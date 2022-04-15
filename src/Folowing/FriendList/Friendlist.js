@@ -29,6 +29,7 @@ function Friendlist() {
   const { userInfo, setUserInfo,get,setget } = useContext(Followcontext);
   const [srchvalue,setsrchvalue] = useState("")
   const [srchclick,setsrchclick] = useState(0)
+  const [rotClick,setRotClick] = useState(false)
 
   useEffect(function () {
     setget(get + 1);
@@ -101,7 +102,7 @@ function Friendlist() {
   }
 
   return (
-    <div ref={ref} className= 'ok2'>
+    <div ref={ref} className= {rotClick===true?"ok3":"ok2"}>
       <List className="tor" sx={{ width: '100%', maxWidth: 360 }}>
         <Typography
           sx={{
@@ -111,7 +112,7 @@ function Friendlist() {
             color: 'rgb(0, 94, 244);',
           }}
         >
-          <span className='title'>May Be Know</span>
+          <span className='title' onClick={()=>setRotClick(!rotClick)}>May Be Know</span>
         </Typography>
         <PeopleOutlineIcon sx={{ marginLeft: '30px', marginTop: '0px' }} />
        <span style={{cursor:"pointer"}} onClick={search}>{srchclick%2==0?<SearchIcon sx={{marginLeft:"120px"}}/>:<SearchOffIcon sx={{marginLeft:'120px', color:'red'}} />} </span>
@@ -224,7 +225,7 @@ function Friendlist() {
         >
           <Button
             size="small"
-            sx={{ color: 'white', marginLeft: '-5px', marginTop: '20px' }}
+            sx={{ color: 'white', marginLeft: '-5px', marginTop: '5px' }}
             variant="contained"
             color="warning"
           >

@@ -185,11 +185,9 @@ const getinc = function (){
    useEffect(()=>{
       setget(get+1)
    },[])
-  console.log(userInfo)
-  console.log(mainuser)
-  console.log("--------------==---")
+
   console.log(follows)
-  console.log(followerss)
+
 
   return (
     <div className="userblok">
