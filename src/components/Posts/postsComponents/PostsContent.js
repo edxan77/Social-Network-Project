@@ -184,9 +184,9 @@ export default function PostsContent() {
                       </Button>
                     </form>
                   ) : (
-                    <p style='font-family: sherif'>
+                    <Typography variant='body1' >
                       {post.text}
-                    </p>
+                    </Typography >
                   )}
                 </CardContent>
               </CardMedia>
