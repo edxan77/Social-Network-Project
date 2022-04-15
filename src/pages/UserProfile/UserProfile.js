@@ -33,7 +33,7 @@ function UserProfile() {
         // console.log(userData);
       });
     }
-  }, [currentUser, img, !img]);
+  }, [currentUser, img]);
 
     useEffect(()=>{
       setLoading(false);
