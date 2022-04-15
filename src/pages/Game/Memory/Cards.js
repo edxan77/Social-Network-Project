@@ -1,7 +1,6 @@
-import { useState } from 'react'
-import React from 'react'
-import Card from './Card'
-import './Car.css'
+import { useState } from 'react';
+import Card from './Card';
+import './Car.css';
 
 function Cards(){
 const [items, setItems] = useState([
