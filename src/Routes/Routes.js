@@ -16,6 +16,7 @@ import Game from '../pages/Game/Game';
 import Cards from '../pages/Game/Memory/Cards';
 import Rock from '../pages/Game/rock_peper_scissors/rock';
 import Board from '../pages/Game/tic tak toy/Board';
+import RedirectProvider from '../RedirectProvider/RedirectProvider';
 
 
 function MainRoutes(){
@@ -24,6 +25,7 @@ function MainRoutes(){
         <AuthProvider>
           <FollowProvider>
           <UrlProvider>
+            <RedirectProvider>
           
             <Routes>
            
@@ -47,7 +49,7 @@ function MainRoutes(){
               <Route path='login' element={<Login/>} />
                 <Route path='register' element={<Register />}/>
             </Routes>
-           
+            </RedirectProvider>
           </UrlProvider> 
           </FollowProvider>
         </AuthProvider>

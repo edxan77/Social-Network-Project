@@ -7,9 +7,10 @@
   overflow: hidden;
   border-radius: 18px;
   margin-left: 350px;
+  margin-top:160px;
   cursor: pointer;
   transition: 1s;
-
+rotate:90deg;
   position: fixed;
 }
 
@@ -31,10 +32,28 @@
 .blok {
   position: fixed;
   width: 200px;
-  margin-left: 82%;
- 
-margin-top:80px;
+  margin-left: 90.5%;
+ margin-top: 140px;
+
+
   transition: 1s;
+}
+
+.blok2 {
+  position: fixed;
+  width: 200px;
+  margin-left: 84.5%;
+ margin-top: 60px;
+
+
+  transition: 1s;
+}
+
+.mainlist:hover{
+  background-color:#909135af;
+}
+.mainlist2:hover{
+  background-color: #afb12aaf;
 }
 
 .close {
@@ -84,6 +103,7 @@ margin-top:80px;
 }
 .title{
   margin-left: 70px;
+  cursor: pointer;
 }
 
 .txt{

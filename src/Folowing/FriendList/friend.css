@@ -1,8 +1,25 @@
 
 .ok2 {
   width: 220px;
-  margin-top: 24%;
-margin-left: 81%;
+  margin-top: 32%;
+margin-left: 90%;
+  overflow: hidden;
+  height: 40px;
+  transition: 0.2s;
+background-color: rgb(139, 168, 241);
+  scrollbar-width: 1px;
+  position:fixed;
+  border-radius: 50px;
+  rotate: 90deg;
+
+
+}
+
+
+.ok3{
+  width: 220px;
+  margin-top: 21%;
+margin-left: 83%;
   overflow: scroll;
   height: 295px;
   transition: 0.3s;
@@ -10,10 +27,10 @@ background-color: rgb(139, 168, 241);
   scrollbar-width: 1px;
   position:fixed;
   border-radius: 50px;
-
-
 }
-
+.ok2:hover{
+  background-color: #893591af;
+}
 .more {
   margin-left: 90px;
   height: 5px;

@@ -10,7 +10,8 @@ function Posts(){
             boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;', 
             backgroundColor:'#EAEAFF',
             padding:'15px',
-            borderRadius:'20px'
+            borderRadius:'20px',
+            marginLeft:'-190px'
         }}>
             {/* <UserPosts/> */}
             <NewsFeed/>

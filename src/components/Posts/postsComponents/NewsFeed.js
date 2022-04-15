@@ -100,6 +100,7 @@ import AddNewPostForm from './AddNewPostForm';
                   marginTop: 5,
                   marginBottom: 5,
                   borderRadius: 18,
+                  
                 }}
               >
                 <Card

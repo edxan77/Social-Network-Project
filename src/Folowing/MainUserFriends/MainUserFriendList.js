@@ -122,12 +122,9 @@ function MainUserFriendList() {
   }
   }, [currentUser]);
 
- console.log(val.includes(!undefined))
- console.log("-----------")
- console.log(friends)
- console.log(userInfo)
+ 
   return (
-    <div className="blok">
+    <div className={clicked === false ? 'blok' : 'blok2'}>
       <List
         ref={ref}
         className={clicked === false ? 'mainlist' : 'mainlist2'}
