@@ -222,11 +222,11 @@ function MainUserFriendList() {
                           // onClick={getinc}
                           className="navlink"
                         >
-                          <Typography
-                            sx={{ fontWeight: 'bold', fontSize: '13px' }}
+                          <h3
+                          textDecoration='none'
                           >
                             {item ? item.firstName : null}
-                          </Typography>
+                          </h3>
                         </Link>
                       }
                       secondary={
@@ -236,7 +236,8 @@ function MainUserFriendList() {
                           className="navlink"
                         >
                           <Typography
-                            sx={{ fontSize: '11px', fontWeight: 'bold' }}
+                          textDecoration='none'
+                            sx={{ fontSize: '11px', fontWeight: 'bold',  }}
                           >
                             {item ? item.lastName : null}
                           </Typography>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Box } from '@mui/system';
 import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
@@ -47,11 +48,6 @@ function Header(){
             <Toolbar id={styles.header} >
                 <div className={styles.headerLeft}>
                     <img src='https://pbs.twimg.com/media/E00OY30VIA0caJB.jpg'/>
-                    <div className={styles.headerSearch}>
-                        <SearchIcon className={styles.searchIcon}/>
-                        <input className={styles.search} type='text' placeholder='Search Lightbook'/>
-
-                    </div>
                 </div>
                 <div className={styles.headerMiddle}>
                     <div className={styles.headerOption} id={isActive === "home" ? styles.active : ''}  >

@@ -79,7 +79,8 @@ function UserProfile() {
           position: 'relative',
           maxWidth: 'lg',
           width: '100%',
-          backgroundColor: '#34a1eb',
+          // backgroundColor: '#bcc0c4',
+          backgroundImage: 'linear-gradient(#F0F2F5, #E7E9EB, #BABBBE, #A5A6A9)',
           filter: 'drop-shadow(0px 3px 8px rgba(0,0,0,0.32))',
           borderBottomLeftRadius: '12px',
           borderBottomRightRadius: '12px',
@@ -92,7 +93,7 @@ function UserProfile() {
                 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;',
               borderBottomLeftRadius: '12px',
               borderBottomRightRadius: '12px',
-              height: '25vw',
+              height: '23vw',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
@@ -107,7 +108,7 @@ function UserProfile() {
           <CardMedia
             component="img"
             sx={{
-              height: '25vw',
+              height: '23vw',
               boxShadow:
                 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;',
               borderBottomLeftRadius: '12px',
