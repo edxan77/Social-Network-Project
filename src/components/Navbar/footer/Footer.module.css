@@ -5,10 +5,13 @@
     left: 0;
     right: 0;
     background: #76a9f7;
-    height: auto;
+    height: 35px;
     width: 100vw;
-    padding-top: 5px;
     color: #fff;
-    text-align: center;
     z-index: 2000;
+}
+
+#footer>div {
+    margin-left: 10px;
+    padding-top: 3px;
 }

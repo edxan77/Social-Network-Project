@@ -37,10 +37,9 @@ function Header(){
 
     return (
         <Box sx={{
-            position: 'fixed',
+            position: 'relative',
             top: 0,
-            right: 0,
-            left: 0,
+            width: '100%',
             zIndex: 2000,
             backgroundColor: '#fff',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'

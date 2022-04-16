@@ -2,7 +2,6 @@
 #header{
     display: flex;
     justify-content: space-between;
-    width: 100vw;
     gap: 5px;
 }
 
