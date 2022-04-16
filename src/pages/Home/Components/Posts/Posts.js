@@ -1,22 +1,23 @@
 // import UserPosts from "../../../../components/Posts/UserPosts";
-import { Box } from "@mui/system";
-import NewsFeed from "../../../../components/Posts/postsComponents/NewsFeed";
+import { Box } from '@mui/system';
+import NewsFeed from '../../../../components/Posts/postsComponents/NewsFeed';
 
-function Posts(){
-    return(
-        <Box sx={{marginTop:'100px', 
-            // marginLeft:'300px', 
-            marginBottom:'100px',
-            boxShadow:'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;', 
-            backgroundColor:'#EAEAFF',
-            padding:'15px',
-            borderRadius:'20px',
-            marginLeft:'-190px'
-        }}>
-            {/* <UserPosts/> */}
-            <NewsFeed/>
-        </Box>
-    )
+function Posts() {
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        marginTop: 3,
+        flexDirection: 'column',
+        boxShadow:
+          'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;',
+        padding: '10px',
+        borderRadius: '20px',
+      }}
+    >
+      <NewsFeed />
+    </Box>
+  );
 }
 
 export default Posts;

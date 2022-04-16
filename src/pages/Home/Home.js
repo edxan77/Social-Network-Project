@@ -1,13 +1,11 @@
+/* eslint-disable no-unused-vars */
 // import Sidebar from "./Components/Sidebar/Sidebar";
 import Posts from "./Components/Posts/Posts";
 import Box from '@mui/material/Box';
-import RightSidebar from "./Components/RightSidebar/RightSidebar";
-import MainUserFriends from '../../Folowing/MainUserFriends/MainUserFriendList'
+// import RightSidebar from "./Components/RightSidebar/RightSidebar";
+import MainUserFriends from '../../Folowing/MainUserFriends/MainUserFriendList';
 import Friendlist from "../../Folowing/FriendList/Friendlist";
 import Todo from "./Components/Todo/Todo";
-// import { RedirectContext } from "../../RedirectProvider/RedirectProvider";
-// import  {useContext, useEffect} from 'react';
-// import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 function Home(){
 
@@ -15,20 +13,26 @@ function Home(){
         
         <Box sx={{
             display:'flex',
-            justifyContent:'space-between',
-            gap:'50px'
+            width: '100%',
+            justifyContent: 'space-between'
         }}>
-             
-          
-            {/* <Sidebar/> */}
-            <Todo/>
-            <Posts/>
-            <RightSidebar/>
 
+            <Todo/>
+
+            <Posts/>
+         
+
+    <Box sx={{
+        display: 'flex',
+        flexDirection: 'column', 
+        width: '20%',
+    }}> 
+    
+  
           <Friendlist/>
-          <MainUserFriends/>
+           <MainUserFriends/>
+          </Box>
         </Box>
-        
     )
 }
 

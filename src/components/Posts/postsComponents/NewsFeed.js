@@ -38,7 +38,7 @@ import AddNewPostForm from './AddNewPostForm';
     const { currentUser } = useContext(AuthContext);
     const [newPosts, setNewPosts] = useState(null);
     const [newText, setNewText] = useState('');
-    const { userInfo, get } = useContext(Followcontext);
+    const { userInfo} = useContext(Followcontext);
     // eslint-disable-next-line no-unused-vars
   
     const handleChange = (e) => {
@@ -137,7 +137,7 @@ import AddNewPostForm from './AddNewPostForm';
   
                     <Typography gutterBottom variant="h5">
                       {/* {post.displayName} */}
-                      { post.uid == currentUser.uid  ? post.displayName :  `${post.firstName} ${post.lastName}`}
+                      { post.uid == currentUser.uid  ? userInfo.displayName :  `${post.firstName} ${post.lastName}`}
                     </Typography>
                     <div>
                       {post.uid == currentUser.uid ? (
