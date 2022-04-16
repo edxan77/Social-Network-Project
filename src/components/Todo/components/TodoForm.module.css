@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Noto+Serif&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Noto Serif', serif;
+}
+
+.contentForm{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.inputAdd{
+    width: 230px;
+    height: 37px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.btnAdd{
+    width: 50px;
+    height: 37px;
+    background-color: #4546A1;
+    color: #fff;
+    border: none;
+}
+
+.btnAdd:hover{
+    cursor: pointer;
+}

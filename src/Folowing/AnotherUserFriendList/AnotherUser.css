@@ -1,0 +1,54 @@
+
+.listmain {
+    background-color: rgb(159, 184, 247);
+    color: white;
+    overflow: auto;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: 1s;
+  }
+
+  .anotherpeople {
+    color: rgb(227, 222, 222);
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.4s;
+  }
+  
+  .anotherpeople:hover {
+    color: rgb(0, 94, 244);
+  
+    font-weight: bold;
+  
+    transition: 0.4s;
+  }
+  
+  .link{
+    color:white;
+    text-decoration: none;
+  }
+
+  .followed{
+    color:rgb(255, 255, 255);
+
+    border-radius:15px;
+    background-color: rgb(94, 133, 232);
+    margin-top: 8px;
+  }
+
+  .following{
+    color:rgb(0, 50, 230);
+    margin-top:8px;
+    margin-left:-3px;
+  }
+.following:hover{
+  color:white;
+  scale: 1.2;
+  transition: 0.5s;
+ 
+padding: 0px;
+
+}
+  .text{
+    color:white;
+  }

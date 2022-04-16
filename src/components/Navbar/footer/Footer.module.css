@@ -1,0 +1,17 @@
+
+#footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #76a9f7;
+    height: 35px;
+    width: 100vw;
+    color: #fff;
+    z-index: 2000;
+}
+
+#footer>div {
+    margin-left: 10px;
+    padding-top: 3px;
+}

@@ -1,0 +1,91 @@
+.Memory{
+   margin: 25px 0;
+}
+
+.MuiTypography-colorInherit{
+   width: 18%;
+ }
+ 
+ .conta{
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     background-color: #fae19d;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   
+ }
+ 
+ .Logo{
+   width: 100%;
+   height: 200px;
+ }
+ 
+ .Container-Game{
+   text-align: center;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+ }
+ 
+ .container{
+   padding-top: 30px;
+   padding-bottom: 30px;
+   height: 500px;
+   width: 500px;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   grid-template-rows: repeat(4 1fr);
+   gap: 1em;
+ }
+ 
+ .card{
+   background-color: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 5px;
+   transform: rotateY(180deg);
+   animation: 2s hideCard linear;
+   transition: transform 0.5s;
+ }
+ 
+ @keyframes hideCard {
+   0%, 70%{
+     transform: rotateY(0);
+   }
+   100%{
+     transform: rotate(180deg);
+   }
+ }
+ 
+ .card img{
+   max-width: 65%;
+   max-height: 65%;
+   transform: scale(0);
+   animation: 2s hideImage linear;
+   transition: transform 0.5s;
+ }
+ @keyframes hideImage {
+   0%, 70%{
+     transform: scale(1);
+   }
+   100%{
+     transform: scale(0);
+   }
+ }
+ 
+ .card.active{
+   transform: rotateY(0);
+ }
+ 
+ .card.correct{
+   background-color: #4caf50;
+ }
+ 
+ .card.wrong{
+   background-color: #fd245a;
+ }
+ 
+ .card.active img{
+   transform: scale(1);
+ }

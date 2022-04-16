@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
+.strike{
+    text-decoration: line-through;
+}
+
+.item{
+    width: 280px;
+    border: 1px solid rgb(81, 80, 80);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 20px;
+    color: rgb(74, 74, 74);
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+span{
+    font-family: 'Cookie', cursive;
+    font-size: 21px;
+}
+
+.btnDelete{
+    padding: 1px 7px;
+    background-color: #1976D2;
+    border: none;
+}
+
+.btnDelete:hover{
+    cursor: pointer;
+    background-color: rgb(233, 32, 32);
+}

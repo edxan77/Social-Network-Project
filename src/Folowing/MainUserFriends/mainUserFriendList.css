@@ -1,0 +1,22 @@
+
+.delete:hover {
+  color: rgb(255, 85, 0);
+  scale: 1.2;
+  transition: 0.5s;
+}
+
+.people {
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+.people:hover {
+  color: rgb(0, 94, 244);
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+.title{
+  cursor: pointer;
+} 

@@ -1,0 +1,9 @@
+.main-input-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#edit-input-form {
+  width: 400px;
+}

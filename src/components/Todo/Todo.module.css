@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.app{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.todoBox{
+    padding: 15px;
+    background-color: #C8E2F0;
+    border: 3px solid #4546A1;
+    border-radius: 10px;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text{
+    text-align: center;
+    color: #000;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    background-color: #FDC674;
+    padding: 5px 10px;
+    border-bottom-right-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
