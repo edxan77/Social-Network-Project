@@ -5,6 +5,9 @@ import RightSidebar from "./Components/RightSidebar/RightSidebar";
 import MainUserFriends from '../../Folowing/MainUserFriends/MainUserFriendList'
 import Friendlist from "../../Folowing/FriendList/Friendlist";
 import Todo from "./Components/Todo/Todo";
+// import { RedirectContext } from "../../RedirectProvider/RedirectProvider";
+// import  {useContext, useEffect} from 'react';
+// import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 function Home(){
 

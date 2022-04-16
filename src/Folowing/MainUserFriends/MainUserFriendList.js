@@ -179,7 +179,7 @@ function MainUserFriendList() {
                   <ListItemText
                     primary={
                       <Link
-                        to={`user-profile/${item?item.id:null}`}
+                        to={`/user-profile/${item?item.id:null}`}
                         // onClick={getinc}
                         className="navlink"
                       >
@@ -192,7 +192,7 @@ function MainUserFriendList() {
                     }
                     secondary={
                       <Link
-                        to={`user-profile/${item?item.id:null}`}
+                        to={`/user-profile/${item?item.id:null}`}
                         // onClick={getinc}
                         className="navlink"
                       >
@@ -225,7 +225,7 @@ function MainUserFriendList() {
                     <ListItemText
                       primary={
                         <Link
-                          to={`user-profile/${item.id}`}
+                          to={`/user-profile/${item.id}`}
                           // onClick={getinc}
                           className="navlink"
                         >
@@ -238,7 +238,7 @@ function MainUserFriendList() {
                       }
                       secondary={
                         <Link
-                          to={`user-profile/${item.id}`}
+                          to={`/user-profile/${item.id}`}
                           // onClick={getinc}
                           className="navlink"
                         >

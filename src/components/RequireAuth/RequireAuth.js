@@ -8,9 +8,18 @@ export default function RequireAuth({ children }) {
   const {isAllow} = useContext(RedirectContext)
   const location = useLocation();
 
-  if (currentUser === null && isAllow === false) {
+  // useEffect(()=>{
+  //   if(currentUser===null){
+  //     setIsAllow(true)
+  //   }else{
+  //     setIsAllow(false);
+  //   }
+  // },[currentUser])
+
+  if (currentUser === null && isAllow === true) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return children;
+
 }

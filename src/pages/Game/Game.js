@@ -6,7 +6,7 @@ function Game(){
     return(
       <div className="Container-Game">
       <div>
-         <h3 to="/Memory">Memory</h3>
+         <h3 >Memory</h3>
          <Link to="/Memory"><img src="/imgs/game-preview.png" className="Logo"/></Link>
       </div>
       <div>

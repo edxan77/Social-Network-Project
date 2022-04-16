@@ -18,13 +18,19 @@ import {getStorage} from "firebase/storage";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
-  authDomain: "social-network-ef434.firebaseapp.com",
-  projectId: "social-network-ef434",
-  storageBucket: "social-network-ef434.appspot.com",
-  messagingSenderId: "300929157083",
-  appId: "1:300929157083:web:0704c1fd05bed2916789fe",
-  measurementId: "G-FJDEF26910"
+  // apiKey: "AIzaSyAUzr2-h7XDjxgI3OMql6vJpYuEz2zR0Pw",
+  // authDomain: "social-network-ef434.firebaseapp.com",
+  // projectId: "social-network-ef434",
+  // storageBucket: "social-network-ef434.appspot.com",
+  // messagingSenderId: "300929157083",
+  // appId: "1:300929157083:web:0704c1fd05bed2916789fe",
+  // measurementId: "G-FJDEF26910"
+  apiKey: "AIzaSyCT_q0diRKuHQVTNDAZN5V2H0bYaawaGBw",
+  authDomain: "network-aa639.firebaseapp.com",
+  projectId: "network-aa639",
+  storageBucket: "network-aa639.appspot.com",
+  messagingSenderId: "1052465034399",
+  appId: "1:1052465034399:web:b33b85ed346a80b593deaa"
 }
 //  const firebaseConfig = {
 //     apiKey: 'AIzaSyDaTcGszQUQBGvzehp7dspQpYvk6On07L4',

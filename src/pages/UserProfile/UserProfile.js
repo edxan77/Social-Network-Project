@@ -4,12 +4,14 @@ import AccountMenu from '../../components/AccountMenu/AccountMenu';
 import AddNewPostForm from '../../components/Posts/postsComponents/AddNewPostForm';
 import PostsContent from '../../components/Posts/postsComponents/PostsContent';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import { getAllUsersById } from '../../Service/firestore';
+// import { getAllUsersById } from '../../Service/firestore';
 import { UrlContext } from '../../UrlProvider/UrlProvider';
 import { useEffect, useContext, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import {firebase} from '../../lib/firebase'
 
 function UserProfile() {
   const [img, setImg] = useState();
@@ -33,13 +35,31 @@ function UserProfile() {
     setAnchorEl(null);
   };
 
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     getAllUsersById(currentUser.uid).then((userData) => {
+  //       setImg(userData.map((data) => data.backgroundImg));
+  //     });
+  //   }
+  // }, [currentUser, img]);
+
   useEffect(() => {
     if (currentUser) {
-      getAllUsersById(currentUser.uid).then((userData) => {
-        setImg(userData.map((data) => data.backgroundImg));
+      const usersRef = query(
+        collection(firebase, 'users'),
+        where('id', '==', currentUser.uid),
+      );
+      const unsubscribe = onSnapshot(usersRef, (querySnapshot) => {
+  
+        querySnapshot.docs.map((doc) => {
+                setImg(doc.data().backgroundImg);
+                console.log(img)
+        });
+  
       });
+      return () => unsubscribe();
     }
-  }, [currentUser, img, url]);
+  }, [currentUser]);
 
   useEffect(() => {
     setLoading(false);
@@ -78,7 +98,6 @@ function UserProfile() {
               alignItems: 'center',
               backgroundColor: '#fff',
             }}
-            src={img ? `${img}` : ''}
           >
             {loading && (
               <img src="http://www.avalonparis.com/wp-content/uploads/2017/01/loading5.gif" />
@@ -117,7 +136,7 @@ function UserProfile() {
             aria-expanded={open ? 'true' : undefined}
           >
             <h4 style={{ color: '#000', textTransform: 'capitalize' }}>
-              {url ? 'Edit photo' : 'Add photo'}
+              {img ? 'Edit Photo' : 'Add Photo'}
             </h4>
             <PhotoCameraIcon fontSize="medium" color="primary" />
           </Button>

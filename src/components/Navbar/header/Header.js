@@ -57,11 +57,14 @@ function Header(){
                     <div className={styles.headerOption} id={isActive === "home" ? styles.active : ''}  >
                         <HomeIcon fontSize='large' onClick={()=>{
                             setActive('home');
-                            navigate('/');
+                            navigate('/home');
                         }}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "friends" ? styles.active : ''}`}>
-                        <GroupIcon fontSize='large' onClick={()=> setActive('friends')}/>
+                        <GroupIcon fontSize='large' onClick={()=> {
+                            setActive('friends');
+                            navigate('/friends');
+                        }}/>
                     </div>
                     <div className={styles.headerOption} id={`${isActive === "games" ? styles.active : ''}`}>
                         <SportsEsportsIcon fontSize='large' onClick={()=> {

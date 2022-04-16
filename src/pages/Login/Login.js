@@ -6,14 +6,14 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState, useEffect, useContext } from 'react';
 import styles from  './Login.module.css';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import {RedirectContext} from '../../RedirectProvider/RedirectProvider';
+// import {RedirectContext} from '../../RedirectProvider/RedirectProvider';
 
 
 function Login() {
   const { setLoading } = useContext(AuthContext);
   const [fireNotFoundError, setFireNotFoundError] = useState('');
   const [firePasswordError, setFirePasswordError] = useState('');
-  const {setIsAllow} = useContext(RedirectContext);
+  // const {setIsAllow} = useContext(RedirectContext);
 
   const navigate = useNavigate();
 
@@ -56,8 +56,8 @@ function Login() {
 
     // eslint-disable-next-line no-unused-vars
     const user = userCredential.user;
-    setIsAllow(true);
-    navigate('/');
+    // setIsAllow(true);
+    navigate('/home');
  
     })
     .catch((error) => {

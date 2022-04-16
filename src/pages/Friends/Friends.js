@@ -1,10 +1,17 @@
 import Friendlist from "../../Folowing/FriendList/Friendlist";
+import MainUserFriends from "../../Folowing/MainUserFriends/MainUserFriendList";
 // import { Box } from "@mui/system";
 
 function Friends(){
     return(
-        <div style={{height: '100vh', display:'flex', justifyContent:'center', alignItems:'center'}}>
-            <Friendlist/>
+        <div>
+            <div>
+                <Friendlist />
+            </div>
+            <div >
+                <MainUserFriends />
+            </div>
+
         </div>
     )
 }

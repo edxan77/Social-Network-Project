@@ -135,14 +135,14 @@ function Friendlist() {
                 <ListItemText
                 sx={{marginTop:'15px',fontSize:'10px'}}
                   primary={
-                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
+                    <Link to={`/user-profile/${item.id}`} onClick={getinc} className="navigate">
                     <Typography sx={{ fontWeight: 'bold', Size: '5px' }}>
                       {item.firstName}
                     </Typography>
                     </Link>
                   }
                   secondary={
-                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
+                    <Link to={`/user-profile/${item.id}`} onClick={getinc} className="navigate">
                     <Typography sx={{ fontSize: '11px', fontWeight: 'bold'}}>
                       {item.lastName}
                     </Typography>
@@ -180,14 +180,14 @@ function Friendlist() {
                 <ListItemText
                 sx={{marginTop:'15px',fontSize:'10px'}}
                   primary={
-                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
+                    <Link to={`/user-profile/${item.id}`} onClick={getinc} className="navigate">
                     <Typography sx={{ fontWeight: 'bold', Size: '5px' }}>
                       {item.firstName}
                     </Typography>
                     </Link>
                   }
                   secondary={
-                    <Link to={`user-profile/${item.id}`} onClick={getinc} className="navigate">
+                    <Link to={`/user-profile/${item.id}`} onClick={getinc} className="navigate">
                     <Typography sx={{ fontSize: '11px', fontWeight: 'bold'}}>
                       {item.lastName}
                     </Typography>
