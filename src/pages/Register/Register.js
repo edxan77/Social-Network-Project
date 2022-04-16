@@ -94,6 +94,7 @@ function Register() {
 
  updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
+        profilCreationTime:  new Date().toDateString()
       })
         .then(() => {
           addUser({

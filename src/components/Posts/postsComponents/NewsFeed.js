@@ -17,7 +17,6 @@ import {
   import ThumbUpIcon from '@mui/icons-material/ThumbUp';
   import { useContext, useEffect, useState } from 'react';
   import { AuthContext } from '../../../AuthProvider/AuthProvider';
-  // import CircularIndeterminate from '../../Loading/Loading';
   import {
     collection,
     onSnapshot,

@@ -111,7 +111,7 @@ export default function AnotherUserAccountMenu(user) {
           </Box>
 
           <Typography mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-            <CalendarMonthIcon color="primary" /> Joined 
+            <CalendarMonthIcon color="primary" /> Joined {user?.users?.profilCreationTime}
           </Typography>
         </Box>
       </Box>}
