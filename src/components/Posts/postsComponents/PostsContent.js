@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { blue, lightGreen } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
@@ -196,7 +195,6 @@ export default function PostsContent() {
                   marginTop: 3,
                 }}
               >
-                <Button variant="contained" endIcon={<ShareIcon />}></Button>
                 <Button
                   onClick={async () => {
                     const postsRef = doc(firebase, 'posts', post.id);
