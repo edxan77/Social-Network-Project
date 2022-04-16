@@ -50,17 +50,19 @@ function UserProfile() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: 'lg',
+        maxWidth: 'xl',
         alignItems: 'center',
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          position: 'relative',
           maxWidth: 'lg',
           width: '100%',
-          backgroundColor: '#5d70fc',
+          backgroundColor: '#34a1eb',
+          filter: 'drop-shadow(0px 3px 8px rgba(0,0,0,0.32))',
+          borderBottomLeftRadius: '12px',
+          borderBottomRightRadius: '12px',
         }}
       >
         {loading ? (
@@ -70,11 +72,11 @@ function UserProfile() {
                 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;',
               borderBottomLeftRadius: '12px',
               borderBottomRightRadius: '12px',
-              height: '23vw',
+              height: '25vw',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: '#fff'
+              backgroundColor: '#fff',
             }}
             src={img ? `${img}` : ''}
           >
@@ -96,20 +98,18 @@ function UserProfile() {
           />
         )}
 
-        <div
-          style={{
-            display: 'flex',
-            width: '100%',
-            justifyContent: 'flex-end',
-          }}
-        >
+<Box sx={{
+  position: 'absolute',
+  bottom: '1px',
+  right: '1px',
+}}>
           <Button
             onClick={handleClick}
             style={{
-              position: 'absolute',
               color: '#000',
               backgroundColor: '#d4e3fa',
-              filter: 'drop-shadow(0px 3px 5px rgba(0,0,0,0.32))',
+              borderRadius: 2
+          
             }}
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -156,7 +156,7 @@ function UserProfile() {
               </Button>
             </MenuItem>
           </Menu>
-        </div>
+          </Box>
       </Box>
 
       <AccountMenu />
@@ -164,7 +164,10 @@ function UserProfile() {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          width: '700',
+          width: '48%',
+          justifyContent: 'center',
+          filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.32))',
+          marginTop: 5,
         }}
       >
         <AddNewPostForm />

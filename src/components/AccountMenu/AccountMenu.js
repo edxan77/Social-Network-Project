@@ -122,10 +122,10 @@ export default function AccountMenu() {
       <Box
         sx={{
           display: 'flex',
-          width: 'calc(100% - 150px);',
+          width: '100%',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginTop: 5,
+          marginTop: 3,
           padding: 3,
           paddingBottom: 4,
           backgroundColor: '#d4e3fa',

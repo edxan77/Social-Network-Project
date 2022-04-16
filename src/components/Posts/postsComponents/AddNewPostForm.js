@@ -30,7 +30,6 @@ export default function AddNewPostForm() {
         text: text,
         createdAt: serverTimestamp(),
         uid: currentUser.uid,
-        // displayName: currentUser.displayName,
         adress: userInfo.adress,
         likes: 0
       });
@@ -46,10 +45,7 @@ export default function AddNewPostForm() {
     <Box
       sx={{
         display: 'flex',
-        // MaxWidth: '100%',
-        // minWidth: '90%',
         justifyContent: 'center',
-        marginTop: 5,
         marginBottom: 3,
       }}
     >
@@ -77,7 +73,7 @@ export default function AddNewPostForm() {
           type="submit"
           variant="contained"
           sx={{
-            width: '50vw',
+            width: '38vw',
           }}
         >
           Post
