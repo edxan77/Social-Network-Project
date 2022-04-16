@@ -34,7 +34,7 @@ useEffect(() => {
     });
     return () => unsubscribe();
   }
-}, [currentUser]);
+}, [param]);
 
   return (
   <Box sx={{

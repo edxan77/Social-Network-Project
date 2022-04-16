@@ -45,7 +45,7 @@ export default function AnotherUserPosts(user) {
       });
       return () => unsubscribe();
     }
-  }, [currentUser]);
+  }, [param]);
 
   return (
     <Box
