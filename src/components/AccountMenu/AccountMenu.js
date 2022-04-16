@@ -73,10 +73,10 @@ export default function AccountMenu() {
     upload(photo, currentUser, setLoading);
 
     if (user) {
-      const id = user.id;
+      const id = user?.id;
       const userRef = doc(firebase, 'users', id);
       await updateDoc(userRef, {
-        profile_picture: currentUser.photoURL,
+        profile_picture: currentUser?.photoURL,
       });
     }
   }
@@ -94,7 +94,7 @@ export default function AccountMenu() {
     if (currentUser) {
       const userRef = query(
         collection(firebase, 'users'),
-        where('id', '==', currentUser.uid)
+        where('id', '==', currentUser?.uid)
       );
       const unsubscribe = onSnapshot(userRef, (querySnapshot) => {
         const data = [];

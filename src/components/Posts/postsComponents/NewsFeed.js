@@ -117,7 +117,7 @@ import AddNewPostForm from './AddNewPostForm';
                     }}
                   >
                     <Avatar
-                      src={post.photo}
+                      src={userInfo?.profile_picture}
                       sx={{
                         bgcolor: blue[600],
                         width: 75,
@@ -241,7 +241,6 @@ import AddNewPostForm from './AddNewPostForm';
                 </Card>
               </Box>
             ))
-          // : <h1>Loading....</h1>
         }
       </>
     );
