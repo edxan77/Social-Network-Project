@@ -72,8 +72,8 @@ export default function AccountMenu() {
   async function handleClick() {
     upload(photo, currentUser, setLoading);
 
-    if (user) {
-      const id = user?.id;
+    if (currentUser) {
+      const id = currentUser?.uid;
       const userRef = doc(firebase, 'users', id);
       await updateDoc(userRef, {
         profile_picture: currentUser?.photoURL,

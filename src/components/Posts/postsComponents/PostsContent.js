@@ -65,9 +65,9 @@ export default function PostsContent() {
     }
   }, [currentUser]);
 
-  if (newPosts && newPosts.length === 0) {
-    return <h1>Write your first post</h1>;
-  }
+  // if (newPosts && newPosts.length === 0) {
+  //   return <h1>Write your first post</h1>;
+  // }
 
   return (
     <>
