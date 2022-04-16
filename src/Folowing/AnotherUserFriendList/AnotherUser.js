@@ -63,7 +63,7 @@ function AnotherUser() {
       });
       return () => unsubscribe();
     }
-  }, [currentUser]);
+  }, [currentUser, get]);
 
   useEffect(() => {
     if (currentUser) {
@@ -82,7 +82,7 @@ function AnotherUser() {
       });
       return () => unsubscribe();
     }
-  }, [userInfo]);
+  }, [userInfo, get]);
 
   useEffect(() => {
     if (currentUser) {
@@ -101,7 +101,7 @@ function AnotherUser() {
       });
       return () => unsubscribe();
     }
-  }, [userInfo]);
+  }, [userInfo, get]);
 
   const folowsload = function () {
     setFollows(
